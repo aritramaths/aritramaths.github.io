@@ -1,2 +1,2 @@
-# aritramaths.github.io
+# aritradey.github.io
 Personal academic website of Aritra Dey
