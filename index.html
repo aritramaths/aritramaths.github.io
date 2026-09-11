@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aritra Dey | Mathematics</title>
+  <meta name="description" content="Aritra Dey, Integrated PhD student in Mathematics at TIFR, Mumbai. Interests in Diophantine approximation and homogeneous dynamics.">
+  <meta name="theme-color" content="#f8f7f3">
+  <meta property="og:title" content="Aritra Dey | Mathematics">
+  <meta property="og:description" content="Diophantine approximation and homogeneous dynamics. Integrated PhD student at TIFR, Mumbai.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b3044'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='39' fill='%23f8f7f3'%3EA%3C/text%3E%3C/svg%3E">
+  <style>
+    /* EDIT COLOURS HERE. All fonts are local; nothing needs to be installed. */
+    :root {
+      --paper: #f8f7f3;
+      --surface: #ffffff;
+      --ink: #1b3044;
+      --text: #42525c;
+      --muted: #616d73;
+      --accent: #326657;
+      --accent-soft: #e9eeea;
+      --rule: #d9ded9;
+      --serif: Georgia, 'Times New Roman', serif;
+      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      --mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 105px; }
+    body { margin: 0; background: var(--paper); color: var(--text); font: 16px/1.75 var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    a:hover { color: var(--ink); }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; border-radius: 3px; }
+    ::selection { background: #dbe7df; color: var(--ink); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { color: var(--ink); font-weight: 400; }
+    .wrap { width: min(1120px, calc(100% - 96px)); margin-inline: auto; }
+    .skip { position: absolute; top: -100px; left: 20px; padding: 10px 18px; z-index: 10; background: var(--surface); }
+    .skip:focus { top: 12px; }
+    .site-header { background: var(--paper); border-bottom: 1px solid var(--rule); position: sticky; top: 0; z-index: 5; }
+    .header-inner { min-height: 86px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; color: var(--ink); text-decoration: none; }
+    .monogram { width: 37px; height: 37px; display: grid; place-items: center; border: 1px solid var(--ink); border-radius: 50%; font: 23px/1 var(--serif); }
+    .brand-name { font-size: 15px; font-weight: 600; letter-spacing: .015em; }
+    nav { display: flex; align-items: center; gap: 30px; }
+    nav a { color: var(--text); font-size: 13px; text-decoration: none; padding: 8px 0; border-bottom: 1px solid transparent; }
+    nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+    .hero { display: grid; grid-template-columns: 1.45fr 1fr; align-items: center; gap: 60px; padding: 83px 0 77px; }
+    .eyebrow { font: 11px/1.6 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+    .hero .eyebrow { margin-bottom: 22px; }
+    h1 { font: 88px/1.02 var(--serif); letter-spacing: -.058em; margin-bottom: 23px; }
+    .hero-lead { color: var(--ink); font: 25px/1.45 var(--serif); max-width: 560px; margin-bottom: 20px; }
+    .hero-bio { font-size: 16px; line-height: 1.85; max-width: 530px; margin-bottom: 26px; }
+    .hero-links { display: flex; flex-wrap: wrap; align-items: center; gap: 25px; }
+    .button { display: inline-flex; align-items: center; justify-content: space-between; gap: 22px; padding: 11px 18px; color: var(--paper); background: var(--ink); border: 1px solid var(--ink); border-radius: 3px; font-size: 13px; text-decoration: none; transition: background .15s ease; }
+    .button:hover { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+    .text-link { display: inline-flex; align-items: center; gap: 12px; font-size: 13px; text-decoration: none; border-bottom: 1px solid var(--rule); }
+    .text-link:hover { border-bottom-color: var(--accent); }
+    figcaption { padding-top: 13px; border-top: 1px solid #d4dbd2; color: var(--muted); font: italic 14px/1.5 var(--serif); }
+    .section { display: grid; grid-template-columns: 175px minmax(0, 1fr); gap: 47px; padding: 49px 0 51px; border-top: 1px solid var(--rule); }
+    .section-heading { padding-top: 2px; }
+    .section-number { display: block; color: var(--accent); font: 11px/1.5 var(--mono); margin-bottom: 9px; }
+    .section h2 { font: 27px/1.25 var(--serif); letter-spacing: -.025em; margin-bottom: 12px; }
+    .section-intro { font-size: 16px; line-height: 1.85; max-width: 780px; margin-bottom: 28px; }
+    .interest-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 27px; }
+    .interest { padding-top: 18px; border-top: 1px solid var(--rule); }
+    .interest h3 { font: 19px/1.35 var(--serif); margin-bottom: 10px; }
+    .interest p { font-size: 13px; line-height: 1.85; margin: 0; }
+    .small-label { display: block; color: var(--muted); font: 10px/1.5 var(--mono); letter-spacing: .09em; text-transform: uppercase; margin-bottom: 12px; }
+    .notes-panel { display: flex; align-items: flex-start; gap: 23px; padding: 27px 29px; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; }
+    .notes-symbol { flex: 0 0 37px; display: grid; place-items: center; height: 45px; border: 1px solid var(--rule); border-radius: 2px; background: var(--paper); color: var(--accent); font: italic 26px/1 var(--serif); }
+    .notes-panel h3 { font: 23px/1.3 var(--serif); margin-bottom: 10px; }
+    .notes-panel p { font-size: 14px; margin-bottom: 0; max-width: 620px; }
+    .note-item { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 19px 0; border-bottom: 1px solid var(--rule); }
+    .note-title { font-size: 16px; }
+    .note-meta { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+    .pdf-link { flex-shrink: 0; font: 11px/1.5 var(--mono); }
+    .contact-content { display: flex; align-items: center; justify-content: space-between; gap: 35px; }
+    .contact-content p { margin-bottom: 0; font-size: 15px; }
+    .contact-content strong { color: var(--ink); font-weight: 500; }
+    .contact-links { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+    .site-footer { border-top: 1px solid var(--rule); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-block: 24px; color: var(--muted); font-size: 11px; letter-spacing: .02em; }
+    .footer-inner p { margin-bottom: 0; }
+    .footer-inner a { color: var(--muted); text-decoration: none; }
+    .footer-inner a:hover { color: var(--ink); }
+
+
+    /* MOBILE AND TABLET LAYOUT */
+    @media (min-width: 1500px) {
+      .hero { padding-block: 95px; }
+    }
+    @media (max-width: 1000px) {
+      .wrap { width: calc(100% - 64px); }
+      .hero { grid-template-columns: 1.4fr 1fr; gap: 34px; padding-block: 65px; }
+      h1 { font-size: 72px; }
+      .hero-lead { font-size: 23px; }
+      .section { grid-template-columns: 140px minmax(0, 1fr); gap: 32px; }
+      .interest-grid { gap: 20px; }
+      .figure { padding: 16px; }
+    }
+    @media (max-width: 760px) {
+      html { scroll-padding-top: 135px; }
+      .wrap { width: calc(100% - 42px); }
+      .header-inner { min-height: 106px; align-items: flex-start; justify-content: center; flex-direction: column; gap: 9px; padding-block: 13px; }
+      .brand { gap: 9px; }
+      .monogram { width: 29px; height: 29px; font-size: 19px; }
+      .brand-name { font-size: 14px; }
+      nav { width: 100%; justify-content: space-between; gap: 12px; }
+      nav a { padding: 2px 0; font-size: 12px; }
+      .hero { grid-template-columns: 1fr; padding: 43px 0 38px; gap: 32px; }
+      .hero .eyebrow { font-size: 10px; letter-spacing: .105em; margin-bottom: 17px; }
+      h1 { font-size: clamp(55px, 11vw, 78px); margin-bottom: 19px; }
+      .hero-lead { font-size: 23px; max-width: 540px; }
+      .hero-bio { font-size: 15px; margin-bottom: 22px; }
+      .figure { max-width: 430px; width: 100%; margin-inline: auto; }
+      .lattice { max-height: 260px; }
+      .section { grid-template-columns: 1fr; gap: 15px; padding-block: 35px; }
+      .section-heading { display: flex; align-items: baseline; gap: 13px; padding: 0; }
+      .section-number { margin-bottom: 0; }
+      .section h2 { font-size: 26px; margin-bottom: 0; }
+      .section-intro { margin-bottom: 22px; font-size: 15px; }
+      .desktop-break { display: none; }
+      .interest-grid { grid-template-columns: 1fr; gap: 19px; }
+      .interest { padding-top: 17px; }
+      .interest h3 { margin-bottom: 6px; font-size: 20px; }
+      .interest p { font-size: 14px; }
+      .notes-panel { padding: 22px 18px; gap: 16px; }
+      .notes-panel h3 { font-size: 21px; }
+      .contact-content { align-items: flex-start; flex-direction: column; gap: 18px; }
+      .footer-inner { align-items: flex-start; font-size: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+    @media print {
+      .site-header { position: static; }
+      nav, .hero-links, .figure, .skip, .back-to-top { display: none; }
+      .wrap { width: 100%; }
+      .hero { display: block; padding: 30px 0; }
+      .section { break-inside: avoid; padding-block: 25px; }
+      body { background: white; color: black; }
+    }
+
+    /* PORTRAIT. Replace portrait.jpg to change the photograph. */
+    .profile-portrait { width: 100%; max-width: 355px; margin: 0 0 0 auto; }
+    .portrait-frame { padding: 9px; border: 1px solid var(--rule); border-radius: 8px;
+      background: #fdfcfa; box-shadow: 0 14px 38px rgba(27,48,68,.075); }
+    .portrait { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5;
+      object-fit: cover; border-radius: 3px; }
+    .portrait-caption { display: flex; align-items: baseline; justify-content: space-between;
+      gap: 16px; padding: 15px 1px 0; border: 0; color: var(--muted);
+      font: 11px/1.6 var(--sans); letter-spacing: .025em; }
+    .portrait-caption span:first-child { font: 17px/1.4 var(--serif); color: var(--ink); }
+    @media (max-width: 1000px) {
+      .profile-portrait { max-width: 320px; }
+    }
+    @media (max-width: 760px) {
+      .profile-portrait { max-width: 330px; margin: 0 auto; }
+      .portrait-frame { padding: 7px; }
+      .portrait-caption { padding-top: 12px; }
+    }
+    @media print {
+      .profile-portrait { display: none; }
+    }
+  </style>
+</head>
+<body id="top">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Aritra Dey, back to top">
+        <span class="monogram" aria-hidden="true">A</span>
+        <span class="brand-name">Aritra Dey</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#notes">Notes</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="wrap">
+    <!-- EDIT YOUR INTRODUCTION HERE -->
+    <section id="about" class="hero" aria-labelledby="name">
+      <div>
+        <p class="eyebrow">Mathematics &nbsp;/&nbsp; TIFR, Mumbai</p>
+        <h1 id="name">Aritra Dey</h1>
+        <p class="hero-lead">Diophantine approximation<br> &amp; homogeneous dynamics.</p>
+        <p class="hero-bio">I am an Integrated PhD student in Mathematics at the Tata Institute of Fundamental Research, Mumbai. I am interested in using dynamical methods to study arithmetic problems.</p>
+        <div class="hero-links">
+          <a class="button" href="#research">Research interests <span aria-hidden="true">↘</span></a>
+          <a class="text-link" href="#notes">Mathematical notes <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <!-- PORTRAIT: keep portrait.jpg in the same folder as this HTML file. -->
+      <figure class="profile-portrait">
+        <div class="portrait-frame">
+          <img class="portrait" src="portrait.jpg" alt="Portrait of Aritra Dey"
+               width="800" height="1000" decoding="async" fetchpriority="high">
+        </div>
+        <figcaption class="portrait-caption">
+          <span>Aritra Dey</span>
+          <span>TIFR · Mumbai</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- EDIT YOUR RESEARCH INTERESTS HERE -->
+    <section id="research" class="section" aria-labelledby="research-title">
+      <div class="section-heading">
+        <span class="section-number" aria-hidden="true">01</span>
+        <h2 id="research-title">Research<br class="desktop-break"> interests</h2>
+      </div>
+      <div>
+        <p class="section-intro">My interests lie at the intersection of number theory and dynamical systems, particularly in the connections between Diophantine approximation, homogeneous dynamics, and ergodic theory.</p>
+        <div class="interest-grid">
+          <article class="interest">
+            <h3>Diophantine<br class="desktop-break"> approximation</h3>
+            <p>Rational approximation, continued fractions, and the geometry of numbers.</p>
+          </article>
+          <article class="interest">
+            <h3>Homogeneous<br class="desktop-break"> dynamics</h3>
+            <p>Flows on spaces of lattices and their connections with arithmetic questions.</p>
+          </article>
+          <article class="interest">
+            <h3>Ergodic<br class="desktop-break"> theory</h3>
+            <p>Recurrence, invariant measures, and the statistical behaviour of dynamical systems.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADD YOUR PUBLIC NOTES HERE. There are no invented PDF links. -->
+    <section id="notes" class="section" aria-labelledby="notes-title">
+      <div class="section-heading">
+        <span class="section-number" aria-hidden="true">02</span>
+        <h2 id="notes-title">Notes &amp;<br class="desktop-break"> exposition</h2>
+      </div>
+      <div>
+        <div class="notes-panel">
+          <span class="notes-symbol" aria-hidden="true">n</span>
+          <div>
+            <span class="small-label">Mathematical writing</span>
+            <h3>Ideas, worked out in detail.</h3>
+            <p>I will share selected expository notes and mathematical writing here. Materials will be linked as they become available.</p>
+          </div>
+        </div>
+        <!--
+        TO ADD A PDF:
+        1. Upload your PDF to the same repository, with a simple filename.
+        2. Copy the example below OUTSIDE this comment, after the notes-panel.
+        3. Replace the filename, title, and description with your own.
+        4. Once notes are available, revise or remove the notes-panel above.
+
+        <article class="note-item">
+          <div>
+            <a class="note-title" href="your-notes.pdf">Your note title</a>
+            <p class="note-meta">A short description of your note.</p>
+          </div>
+          <a class="pdf-link" href="your-notes.pdf" aria-label="Read Your note title as a PDF">PDF ↗</a>
+        </article>
+        -->
+      </div>
+    </section>
+
+    <!-- EDIT YOUR PUBLIC CONTACT DETAILS HERE -->
+    <section id="contact" class="section" aria-labelledby="contact-title">
+      <div class="section-heading">
+        <span class="section-number" aria-hidden="true">03</span>
+        <h2 id="contact-title">Contact</h2>
+      </div>
+      <div class="contact-content">
+        <p><strong>Tata Institute of Fundamental Research</strong><br>Mumbai, India</p>
+        <div class="contact-links">
+          <!-- Update this link if you change your GitHub username. -->
+          <a class="text-link" href="https://github.com/aritramaths">GitHub profile <span aria-hidden="true">↗</span></a>
+          <!--
+          To show your email, replace BOTH occurrences below, then remove
+          the comment markers around the link. Do not publish the example.
+          <a class="text-link" href="mailto:YOUR_PUBLIC_EMAIL">YOUR_PUBLIC_EMAIL <span aria-hidden="true">↗</span></a>
+          -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p>Aritra Dey &nbsp;·&nbsp; Mathematics</p>
+      <a class="back-to-top" href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+</body>
+</html>
