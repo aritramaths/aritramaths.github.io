@@ -1,0 +1,216 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Lecture 4: Direct Epsilon Proofs, Estimates, and Ratios — Aritra Dey's online real analysis lecture notes."><title>Lecture 4: Direct Epsilon Proofs, Estimates, and Ratios | Aritra Dey</title><link rel="stylesheet" href="../assets/book.css"><script src="../assets/mathjax.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><script defer src="../assets/book.js"></script></head><body><a class="skip" href="#reader-main">Skip to lecture</a><header class="topbar"><a class="brand" href="../../"><span class="brand-mark">A</span><span>Aritra Dey <span style="opacity:.42;padding:0 7px">/</span> Mathematics</span></a><nav class="top-links"><a href="../">All books</a><a href="./">Contents</a><button class="circle-button" data-theme-toggle aria-label="Toggle light and dark mode"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></nav></header><div class="reader-shell"><aside class="sidebar" id="toc-sidebar" aria-label="Book table of contents"><div class="toc-label">Book one · Real Analysis</div><a class="side-book" href="./">Contents</a><a class="side-item" href="lecture-01.html"><span>01</span>Real numbers &amp; completeness</a><a class="side-item" href="lecture-02.html"><span>02</span>Countability</a><a class="side-item" href="lecture-03.html"><span>03</span>Sequences &amp; limits</a><a class="side-item active" href="lecture-04.html" aria-current="page"><span>04</span>Direct epsilon proofs</a><a class="side-item" href="lecture-05.html"><span>05</span>Limit laws</a><a class="side-item" href="lecture-06.html"><span>06</span>Monotone convergence</a><a class="side-item" href="lecture-07.html"><span>07</span>Cauchy sequences</a><a class="side-item" href="lecture-08.html"><span>08</span>Density &amp; cluster points</a><a class="side-item" href="lecture-09.html"><span>09</span>Function limits</a><a class="side-item" href="lecture-10.html"><span>10</span>Limits at infinity</a><a class="side-item" href="lecture-11.html"><span>11</span>Standard limits</a><a class="side-item" href="lecture-12.html"><span>12</span>One-sided limits</a><a class="side-item" href="lecture-13.html"><span>13</span>Infinitesimals</a><a class="side-item" href="lecture-14.html"><span>14</span>Continuity</a><a class="side-item" href="lecture-15.html"><span>15</span>Discontinuities</a><a class="side-item" href="lecture-16.html"><span>16</span>Intermediate Value Theorem</a></aside>
+<main class="reader-main" id="reader-main"><div class="reading-width"><button id="toc-toggle" class="sidebar-toggle" aria-expanded="false" aria-controls="toc-sidebar">☰ All lectures</button>
+<nav class="book-breadcrumb" aria-label="Breadcrumb"><a href="../">Books</a><span>›</span><a href="./">Real Analysis</a><span>›</span><span>Lecture 04</span></nav>
+<header class="chapter-head"><div class="chapter-label">Lecture 04 · Online reading edition</div><h1>Direct Epsilon Proofs, Estimates, and Ratios</h1><p>Read this lecture online, then continue to the next chapter. Figures and exercises are being adapted separately for the web edition.</p><div class="reading-tools"><button type="button" id="type-toggle" aria-pressed="false">Larger text</button><button type="button" id="proof-toggle">Expand all proofs &amp; worked solutions</button></div></header>
+<div class="lecture-content">
+<h2 class="section-title" id="section-1-bernoulli-s-inequality-before-we-use-it">Bernoulli’s inequality before we use it</h2>
+<p>We shall soon compare powers and roots with simple fractions. Before doing so, let us prove the inequality that makes those comparisons possible. Its proof uses only the principle of induction from Lecture <a data-reference="lec:1" data-reference-type="ref" href="#lec:1">[lec:1]</a>.</p>
+<div class="math-box theorem"><div class="box-label">Theorem 4.1</div><h3>Bernoulli’s Inequality</h3>
+<p> For every real <span class="math inline">\(u\ge-1\)</span> and every <span class="math inline">\(n\in\mathbb{N}\)</span>, <span class="math display">\[(1+u)^n\ge1+nu.\]</span></p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> For <span class="math inline">\(n=1\)</span> the two sides are equal. Suppose the inequality holds for a particular <span class="math inline">\(n\)</span>. Since <span class="math inline">\(1+u\ge0\)</span>, multiplying preserves the inequality: <span class="math display">\[(1+u)^{n+1}\ge(1+nu)(1+u)
+ =1+(n+1)u+nu^2\ge1+(n+1)u.\]</span> This is exactly the assertion for <span class="math inline">\(n+1\)</span>, so induction completes the proof. ◻</p>
+</div></details>
+<p>For example, taking <span class="math inline">\(u=1\)</span> gives <span class="math inline">\(2^n\ge1+n\)</span>, and taking <span class="math inline">\(u=2\)</span> gives <span class="math inline">\(3^n\ge1+2n\)</span>. We now have a proved tool, rather than a pattern suggested by a few numerical values.</p>
+<div class="math-box theorem"><div class="box-label">Theorem 4.2</div><h3>A Quadratic Estimate for Positive Powers</h3>
+<p> For <span class="math inline">\(u\ge0\)</span> and <span class="math inline">\(n\ge2\)</span>, <span class="math display">\[(1+u)^n\ge1+nu+\frac{n(n-1)}2u^2
+ \ge1+\frac{n(n-1)}2u^2.\]</span></p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> At <span class="math inline">\(n=2\)</span> the first inequality is equality. If it holds at <span class="math inline">\(n\)</span>, multiply by <span class="math inline">\(1+u\)</span> and collect the terms: <span class="math display">\[\begin{aligned}
+ (1+u)^{n+1}
+ &amp;\ge1+(n+1)u+\left(n+\frac{n(n-1)}2\right)u^2
+       +\frac{n(n-1)}2u^3\\
+ &amp;\ge1+(n+1)u+\frac{n(n+1)}2u^2.
+\end{aligned}\]</span> The discarded cubic term is nonnegative. Induction proves the first inequality; discarding <span class="math inline">\(nu\ge0\)</span> proves the second. This is the part of the finite binomial expansion that we need, with its proof supplied here. The abbreviation <span class="math inline">\(\binom n2=n(n-1)/2\)</span> will be used for its quadratic coefficient. ◻</p>
+</div></details>
+<div class="note-box"><div class="box-label">Remark 4.1</div>
+<p>For <span class="math inline">\(t&gt;0\)</span> and a fixed real <span class="math inline">\(p&gt;0\)</span>, we use the usual positive power <span class="math inline">\(t^p\)</span>: it increases with <span class="math inline">\(t\)</span>, obeys the exponent laws, and has inverse <span class="math inline">\(t^{1/p}\)</span>. For a fixed base <span class="math inline">\(a&gt;1\)</span>, <span class="math inline">\(a^t\)</span> is positive and increases with <span class="math inline">\(t\)</span>; <span class="math inline">\(\log_a t\)</span> denotes its inverse, so <span class="math inline">\(a^{\log_a t}=t\)</span> for <span class="math inline">\(t&gt;0\)</span>. For <span class="math inline">\(0&lt;a&lt;1\)</span>, <span class="math inline">\(a^t\)</span> decreases with <span class="math inline">\(t\)</span>. The natural logarithm <span class="math inline">\(\ln t\)</span> is the logarithm to base <span class="math inline">\(e&gt;1\)</span>. These algebraic and order properties are our previously familiar precalculus facts; no limit, continuity, or calculus rule for powers or logarithms is being assumed in our proofs. Likewise we use the elementary trigonometric bound <span class="math inline">\(|\sin t|,|\cos t|\le1\)</span>.</p>
+</div>
+<h2 class="section-title" id="section-2-direct-varepsilon-n-proofs">Direct <span class="math inline">\(\varepsilon\)</span>–<span class="math inline">\(N\)</span> Proofs</h2>
+<p>In the previous lecture, the <a href="#sec:pendulum-story">pendulum story</a> explained what our promise means. Today we will learn to calculate a waiting index that fulfils it. I give you a positive window radius <span class="math inline">\(\varepsilon\)</span>; your task is to tell me how far along the sequence I must go so that every later term lies inside.</p>
+<div class="note-box"><div class="box-label">Method 4.1</div>
+<p>Start from the desired inequality <span class="math inline">\(\abs{x_n-L}&lt;\varepsilon\)</span>. Simplify it until you obtain a condition of the form <span class="math inline">\(n&gt;F(\varepsilon)\)</span>. Then choose an integer <span class="math display">\[N&gt;F(\varepsilon),\]</span> for example <span class="math inline">\(N=\floor{F(\varepsilon)}+1\)</span>.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 4.1</div><h3>The Sequence \(1/n\)</h3>
+<p> Prove directly that <span class="math inline">\(1/n\to0\)</span>.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>Let <span class="math inline">\(\varepsilon&gt;0\)</span>. We want <span class="math display">\[\abs{\frac1n-0}=\frac1n&lt;\varepsilon.\]</span> This holds whenever <span class="math inline">\(n&gt;1/\varepsilon\)</span>. Choose <span class="math inline">\(N\in\mathbb{N}\)</span> with <span class="math inline">\(N&gt;1/\varepsilon\)</span>. Then <span class="math inline">\(n\ge N\)</span> implies <span class="math display">\[\abs{\frac1n}\le\frac1N&lt;\varepsilon.\]</span> Therefore <span class="math inline">\(1/n\to0\)</span>.</p>
+</div></details>
+<p>The same calculation proves <span class="math display">\[1-\frac1n\to1,\]</span> because <span class="math inline">\(\abs{(1-1/n)-1}=1/n\)</span>.</p>
+<div class="inset-example"><div class="box-label">Example 4.2</div><h3>A Faster Sequence</h3>
+<p> Prove that <span class="math display">\[\frac1{n^2+1}\to0.\]</span></p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>For every <span class="math inline">\(n\ge1\)</span>, <span class="math display">\[0&lt;\frac1{n^2+1}&lt;\frac1{n^2}\le\frac1n.\]</span> Given <span class="math inline">\(\varepsilon&gt;0\)</span>, choose <span class="math inline">\(N&gt;1/\varepsilon\)</span>. If <span class="math inline">\(n\ge N\)</span>, then <span class="math display">\[\abs{\frac1{n^2+1}-0}&lt;\frac1n\le\frac1N&lt;\varepsilon.\]</span></p>
+</div></details>
+<div class="inset-example"><div class="box-label">Example 4.3</div><h3>A Rational Expression</h3>
+<p> Prove that <span class="math display">\[\frac{3n+2}{n+1}\to3.\]</span></p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>The key is to subtract the proposed limit: <span class="math display">\[\abs{\frac{3n+2}{n+1}-3}
+ =\abs{\frac{-1}{n+1}}
+ =\frac1{n+1}&lt;\frac1n.\]</span> Choose <span class="math inline">\(N&gt;1/\varepsilon\)</span>. Then <span class="math inline">\(n\ge N\)</span> gives the required inequality.</p>
+</div></details>
+<div class="inset-example"><div class="box-label">Example 4.4</div><h3>Geometric Decay</h3>
+<p> If <span class="math inline">\(0&lt;b&lt;1\)</span>, prove that <span class="math inline">\(b^n\to0\)</span>.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>Put <span class="math inline">\(u=b^{-1}-1&gt;0\)</span>, so <span class="math inline">\(b=1/(1+u)\)</span>. By Bernoulli’s inequality, <span class="math display">\[0&lt;b^n=\frac1{(1+u)^n}\le\frac1{1+nu}&lt;\frac1{nu}.\]</span> Given <span class="math inline">\(\varepsilon&gt;0\)</span>, choose a natural number <span class="math inline">\(N&gt;1/(u\varepsilon)\)</span>. For every <span class="math inline">\(n\ge N\)</span>, <span class="math inline">\(|b^n-0|&lt;1/(nu)\le1/(Nu)&lt;\varepsilon\)</span>. This proves the claim directly.</p>
+<p>If we want a sharper numerical waiting index, the logarithmic order properties stated above give <span class="math display">\[b^n&lt;\varepsilon\quad\Longleftrightarrow\quad
+ n\log b&lt;\log\varepsilon\quad\Longleftrightarrow\quad
+ n&gt;\frac{\log\varepsilon}{\log b}.\]</span> The final inequality reverses because <span class="math inline">\(\log b&lt;0\)</span>. We choose <span class="math inline">\(N\in\mathbb{N}\)</span> larger than this number. For instance, when <span class="math inline">\(b=0.8\)</span> and <span class="math inline">\(\varepsilon=0.01\)</span>, <span class="math inline">\(\log(0.01)/\log(0.8)\approx20.64\)</span>, so <span class="math inline">\(N=21\)</span> works.</p>
+</div></details>
+<h2 class="section-title" id="section-3-more-worked-epsilon-estimates">More Worked Epsilon Estimates</h2>
+<p>A formula may help us guess where the terms are heading. Now ask the question from the pendulum story: for a window of radius <span class="math inline">\(\varepsilon\)</span>, where can we begin so that every later term stays inside? Keep that question beside you through the following calculations. Several different looking sequences will lead us to the same kind of estimate.</p>
+<div class="inset-example"><div class="box-label">Example 4.5</div><h3>A Power in the Denominator</h3>
+<p> For <span class="math inline">\(p&gt;0\)</span>, prove directly that <span class="math inline">\(n^{-p}\to0\)</span>.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>Given <span class="math inline">\(\varepsilon&gt;0\)</span>, the inequality <span class="math inline">\(n^{-p}&lt;\varepsilon\)</span> is equivalent to <span class="math inline">\(n&gt;\varepsilon^{-1/p}\)</span>. Choose <span class="math inline">\(N=\lfloor\varepsilon^{-1/p}\rfloor+1\)</span>. For every <span class="math inline">\(n\ge N\)</span> we have <span class="math inline">\(0&lt;n^{-p}\le N^{-p}&lt;\varepsilon\)</span>. The exponent need not be an integer; only its positivity matters. The same proof works for <span class="math inline">\(p=1/2\)</span>, which means <span class="math inline">\(1/\sqrt n\to0\)</span>.</p>
+</div></details>
+<div class="inset-example"><div class="box-label">Example 4.6</div><h3>Oscillation with a Shrinking Amplitude</h3>
+<p> Find and prove the limits of <span class="math display">\[u_n=\frac{1-(-1)^n}{n},\qquad
+ v_n=\frac{\sin((2n-1)\pi/2)}{n},\qquad
+ w_n=\frac{2(-1)^n}{5\sqrt[3]{n}+1}.\]</span> For <span class="math inline">\(w_n\)</span>, find the first <span class="math inline">\(N\)</span> such that <span class="math inline">\(|w_n|&lt;1/10\)</span> for every <span class="math inline">\(n\ge N\)</span>.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>Each limit is zero. The numerator of <span class="math inline">\(u_n\)</span> is <span class="math inline">\(0\)</span> or <span class="math inline">\(2\)</span>, so <span class="math inline">\(|u_n|\le2/n\)</span>. Also <span class="math inline">\(|v_n|=1/n\)</span>, while <span class="math inline">\(|w_n|=2/(5\sqrt[3]n+1)&lt;1/\sqrt[3]n\)</span>. For arbitrary <span class="math inline">\(\varepsilon&gt;0\)</span> choose an integer <span class="math inline">\(N&gt;\max\{2/\varepsilon,1/\varepsilon,\varepsilon^{-3}\}\)</span>. Then each of the three absolute values is below <span class="math inline">\(\varepsilon\)</span> for all <span class="math inline">\(n\ge N\)</span>. This convenient common choice is usually far from the smallest possible one.</p>
+<p>For the requested sharp value solve the <em>original</em> inequality: <span class="math display">\[\frac2{5\sqrt[3]n+1}&lt;\frac1{10}
+ \quad\Longleftrightarrow\quad
+ \sqrt[3]n&gt;\frac{19}{5}
+ \quad\Longleftrightarrow\quad
+ n&gt;\left(\frac{19}{5}\right)^3=54.872.\]</span> Thus <span class="math inline">\(N=55\)</span> is the first possible index. By comparison, the simple bound <span class="math inline">\(|w_n|&lt;n^{-1/3}\)</span> would give the less efficient choice <span class="math inline">\(N=1001\)</span>.</p>
+</div></details>
+<div class="inset-example"><div class="box-label">Example 4.7</div><h3>Large Terms with a Small Perturbation</h3>
+<p> Evaluate and justify <span class="math display">\[\frac{3^{n+1}+\sin(n\pi/4)}{3^n},
+ \qquad \frac{2^n+(-1)^n}{2^n}
+ \qquad(n\to\infty).\]</span></p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>Rewrite the first term as <span class="math inline">\(3+\sin(n\pi/4)/3^n\)</span> and the second as <span class="math inline">\(1+(-1)^n/2^n\)</span>. Their errors from <span class="math inline">\(3\)</span> and <span class="math inline">\(1\)</span> are at most <span class="math inline">\(3^{-n}\)</span> and <span class="math inline">\(2^{-n}\)</span>. For example <span class="math inline">\(3^n\ge n+1\)</span> and <span class="math inline">\(2^n\ge n+1\)</span> by induction, so either error is at most <span class="math inline">\(1/(n+1)\)</span>. Choosing <span class="math inline">\(N&gt;1/\varepsilon\)</span> gives a direct epsilon proof of the respective limits <span class="math inline">\(3\)</span> and <span class="math inline">\(1\)</span>.</p>
+</div></details>
+<div class="inset-example"><div class="box-label">Example 4.8</div><h3>The \(n\) th Root of \(n\) : A Direct Proof</h3>
+<p> Prove <span class="math inline">\(n^{1/n}\to1\)</span> without a squeeze theorem.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>For <span class="math inline">\(n\ge2\)</span> write <span class="math inline">\(n^{1/n}=1+t_n\)</span> with <span class="math inline">\(t_n\ge0\)</span>. The quadratic estimate proved above gives <span class="math display">\[n=(1+t_n)^n\ge1+\binom n2t_n^2.\]</span> Subtracting <span class="math inline">\(1\)</span> gives <span class="math inline">\(n-1\ge n(n-1)t_n^2/2\)</span>; since <span class="math inline">\(n\ge2\)</span>, we may divide by <span class="math inline">\(n-1&gt;0\)</span> to obtain <span class="math inline">\(t_n^2\le2/n\)</span>. Given <span class="math inline">\(\varepsilon&gt;0\)</span>, choose <span class="math inline">\(N&gt;2/\varepsilon^2\)</span> and <span class="math inline">\(N\ge2\)</span>. Then for every <span class="math inline">\(n\ge N\)</span>, <span class="math inline">\(|n^{1/n}-1|=t_n\le\sqrt{2/n}&lt;\varepsilon\)</span>. This is the definition of the limit. Notice the useful step: the proved quadratic estimate gives a bound made smaller than any prescribed error by choosing <span class="math inline">\(n\)</span> large enough, whereas the linear estimate <span class="math inline">\(n\ge1+nt_n\)</span> yields only <span class="math inline">\(t_n&lt;1\)</span>.</p>
+</div></details>
+<div class="math-box"><div class="box-label">Definition 4.1</div><h3>Divergence to Positive or Negative Infinity</h3>
+<p> We write <span class="math inline">\(x_n\to+\infty\)</span> if, for every real <span class="math inline">\(M\)</span>, there is <span class="math inline">\(N\in\mathbb{N}\)</span> such that <span class="math inline">\(x_n&gt;M\)</span> for every <span class="math inline">\(n\ge N\)</span>. We write <span class="math inline">\(x_n\to-\infty\)</span> if, for every real <span class="math inline">\(M\)</span>, there is <span class="math inline">\(N\in\mathbb{N}\)</span> such that <span class="math inline">\(x_n&lt;M\)</span> for every <span class="math inline">\(n\ge N\)</span>. These statements describe eventual passage beyond every fixed height; they are not convergence to a real number. In particular, <span class="math inline">\(n\to+\infty\)</span>: choose <span class="math inline">\(N&gt;M\)</span> using the Archimedean property.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 4.9</div><h3>Constant Roots and an Infinite Limit</h3>
+<p> For <span class="math inline">\(a&gt;0\)</span>, prove <span class="math inline">\(a^{1/n}\to1\)</span>. Also prove that <span class="math inline">\(3^{\sqrt[3]n}\to+\infty\)</span>.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>If <span class="math inline">\(a&gt;1\)</span>, write <span class="math inline">\(a^{1/n}=1+d_n\)</span>. Bernoulli’s inequality gives <span class="math inline">\(a=(1+d_n)^n\ge1+nd_n\)</span>, so <span class="math inline">\(0\le d_n\le(a-1)/n\)</span>. For a given <span class="math inline">\(\varepsilon&gt;0\)</span>, take <span class="math inline">\(N&gt;(a-1)/\varepsilon\)</span>; then <span class="math inline">\(|a^{1/n}-1|&lt;\varepsilon\)</span> for every <span class="math inline">\(n\ge N\)</span>. For <span class="math inline">\(a=1\)</span> the error is identically zero. If <span class="math inline">\(0&lt;a&lt;1\)</span>, put <span class="math inline">\(b=1/a&gt;1\)</span> and use <span class="math display">\[0&lt;1-a^{1/n}=1-\frac1{b^{1/n}}
+ \le b^{1/n}-1\le\frac{b-1}{n}.\]</span> In this case choose <span class="math inline">\(N&gt;(b-1)/\varepsilon\)</span>; the same direct check gives <span class="math inline">\(|a^{1/n}-1|&lt;\varepsilon\)</span> for all <span class="math inline">\(n\ge N\)</span>.</p>
+<p>For the second claim, the meaning is: given <span class="math inline">\(M\in\mathbb{R}\)</span>, all sufficiently late terms exceed <span class="math inline">\(M\)</span>. If <span class="math inline">\(M\le1\)</span>, this is automatic. If <span class="math inline">\(M&gt;1\)</span>, choose an integer <span class="math inline">\(N&gt;(\log_3 M)^3\)</span>. For every <span class="math inline">\(n\ge N\)</span> we have <span class="math inline">\(\sqrt[3]n&gt;\log_3 M\)</span> and hence <span class="math inline">\(3^{\sqrt[3]n}&gt;M\)</span>. This is divergence to <span class="math inline">\(+\infty\)</span>, not convergence to a real number.</p>
+</div></details>
+<h2 class="section-title" id="section-4-building-an-estimate-before-writing-the-proof">Building an Estimate before Writing the Proof</h2>
+<p>When you see a finished epsilon proof, the choice of <span class="math inline">\(N\)</span> can look as though it appeared from nowhere. Let us keep the rough work on the page. We first ask what would make <span class="math inline">\(|a_n-L|\)</span> smaller than the window radius, simplify that error, and bound it by an expression we can control. Only then do we write the proof in its final order: start with an arbitrary <span class="math inline">\(\varepsilon&gt;0\)</span>, choose <span class="math inline">\(N\)</span>, and check every <span class="math inline">\(n\ge N\)</span>. This is how we will use the definition of convergence in the next two examples.</p>
+<div class="inset-example"><div class="box-label">Example 4.10</div><h3>A Rational Sequence with Two Scales</h3>
+<p> Prove directly that <span class="math inline">\(a_n=(3n^2-2n+4)/(n^2+n+1)\to3\)</span>.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>Subtracting the proposed limit is more useful than estimating the original fraction: <span class="math display">\[|a_n-3|=\frac{|-5n+1|}{n^2+n+1}
+ \le\frac{5n+1}{n^2}\le\frac6n\qquad(n\ge1).\]</span> Given <span class="math inline">\(\varepsilon&gt;0\)</span>, choose an integer <span class="math inline">\(N&gt;6/\varepsilon\)</span>. For every <span class="math inline">\(n\ge N\)</span>, <span class="math inline">\(|a_n-3|\le6/n\le6/N&lt;\varepsilon\)</span>. This proves convergence. The constant <span class="math inline">\(6\)</span> is convenient, not optimal. An estimate need only be strong enough for the desired conclusion.</p>
+</div></details>
+<div class="inset-example"><div class="box-label">Example 4.11</div><h3>Rationalisation Finds the Correct Scale</h3>
+<p> Determine the limit of <span class="math inline">\(\sqrt{n^2+3n}-n\)</span>.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>Both terms grow without bound, so separating their limits is invalid. Rationalisation gives <span class="math display">\[\sqrt{n^2+3n}-n
+ =\frac{3n}{\sqrt{n^2+3n}+n}
+ =\frac3{\sqrt{1+3/n}+1}.\]</span> The inequality <span class="math inline">\(0\le\sqrt{1+t}-1=t/(\sqrt{1+t}+1)\le t/2\)</span> for <span class="math inline">\(t\ge0\)</span> suggests that the answer should be <span class="math inline">\(3/2\)</span>. We have not yet proved a rule for limits of quotients, so let us subtract that proposed answer and control the error directly: <span class="math display">\[0\le\frac32-\frac3{\sqrt{1+3/n}+1}
+ =\frac{3(\sqrt{1+3/n}-1)}
+ {2(\sqrt{1+3/n}+1)}
+ \le\frac{9}{8n}.\]</span> Given <span class="math inline">\(\varepsilon&gt;0\)</span>, choose <span class="math inline">\(N&gt;9/(8\varepsilon)\)</span>. For every <span class="math inline">\(n\ge N\)</span>, the displayed error is less than <span class="math inline">\(\varepsilon\)</span>, so the limit is <span class="math inline">\(3/2\)</span>.</p>
+<div class="note-box"><div class="box-label">Remark 4.2</div>
+<p>In Lecture <a data-reference="lec:5" data-reference-type="ref" href="#lec:5">[lec:5]</a>, the quotient law will provide a shorter route after rationalisation. Our proof here uses only the definition and the displayed algebraic estimate.</p>
+</div>
+</div></details>
+<h2 class="section-title" id="section-5-comparing-a-term-with-the-next-term">Comparing a term with the next term</h2>
+<div class="note-box"><div class="box-label">Motivation 4.1</div>
+<p>Suppose someone gives us a positive sequence, but its formula looks complicated. Before trying to guess its limit, let us ask a smaller question: <em>how much of the present term is left in the next term?</em> The fraction <span class="math inline">\(x_{n+1}/x_n\)</span> answers exactly that question.</p>
+<p>If, from some point onward, each term is at most three quarters of the previous term, then the terms keep shrinking. After <span class="math inline">\(k\)</span> more steps, at most <span class="math inline">\((3/4)^k\)</span> of that starting term remains. Similarly, if each term is at least <span class="math inline">\(3/2\)</span> times the previous term, the terms keep growing. We do not need an exact formula for every term to see where the sequence is going. The next theorem makes this idea precise.</p>
+</div>
+<div class="math-box theorem"><div class="box-label">Theorem 4.3</div><h3>The ratio criterion for a positive sequence</h3>
+<p> Let <span class="math inline">\((x_n)\)</span> be a sequence of real numbers with <span class="math inline">\(x_n&gt;0\)</span> for every <span class="math inline">\(n\in\mathbb{N}\)</span>. Suppose the finite limit <span class="math display">\[\lim_{n\to\infty}\frac{x_{n+1}}{x_n}=\lambda\]</span> exists. Then <span class="math inline">\(\lambda\ge0\)</span>, and:</p>
+<ol>
+<li><p>if <span class="math inline">\(0\le\lambda&lt;1\)</span>, then <span class="math inline">\(x_n\to0\)</span>;</p></li>
+<li><p>if <span class="math inline">\(\lambda&gt;1\)</span>, then <span class="math inline">\(x_n\to+\infty\)</span>.</p></li>
+</ol>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> Every ratio <span class="math inline">\(x_{n+1}/x_n\)</span> is positive. Its limit therefore cannot be negative. Indeed, if <span class="math inline">\(\lambda&lt;0\)</span>, convergence with tolerance <span class="math inline">\(-\lambda/2\)</span> would make the ratios smaller than <span class="math inline">\(\lambda/2&lt;0\)</span> eventually, a contradiction.</p>
+<p><strong>First suppose <span class="math inline">\(0\le\lambda&lt;1\)</span>.</strong> We want a fixed multiplier which is larger than the limiting ratio but still smaller than <span class="math inline">\(1\)</span>. Choose <span class="math display">\[r=\frac{\lambda+1}{2}.\]</span> Then <span class="math inline">\(0&lt;r&lt;1\)</span> and <span class="math inline">\(r-\lambda=(1-\lambda)/2&gt;0\)</span>. Apply the definition of the ratio limit with tolerance <span class="math inline">\(r-\lambda\)</span>. There is <span class="math inline">\(n_0\in\mathbb{N}\)</span> such that, for every <span class="math inline">\(n\ge n_0\)</span>, <span class="math display">\[\left|\frac{x_{n+1}}{x_n}-\lambda\right|&lt;r-\lambda.\]</span> In particular, <span class="math display">\[0&lt;\frac{x_{n+1}}{x_n}&lt;r,
+  \qquad\text{so}\qquad 0&lt;x_{n+1}&lt;rx_n.\]</span> This is the useful inequality. Repeating it gives <span class="math display">\[x_{n_0+1}&lt;rx_{n_0},\qquad
+  x_{n_0+2}&lt;rx_{n_0+1}&lt;r^2x_{n_0},\qquad\ldots\]</span> More formally, induction on <span class="math inline">\(k\)</span> gives <span class="math display">\[0&lt;x_{n_0+k}\le r^k x_{n_0}\qquad(k\ge0),\]</span> with strict inequality on the right when <span class="math inline">\(k\ge1\)</span>.</p>
+<p>Let us also spell out why the upper bound tends to zero. Put <span class="math inline">\(t=r^{-1}-1&gt;0\)</span>. Then <span class="math inline">\(r^k=(1+t)^{-k}\)</span>, and Bernoulli’s inequality yields <span class="math display">\[0&lt;x_{n_0+k}\le\frac{x_{n_0}}{1+kt}.\]</span> Given <span class="math inline">\(\varepsilon&gt;0\)</span>, choose an integer <span class="math inline">\(K\ge1\)</span> with <span class="math inline">\(K&gt;x_{n_0}/(\varepsilon t)\)</span>. For every <span class="math inline">\(k\ge K\)</span>, <span class="math display">\[|x_{n_0+k}-0|
+  \le\frac{x_{n_0}}{1+kt}
+  &lt;\frac{x_{n_0}}{kt}&lt;\varepsilon.\]</span> Thus <span class="math inline">\(N=n_0+K\)</span> is a valid cutoff in the definition of <span class="math inline">\(x_n\to0\)</span>. Notice that the argument also covers <span class="math inline">\(\lambda=0\)</span>: the same choice then gives <span class="math inline">\(r=1/2\)</span>.</p>
+<p><strong>Now suppose <span class="math inline">\(\lambda&gt;1\)</span>.</strong> Choose again <span class="math inline">\(r=(\lambda+1)/2\)</span>, so <span class="math inline">\(1&lt;r&lt;\lambda\)</span>. Use the ratio limit with tolerance <span class="math inline">\(\lambda-r&gt;0\)</span>. For some <span class="math inline">\(n_0\)</span>, every <span class="math inline">\(n\ge n_0\)</span> satisfies <span class="math display">\[\frac{x_{n+1}}{x_n}&gt;r,
+  \qquad\text{and hence}\qquad x_{n+1}&gt;rx_n.\]</span> Induction now gives <span class="math display">\[x_{n_0+k}\ge r^k x_{n_0}
+  \ge\bigl(1+k(r-1)\bigr)x_{n_0}
+  \qquad(k\ge0),\]</span> where the second inequality is again Bernoulli’s inequality.</p>
+<p>To say that <span class="math inline">\(x_n\to+\infty\)</span> means that the terms eventually exceed <em>every</em> prescribed real threshold. Given <span class="math inline">\(T&gt;0\)</span>, choose an integer <span class="math inline">\(K\ge1\)</span> such that <span class="math display">\[K&gt;\frac{T}{x_{n_0}(r-1)}.\]</span> For every <span class="math inline">\(k\ge K\)</span>, the displayed lower bound gives <span class="math inline">\(x_{n_0+k}&gt;k(r-1)x_{n_0}&gt;T\)</span>. Thus every term from index <span class="math inline">\(n_0+K\)</span> onward exceeds <span class="math inline">\(T\)</span>. Nonpositive thresholds are already exceeded because every <span class="math inline">\(x_n\)</span> is positive. This proves <span class="math inline">\(x_n\to+\infty\)</span>. ◻</p>
+</div></details>
+<div class="inset-example"><div class="box-label">Example 4.12</div><h3>An exponential denominator and a factorial denominator</h3>
+<p> Find the limits of <span class="math display">\[x_n=\frac{n}{2^n},\qquad y_n=\frac{2^n}{n!}.\]</span></p>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>Both sequences are positive. Instead of comparing their whole formulas, compare consecutive terms. For the first sequence, <span class="math display">\[\frac{x_{n+1}}{x_n}
+  =\frac{n+1}{2^{n+1}}\frac{2^n}{n}
+  =\frac12\left(1+\frac1n\right)
+  .\]</span> Its distance from <span class="math inline">\(1/2\)</span> is exactly <span class="math inline">\(1/(2n)\)</span>. Given any tolerance <span class="math inline">\(\eta&gt;0\)</span>, choosing <span class="math inline">\(N&gt;1/(2\eta)\)</span> makes this distance smaller than <span class="math inline">\(\eta\)</span> whenever <span class="math inline">\(n\ge N\)</span>. Thus the ratio tends to <span class="math inline">\(1/2&lt;1\)</span>. The ratio criterion therefore gives <span class="math inline">\(n/2^n\to0\)</span>.</p>
+<p>For the second sequence, the cancellation is especially helpful: <span class="math display">\[\frac{y_{n+1}}{y_n}
+  =\frac{2^{n+1}}{(n+1)!}\frac{n!}{2^n}
+  =\frac{2}{n+1},\]</span> because <span class="math inline">\((n+1)!=(n+1)n!\)</span>. This ratio has distance at most <span class="math inline">\(2/n\)</span> from zero. Given <span class="math inline">\(\eta&gt;0\)</span>, choose <span class="math inline">\(N&gt;2/\eta\)</span> to prove directly that it tends to <span class="math inline">\(0&lt;1\)</span>. Hence <span class="math inline">\(2^n/n!\to0\)</span> as well. The additional factor <span class="math inline">\(n+1\)</span> in the factorial eventually outweighs the additional factor <span class="math inline">\(2\)</span> in the numerator.</p>
+</div></details>
+</div>
+<div class="inset-example"><div class="box-label">Example 4.13</div><h3>A polynomial factor beside geometric decay</h3>
+<p> Let <span class="math inline">\(0&lt;y&lt;1\)</span> and <span class="math inline">\(x_n=ny^{n-1}\)</span>. Show that <span class="math inline">\(x_n\to0\)</span>.</p>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>The terms are positive, and <span class="math display">\[\frac{x_{n+1}}{x_n}
+  =\frac{(n+1)y^n}{ny^{n-1}}
+  =y\left(1+\frac1n\right).\]</span> The difference between this ratio and <span class="math inline">\(y\)</span> is <span class="math inline">\(y/n\)</span>. For a tolerance <span class="math inline">\(\eta&gt;0\)</span>, choose <span class="math inline">\(N&gt;y/\eta\)</span>. Every <span class="math inline">\(n\ge N\)</span> then has ratio within <span class="math inline">\(\eta\)</span> of <span class="math inline">\(y\)</span>, so the ratio tends to <span class="math inline">\(y&lt;1\)</span>. Apply the ratio criterion to obtain <span class="math inline">\(ny^{n-1}\to0\)</span>. Although the factor <span class="math inline">\(n\)</span> grows, its consecutive-term multiplier <span class="math inline">\(1+1/n\)</span> tends to <span class="math inline">\(1\)</span>. The fixed multiplier <span class="math inline">\(y&lt;1\)</span> determines the eventual decay.</p>
+</div></details>
+</div>
+<div class="inset-example"><div class="box-label">Example 4.14</div><h3>Any fixed positive power against an exponential</h3>
+<p> Let <span class="math inline">\(s&gt;0\)</span> and <span class="math inline">\(p&gt;0\)</span>. Show that <span class="math display">\[x_n=\frac{n^s}{(1+p)^n}\longrightarrow0.\]</span></p>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>First compute <span class="math display">\[\frac{x_{n+1}}{x_n}
+  =\frac1{1+p}\left(1+\frac1n\right)^s.\]</span> We need to justify that <span class="math inline">\((1+1/n)^s\to1\)</span>, including when <span class="math inline">\(s\)</span> is not an integer. Choose an integer <span class="math inline">\(M\ge s\)</span>. Since <span class="math inline">\(1+1/n&gt;1\)</span>, the elementary order rule for positive powers gives <span class="math display">\[1\le\left(1+\frac1n\right)^s
+  \le\left(1+\frac1n\right)^M.\]</span> For the integer exponent <span class="math inline">\(M\)</span>, the finite binomial formula reads <span class="math display">\[\left(1+\frac1n\right)^M
+  =1+\sum_{j=1}^M\binom Mj\frac1{n^j}.\]</span> For <span class="math inline">\(n\ge1\)</span>, every <span class="math inline">\(n^{-j}\)</span> in this finite sum is at most <span class="math inline">\(1/n\)</span>. Also <span class="math inline">\(\sum_{j=1}^M\binom Mj=2^M-1\)</span>, by putting <span class="math inline">\(1\)</span> in the binomial formula. Therefore <span class="math display">\[0\le\left(1+\frac1n\right)^s-1
+  \le\frac{2^M-1}{n}.\]</span> In particular this gives a direct proof that <span class="math inline">\((1+1/n)^s\to1\)</span>. More specifically, the ratio itself satisfies <span class="math display">\[\left|\frac{x_{n+1}}{x_n}-\frac1{1+p}\right|
+  \le\frac{2^M-1}{(1+p)n}.\]</span> Given a tolerance <span class="math inline">\(\eta&gt;0\)</span>, choose <span class="math inline">\(N&gt;(2^M-1)/((1+p)\eta)\)</span>. The displayed error is then less than <span class="math inline">\(\eta\)</span> for all <span class="math inline">\(n\ge N\)</span>. Thus the ratio tends to <span class="math inline">\(1/(1+p)&lt;1\)</span>. The ratio criterion proves the required limit. Thus an exponential with a fixed base greater than <span class="math inline">\(1\)</span> grows faster than every fixed positive power of <span class="math inline">\(n\)</span>.</p>
+</div></details>
+</div>
+<div class="inset-example"><div class="box-label">Example 4.15</div><h3>Exponential growth survives a quadratic denominator</h3>
+<p> Let <span class="math inline">\(b&gt;1\)</span> and <span class="math inline">\(x_n=b^n/n^2\)</span>. Show that <span class="math inline">\(x_n\to+\infty\)</span>.</p>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>Again the terms are positive, and <span class="math display">\[\frac{x_{n+1}}{x_n}
+  =\frac{b^{n+1}}{(n+1)^2}\frac{n^2}{b^n}
+  =b\left(\frac{n}{n+1}\right)^2.\]</span> Rather than invoking a limit rule, subtract the proposed ratio limit <span class="math inline">\(b\)</span>: <span class="math display">\[\left|\frac{x_{n+1}}{x_n}-b\right|
+  =b\left(1-\frac{n^2}{(n+1)^2}\right)
+  =\frac{b(2n+1)}{(n+1)^2}
+  \le\frac{3b}{n}.\]</span> For every tolerance <span class="math inline">\(\eta&gt;0\)</span>, the choice <span class="math inline">\(N&gt;3b/\eta\)</span> proves directly that this ratio tends to <span class="math inline">\(b&gt;1\)</span>. The growth part of the ratio criterion therefore gives <span class="math inline">\(b^n/n^2\to+\infty\)</span>.</p>
+</div></details>
+</div>
+<div class="note-box"><div class="box-label">Warning 4.1</div>
+<p>The theorem deliberately leaves out <span class="math inline">\(\lambda=1\)</span>. At that value, knowing the ratio limit does not determine the limit of the sequence. Consider three positive sequences: <span class="math display">\[x_n=n,\qquad y_n=\frac1n,\qquad z_n=2+\frac1n.\]</span> Their consecutive-term ratios all tend to <span class="math inline">\(1\)</span>: <span class="math display">\[\left|\frac{x_{n+1}}{x_n}-1\right|=\frac1n,\qquad
+  \left|\frac{y_{n+1}}{y_n}-1\right|=\frac1{n+1},\]</span> and <span class="math display">\[\left|\frac{z_{n+1}}{z_n}-1\right|
+  =\frac{1}{n(n+1)(2+1/n)}\le\frac1{2n}.\]</span> Each error is at most <span class="math inline">\(1/n\)</span>, so the choice <span class="math inline">\(N&gt;1/\eta\)</span> proves all three ratio limits directly for any tolerance <span class="math inline">\(\eta&gt;0\)</span>. Yet <span class="math inline">\(x_n\to+\infty\)</span>, <span class="math inline">\(y_n\to0\)</span>, and <span class="math inline">\(z_n\to2\)</span>. If the ratio limit is <span class="math inline">\(1\)</span>, we must examine the sequence by another method. Throughout this section we have studied the terms of a sequence; no infinite sum is being considered.</p>
+</div>
+<h2 class="section-title" id="section-6-homework-for-lecture-4">Homework for Lecture 4</h2>
+<p>These problems develop the direct estimates of this lecture; for the root limit in Homework 4.2, use the definition and an elementary inequality, without invoking the squeeze theorem.</p>
+<div class="enumerate">
+</div>
+<p>In Lecture <a data-reference="lec:5" data-reference-type="ref" href="#lec:5">[lec:5]</a>, we shall begin with the definition of a bounded sequence and then study how boundedness helps us understand convergence.</p>
+</div>
+<div class="edition-note"><strong>About this web edition.</strong> This page is converted from the LaTeX lecture manuscript. Some original TikZ illustrations are marked for conversion. End-of-lecture homework and separate answer keys are not included here. Please consult the author before redistributing.</div>
+<nav class="reader-end" aria-label="Next and previous lecture"><a href="lecture-03.html">← Lecture 03</a><a href="lecture-05.html">Lecture 05 →</a></nav><div class="copyright">© 2026 Aritra Dey. All rights reserved.</div></div></main>
+<aside class="on-this-page"><h2>On this page</h2><a href="#section-1-bernoulli-s-inequality-before-we-use-it">Bernoulli’s inequality before we use it</a><a href="#section-2-direct-varepsilon-n-proofs">Direct \(\varepsilon\) – \(N\) Proofs</a><a href="#section-3-more-worked-epsilon-estimates">More Worked Epsilon Estimates</a><a href="#section-4-building-an-estimate-before-writing-the-proof">Building an Estimate before Writing the Proof</a><a href="#section-5-comparing-a-term-with-the-next-term">Comparing a term with the next term</a><a href="#section-6-homework-for-lecture-4">Homework for Lecture 4</a></aside></div></body></html>

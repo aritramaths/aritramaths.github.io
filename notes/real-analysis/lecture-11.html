@@ -1,0 +1,317 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Lecture 11: Standard Limits and Substitution — Aritra Dey's online real analysis lecture notes."><title>Lecture 11: Standard Limits and Substitution | Aritra Dey</title><link rel="stylesheet" href="../assets/book.css"><script src="../assets/mathjax.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><script defer src="../assets/book.js"></script></head><body><a class="skip" href="#reader-main">Skip to lecture</a><header class="topbar"><a class="brand" href="../../"><span class="brand-mark">A</span><span>Aritra Dey <span style="opacity:.42;padding:0 7px">/</span> Mathematics</span></a><nav class="top-links"><a href="../">All books</a><a href="./">Contents</a><button class="circle-button" data-theme-toggle aria-label="Toggle light and dark mode"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></nav></header><div class="reader-shell"><aside class="sidebar" id="toc-sidebar" aria-label="Book table of contents"><div class="toc-label">Book one · Real Analysis</div><a class="side-book" href="./">Contents</a><a class="side-item" href="lecture-01.html"><span>01</span>Real numbers &amp; completeness</a><a class="side-item" href="lecture-02.html"><span>02</span>Countability</a><a class="side-item" href="lecture-03.html"><span>03</span>Sequences &amp; limits</a><a class="side-item" href="lecture-04.html"><span>04</span>Direct epsilon proofs</a><a class="side-item" href="lecture-05.html"><span>05</span>Limit laws</a><a class="side-item" href="lecture-06.html"><span>06</span>Monotone convergence</a><a class="side-item" href="lecture-07.html"><span>07</span>Cauchy sequences</a><a class="side-item" href="lecture-08.html"><span>08</span>Density &amp; cluster points</a><a class="side-item" href="lecture-09.html"><span>09</span>Function limits</a><a class="side-item" href="lecture-10.html"><span>10</span>Limits at infinity</a><a class="side-item active" href="lecture-11.html" aria-current="page"><span>11</span>Standard limits</a><a class="side-item" href="lecture-12.html"><span>12</span>One-sided limits</a><a class="side-item" href="lecture-13.html"><span>13</span>Infinitesimals</a><a class="side-item" href="lecture-14.html"><span>14</span>Continuity</a><a class="side-item" href="lecture-15.html"><span>15</span>Discontinuities</a><a class="side-item" href="lecture-16.html"><span>16</span>Intermediate Value Theorem</a></aside>
+<main class="reader-main" id="reader-main"><div class="reading-width"><button id="toc-toggle" class="sidebar-toggle" aria-expanded="false" aria-controls="toc-sidebar">☰ All lectures</button>
+<nav class="book-breadcrumb" aria-label="Breadcrumb"><a href="../">Books</a><span>›</span><a href="./">Real Analysis</a><span>›</span><span>Lecture 11</span></nav>
+<header class="chapter-head"><div class="chapter-label">Lecture 11 · Online reading edition</div><h1>Standard Limits and Substitution</h1><p>Read this lecture online, then continue to the next chapter. Figures and exercises are being adapted separately for the web edition.</p><div class="reading-tools"><button type="button" id="type-toggle" aria-pressed="false">Larger text</button><button type="button" id="proof-toggle">Expand all proofs &amp; worked solutions</button></div></header>
+<div class="lecture-content">
+<div class="note-box"><div class="box-label">Motivation 11.1</div>
+<p>The arithmetic laws are now available. We can turn to standard limits that will become useful building blocks, and then use them in substitutions and calculations. The definitions still stand behind every rule: a familiar formula is useful only when its domain and hypotheses fit the expression before us.</p>
+</div>
+<h2 class="section-title" id="section-1-changing-the-input-in-a-known-limit">Changing the Input in a Known Limit</h2>
+<p>Suppose <span class="math inline">\(g(x)\to b\)</span> as <span class="math inline">\(x\to a\)</span> and <span class="math inline">\(F(t)\to L\)</span> as <span class="math inline">\(t\to b\)</span>. A substitution <span class="math inline">\(t=g(x)\)</span> is valid if the values <span class="math inline">\(g(x)\)</span> lie in the domain of <span class="math inline">\(F\)</span> and <span class="math inline">\(g(x)\ne b\)</span> for all sufficiently close admissible <span class="math inline">\(x\ne a\)</span>. Indeed, for a prescribed <span class="math inline">\(\varepsilon&gt;0\)</span>, choose <span class="math inline">\(\eta&gt;0\)</span> such that <span class="math display">\[0&lt;|t-b|&lt;\eta\quad\Longrightarrow\quad |F(t)-L|&lt;\varepsilon.\]</span> Next choose <span class="math inline">\(\delta&gt;0\)</span> so that <span class="math inline">\(0&lt;|x-a|&lt;\delta\)</span> implies <span class="math inline">\(|g(x)-b|&lt;\eta\)</span>, reducing <span class="math inline">\(\delta\)</span> to ensure <span class="math inline">\(g(x)\ne b\)</span>. Then <span class="math inline">\(0&lt;|g(x)-b|&lt;\eta\)</span>, which proves <span class="math inline">\(F(g(x))\to L\)</span>.</p>
+<p>There is another useful version: if <span class="math inline">\(F(b)\)</span> is defined and equals <span class="math inline">\(L\)</span>, the condition <span class="math inline">\(g(x)\ne b\)</span> can be dropped. At an input where <span class="math inline">\(g(x)=b\)</span>, the output is already exactly <span class="math inline">\(L\)</span>; at the other inputs, use the preceding estimate.</p>
+<div class="note-box"><div class="box-label">Warning 11.1</div>
+<p>Let <span class="math inline">\(g(x)=0\)</span> for all <span class="math inline">\(x\)</span>, and let <span class="math inline">\(F(0)=1\)</span> while <span class="math inline">\(F(t)=0\)</span> for <span class="math inline">\(t\ne0\)</span>. Then <span class="math inline">\(g(x)\to0\)</span> and <span class="math inline">\(\lim_{t\to0}F(t)=0\)</span>, but <span class="math inline">\(F(g(x))=1\)</span> always. The limit of <span class="math inline">\(F\)</span> says nothing about its value at the excluded point <span class="math inline">\(0\)</span>.</p>
+</div>
+<h2 class="section-title" id="section-2-standard-trigonometric-limits">Standard Trigonometric Limits</h2>
+<p>All angles below are measured in <strong>radians</strong>. On the unit circle, a radian angle equals the corresponding arc length. This is what makes the number <span class="math inline">\(1\)</span> appear in the next formula.</p>
+<div class="math-box"><div class="box-label">Formula 11.1</div><h3>The Fundamental Trigonometric Limit</h3>
+<p> <span class="math display">\[\lim_{x\to0}\frac{\sin x}{x}=1.\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Geometry 11.1</div>
+<p>For <span class="math inline">\(0&lt;x&lt;\pi/2\)</span>, comparison of the inner triangle, sector, and outer triangle in the unit circle gives <span class="math display">\[\frac12\sin x&lt;\frac12x&lt;\frac12\tan x,
+ \qquad\text{hence}\qquad
+ \cos x&lt;\frac{\sin x}{x}&lt;1.\]</span> Also <span class="math inline">\(|\sin u|\le |u|\)</span> for sufficiently small <span class="math inline">\(u\)</span>, by the same comparison and oddness of sine. Thus <span class="math display">\[0\le1-\cos x=2\sin^2(x/2)\le\frac{x^2}{2}.\]</span> Combining the inequalities, and using that <span class="math inline">\(\sin x/x\)</span> is even, gives for <span class="math inline">\(0&lt;|x|&lt;\pi/2\)</span> the explicit estimate <span class="math display">\[\left|\frac{\sin x}{x}-1\right|\le1-\cos x\le\frac{x^2}{2}.\]</span> Given <span class="math inline">\(\varepsilon&gt;0\)</span>, choose <span class="math inline">\(\delta=\min\{\pi/2,\sqrt{2\varepsilon}\}\)</span>. Then <span class="math inline">\(0&lt;|x|&lt;\delta\)</span> makes the last error strictly less than <span class="math inline">\(\varepsilon\)</span>. This proves the limit directly from its definition.</p>
+</div>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<p>The estimate <span class="math inline">\(|1-\cos x|\le x^2/2\)</span> also proves <span class="math inline">\(\cos x\to1\)</span> directly. Consequently the quotient law gives <span class="math display">\[\lim_{x\to0}\frac{\tan x}{x}
+ =\lim_{x\to0}\frac{\sin x/x}{\cos x}=1.\]</span> Using <span class="math inline">\(1-\cos x=2\sin^2(x/2)\)</span> gives another standard limit: <span class="math display">\[\lim_{x\to0}\frac{1-\cos x}{x^2}
+ =\frac12\lim_{x\to0}\left(\frac{\sin(x/2)}{x/2}\right)^2
+ =\frac12.\]</span></p>
+<div class="inset-example"><div class="box-label">Example 11.1</div><h3>Keep Track of the Scale</h3>
+<p> Evaluate <span class="math display">\[\lim_{x\to0}\frac{\sin5x}{x},\qquad
+ \lim_{x\to0}\frac{\sin2x}{\sin3x},\qquad
+ \lim_{x\to0}\frac{1-\cos3x}{x^2}.\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 11.1</div>
+<p>Make the standard expressions visible before taking limits: <span class="math display">\[\frac{\sin5x}{x}=5\frac{\sin5x}{5x}\longrightarrow5,\]</span> <span class="math display">\[\frac{\sin2x}{\sin3x}
+ =\frac23\frac{\sin2x/(2x)}{\sin3x/(3x)}\longrightarrow\frac23,\]</span> <span class="math display">\[\frac{1-\cos3x}{x^2}
+ =\frac92\left(\frac{\sin(3x/2)}{3x/2}\right)^2
+ \longrightarrow\frac92.\]</span> In general <span class="math inline">\(\sin(ax)/\sin(bx)\to a/b\)</span> for real <span class="math inline">\(a,b\)</span> with <span class="math inline">\(b\ne0\)</span>. For <span class="math inline">\(a=0\)</span>, the numerator is identically zero; otherwise the same calculation applies. The denominator is nonzero sufficiently near zero because <span class="math inline">\(\sin(bx)/(bx)\to1\)</span>.</p>
+</div>
+<h2 class="section-title" id="section-3-exponential-and-logarithmic-standard-limits">Exponential and Logarithmic Standard Limits</h2>
+<p>Some standard limits, such as the sine limit above, can already be proved with our present tools. Others will need ideas we develop later. The order of discovery can be different from the order of a proof: numerical or geometric evidence can suggest a limit before we know how to justify it. Here we state the exponential limit so that we can complete our collection of standard limits and use it in calculations. We will return to its rigorous justification as we develop the exponential function more fully.</p>
+<div class="note-box"><div class="box-label">Remark 11.1</div>
+<p>We use the familiar real exponential function with <span class="math inline">\(e^t&gt;0\)</span>, <span class="math inline">\(e^0=1\)</span>, <span class="math inline">\(e^{s+t}=e^se^t\)</span>, strict increase, and range <span class="math inline">\((0,\infty)\)</span>. We take the following standard limit as a starting fact: <span class="math display">\[\lim_{h\to0}\frac{e^h-1}{h}=1.\]</span> The consequences below are proved from this starting fact. Its proof depends on how the real exponential function is constructed. We define <span class="math inline">\(\ln:(0,\infty)\to\mathbb{R}\)</span> as the inverse of <span class="math inline">\(t\mapsto e^t\)</span>, and <span class="math inline">\(a^t=e^{t\ln a}\)</span> for <span class="math inline">\(a&gt;0\)</span>.</p>
+</div>
+<p>First observe that <span class="math inline">\(e^h\to1\)</span>: for <span class="math inline">\(h\ne0\)</span>, <span class="math display">\[e^h-1=h\frac{e^h-1}{h}\longrightarrow0.\]</span> The missing value at <span class="math inline">\(h=0\)</span> also equals <span class="math inline">\(1\)</span>. Hence, if <span class="math inline">\(t\to b\)</span>, <span class="math inline">\(e^t=e^be^{t-b}\to e^b\)</span>. These facts justify exponentiating a finite limit without appealing to differentiation.</p>
+<div class="math-box"><div class="box-label">Formula 11.2</div><h3>Exponential and Logarithmic Limits</h3>
+<p> For <span class="math inline">\(a&gt;0\)</span>, <span class="math display">\[\lim_{x\to0}\frac{e^x-1}{x}=1,
+ \qquad
+ \lim_{x\to0}\frac{a^x-1}{x}=\ln a,
+ \qquad
+ \lim_{x\to0}\frac{\ln(1+x)}{x}=1.\]</span> For <span class="math inline">\(a&gt;0\)</span>, <span class="math inline">\(a\ne1\)</span>, <span class="math display">\[\lim_{x\to0}\frac{\log_a(1+x)}x=\frac1{\ln a}=\log_a e.\]</span></p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> For <span class="math inline">\(a=1\)</span>, the second numerator is zero, so its limit is <span class="math inline">\(0=\ln1\)</span>. For <span class="math inline">\(a\ne1\)</span>, put <span class="math inline">\(h=x\ln a\)</span>. Then <span class="math inline">\(h\to0\)</span> and <span class="math inline">\(h\ne0\)</span> when <span class="math inline">\(x\ne0\)</span>; therefore <span class="math display">\[\frac{a^x-1}{x}
+ =\ln a\,\frac{e^{x\ln a}-1}{x\ln a}\longrightarrow\ln a.\]</span></p>
+<p>For the logarithmic limit put <span class="math inline">\(t=\ln(1+x)\)</span>, with <span class="math inline">\(x&gt;-1\)</span>. We must verify that <span class="math inline">\(t\to0\)</span>. Given <span class="math inline">\(\eta&gt;0\)</span>, the number <span class="math display">\[d=\min\{1-e^{-\eta},\ e^\eta-1\}\]</span> is positive. If <span class="math inline">\(|x|&lt;d\)</span>, then <span class="math inline">\(e^{-\eta}&lt;1+x&lt;e^\eta\)</span>. Since exponential is strictly increasing, <span class="math inline">\(-\eta&lt;t&lt;\eta\)</span>. Thus <span class="math inline">\(t\to0\)</span>, and <span class="math inline">\(t\ne0\)</span> for <span class="math inline">\(x\ne0\)</span>. Since <span class="math inline">\(x=e^t-1\)</span>, <span class="math display">\[\frac{\ln(1+x)}x=\frac{t}{e^t-1}
+ =\frac1{(e^t-1)/t}\longrightarrow1.\]</span> Finally <span class="math inline">\(\log_a(1+x)=\ln(1+x)/\ln a\)</span>, giving the last formula. ◻</p>
+</div></details>
+<div class="math-box"><div class="box-label">Formula 11.3</div><h3>The Standard Power Limit</h3>
+<p> For <span class="math inline">\(u&gt;-1\)</span> and <span class="math inline">\(u\ne0\)</span>, <span class="math display">\[\lim_{u\to0}(1+u)^{1/u}=e.\]</span> Consequently, within the domain <span class="math inline">\(1+1/x&gt;0\)</span>, <span class="math display">\[\lim_{x\to+\infty}\left(1+\frac1x\right)^x=e,
+ \qquad
+ \lim_{x\to-\infty}\left(1+\frac1x\right)^x=e.\]</span></p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> Write <span class="math display">\[(1+u)^{1/u}
+ =\exp\left(\frac{\ln(1+u)}u\right).\]</span> The exponent tends to <span class="math inline">\(1\)</span>, so the expression tends to <span class="math inline">\(e^1=e\)</span> by the exponential input-change fact proved above. For the two limits at infinity, put <span class="math inline">\(u=1/x\)</span>. In both cases <span class="math inline">\(u\to0\)</span>; the base is positive eventually. ◻</p>
+</div></details>
+<div class="note-box"><div class="box-label">Method 11.1</div>
+<p>For any positive base <span class="math inline">\(b(x)\)</span>, write <span class="math display">\[b(x)^{c(x)}=\exp\bigl(c(x)\ln b(x)\bigr).\]</span> This reduces the power problem to the limit of a product. If the original positive expression tends to <span class="math inline">\(L&gt;0\)</span>, taking its logarithm gives a limit of <span class="math inline">\(\ln L\)</span>. Passing the limit inside <span class="math inline">\(\ln\)</span> is exactly what continuity of the logarithm means here. We will justify and study this step in detail in the chapter on continuity.</p>
+<p>Suppose <span class="math inline">\(v(x)\to0\)</span>, <span class="math inline">\(1+v(x)&gt;0\)</span>, and <span class="math inline">\(w(x)v(x)\to B\in\mathbb{R}\)</span>. Then <span class="math display">\[(1+v(x))^{w(x)}\longrightarrow e^B.\]</span> To see this, define <span class="math inline">\(H(0)=1\)</span> and <span class="math inline">\(H(t)=\ln(1+t)/t\)</span> for <span class="math inline">\(t\ne0\)</span> near <span class="math inline">\(0\)</span>. The logarithmic standard limit says <span class="math inline">\(H(t)\to1\)</span>, including the assigned value at <span class="math inline">\(0\)</span>. Therefore <span class="math display">\[w(x)\ln(1+v(x))=w(x)v(x)H(v(x))\longrightarrow B.\]</span> Now we go back from the logarithm to the original power. By continuity of the exponential, the limit is <span class="math inline">\(\exp(B)=e^B\)</span>. This also covers inputs where <span class="math inline">\(v(x)=0\)</span>: then the base is <span class="math inline">\(1\)</span> and both sides of the logarithmic identity are zero.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 11.2</div><h3>Scaling an Exponential or Logarithmic Error</h3>
+<p> Evaluate <span class="math display">\[\lim_{x\to0}\frac{e^{4x}-1}{x},\qquad
+ \lim_{x\to0}\frac{\ln(1+2x)}x,\qquad
+ \lim_{x\to+\infty}\left(1+\frac1{7x}\right)^x.\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 11.2</div>
+<p>For the first two limits, isolate the small input: <span class="math display">\[\frac{e^{4x}-1}{x}=4\frac{e^{4x}-1}{4x}\longrightarrow4,
+ \qquad
+ \frac{\ln(1+2x)}x=2\frac{\ln(1+2x)}{2x}\longrightarrow2.\]</span> For the last one, use <span class="math inline">\(v(x)=1/(7x)\)</span> and <span class="math inline">\(w(x)=x\)</span>. Then <span class="math inline">\(v(x)\to0\)</span> and <span class="math inline">\(w(x)v(x)=1/7\)</span>, so the limit is <span class="math inline">\(e^{1/7}\)</span>.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 11.3</div><h3>Nine Uses of the Standard Exponential Limits</h3>
+<p> Find the following limits. Here <span class="math inline">\(k,m\in\mathbb{R}\)</span> are fixed and <span class="math inline">\(a&gt;0\)</span>.</p>
+<div class="parts">
+<p><span class="math inline">\(\displaystyle\lim_{x\to+\infty}(1+1/x)^{7x}\)</span>.</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to0}(1+x)^{1/(3x)}\)</span>.</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to+\infty}\left(\frac{x}{1+x}\right)^x\)</span>.</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to+\infty}(1+k/x)^{mx}\)</span>.</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to0}\frac{\ln(1+x)}{3^x-1}\)</span>.</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to0}\frac{e^{4x}-1}{\tan x}\)</span>.</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to0}\frac{\ln(a+x)-\ln a}{x}\)</span>.</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to0}\frac{e^x-e^{-x}}{\sin x}\)</span>.</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to e}\frac{\ln x-1}{x-e}\)</span>.</p>
+</div>
+</div>
+<div class="note-box"><div class="box-label">Explanation 11.3</div>
+<p><strong>(a)</strong> The logarithm of the expression is <span class="math display">\[7x\ln(1+1/x)=7\frac{\ln(1+1/x)}{1/x}\longrightarrow7.\]</span> Exponentiating gives <span class="math inline">\(e^7\)</span>.</p>
+<p><strong>(b)</strong> Its logarithm is <span class="math inline">\(\tfrac13\ln(1+x)/x\to1/3\)</span>, so the answer is <span class="math inline">\(e^{1/3}\)</span>. Both sides are permitted near zero because <span class="math inline">\(1+x&gt;0\)</span> there.</p>
+<p><strong>(c)</strong> Since <span class="math inline">\(x/(1+x)=(1+1/x)^{-1}\)</span>, its logarithm is <span class="math inline">\(-x\ln(1+1/x)\to-1\)</span>. The answer is <span class="math inline">\(e^{-1}\)</span>.</p>
+<p><strong>(d)</strong> The base is positive for all sufficiently large <span class="math inline">\(x\)</span>, even if <span class="math inline">\(k&lt;0\)</span>. If <span class="math inline">\(k\ne0\)</span>, <span class="math display">\[mx\ln(1+k/x)=mk\frac{\ln(1+k/x)}{k/x}\longrightarrow mk.\]</span> The limit is <span class="math inline">\(e^{mk}\)</span>. When <span class="math inline">\(k=0\)</span>, the expression is identically <span class="math inline">\(1\)</span>, which agrees with the formula.</p>
+<p><strong>(e)</strong> Separate the two standard quotients: <span class="math display">\[\frac{\ln(1+x)}{3^x-1}
+ =\frac{\ln(1+x)}x\,\frac{x}{3^x-1}
+ \longrightarrow\frac1{\ln3}.\]</span> The second factor is allowed because <span class="math inline">\((3^x-1)/x\to\ln3\ne0\)</span>.</p>
+<p><strong>(f)</strong> Divide numerator and denominator by <span class="math inline">\(x\)</span>: <span class="math display">\[\frac{e^{4x}-1}{\tan x}
+ =4\frac{e^{4x}-1}{4x}\,\frac{x}{\tan x}\longrightarrow4.\]</span></p>
+<p><strong>(g)</strong> Use <span class="math inline">\(\ln(a+x)-\ln a=\ln(1+x/a)\)</span>. Then <span class="math display">\[\frac{\ln(a+x)-\ln a}{x}
+ =\frac1a\frac{\ln(1+x/a)}{x/a}\longrightarrow\frac1a.\]</span> The assumption <span class="math inline">\(a&gt;0\)</span> ensures that the logarithms are defined near zero.</p>
+<p><strong>(h)</strong> Split the numerator and track the minus sign: <span class="math display">\[\frac{e^x-e^{-x}}{\sin x}
+ =\left(\frac{e^x-1}{x}
+        +\frac{e^{-x}-1}{-x}\right)\frac{x}{\sin x}
+ \longrightarrow(1+1)\cdot1=2.\]</span></p>
+<p><strong>(i)</strong> Put <span class="math inline">\(t=x/e-1\)</span>. Then <span class="math inline">\(x-e=et\)</span> and <span class="math inline">\(\ln x-1=\ln(1+t)\)</span>. Thus <span class="math display">\[\frac{\ln x-1}{x-e}
+ =\frac1e\frac{\ln(1+t)}t\longrightarrow\frac1e.\]</span></p>
+</div>
+<div class="inset-example"><div class="box-label">Example 11.4</div><h3>A Small Change Raised to a Growing Power</h3>
+<p> Find <span class="math inline">\(\displaystyle\lim_{x\to+\infty}(1+1/x^2)^x\)</span>.</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 11.4</div>
+<p>The base tends to <span class="math inline">\(1\)</span> and the exponent tends to infinity; this description alone does not determine the answer. Take logarithms: <span class="math display">\[x\ln(1+1/x^2)
+ =\frac1x\,\frac{\ln(1+1/x^2)}{1/x^2}\longrightarrow0\cdot1=0.\]</span> The original expression therefore tends to <span class="math inline">\(e^0=1\)</span>.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 11.5</div><h3>When Both the Base and the Exponent Vary</h3>
+<p> Evaluate: <span class="math display">\[\text{(a) }\lim_{x\to1}\left(\frac{1+x}{2+x}\right)^{(1-\sqrt{x})/(1-x)},\]</span> <span class="math display">\[\text{(b) }\lim_{x\to+\infty}
+ \left(\frac{x^2+2x-1}{2x^2-3x-2}\right)^{(2x+1)/(x-1)}.\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 11.5</div>
+<p><strong>(a)</strong> The base tends to <span class="math inline">\(2/3&gt;0\)</span>. Rationalising the exponent gives <span class="math display">\[\frac{1-\sqrt{x}}{1-x}=\frac1{1+\sqrt{x}}\longrightarrow\frac12.\]</span> For completeness, if a positive base <span class="math inline">\(b(x)\to B&gt;0\)</span>, write <span class="math inline">\(b(x)=B(1+u(x))\)</span> with <span class="math inline">\(u(x)\to0\)</span>. Then <span class="math inline">\(\ln b(x)=\ln B+\ln(1+u(x))\to\ln B\)</span>. Consequently the logarithm of the expression tends to <span class="math inline">\(\tfrac12\ln(2/3)\)</span>. The required answer is <span class="math inline">\(\sqrt{2/3}\)</span>.</p>
+<p><strong>(b)</strong> Divide the numerator and denominator of the base by <span class="math inline">\(x^2\)</span>: <span class="math display">\[\frac{1+2/x-1/x^2}{2-3/x-2/x^2}\longrightarrow\frac12.\]</span> Also <span class="math inline">\((2x+1)/(x-1)=(2+1/x)/(1-1/x)\to2\)</span>. The base is positive on a sufficiently large positive tail. By the same logarithmic argument as in (a), the limit is <span class="math inline">\((1/2)^2=1/4\)</span>.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 11.6</div><h3>Four Powers with a Base Approaching One</h3>
+<p> Evaluate</p>
+<div class="parts">
+<p><span class="math inline">\(\displaystyle\lim_{x\to+\infty}\left(\frac{2x^2+3}{2x^2+5}\right)^{8x^2+3}\)</span>;</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to0}\left(\frac{1+\tan x}{1+\sin x}\right)^{1/\sin x}\)</span>;</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to1}(1+\sin\pi x)^{\cot\pi x}\)</span>;</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to a}\left(\frac{\sin x}{\sin a}\right)^{1/(x-a)}\)</span>, where <span class="math inline">\(a\notin\pi\mathbb{Z}\)</span>.</p>
+</div>
+</div>
+<div class="note-box"><div class="box-label">Explanation 11.6</div>
+<div class="parts">
+<p>Write the base as <span class="math inline">\(1+w(x)\)</span>, where <span class="math display">\[w(x)=-\frac{2}{2x^2+5}.\]</span> Then <span class="math inline">\(w(x)\to0\)</span> and <span class="math display">\[(8x^2+3)w(x)
+ =-\frac{16x^2+6}{2x^2+5}\longrightarrow-8.\]</span> The logarithm of the expression therefore tends to <span class="math inline">\(-8\)</span>, and the required limit is <span class="math inline">\(\boxed{e^{-8}}\)</span>.</p>
+<p>Here the deviation of the base from <span class="math inline">\(1\)</span> is <span class="math display">\[w(x)=\frac{\tan x-\sin x}{1+\sin x}.\]</span> For small nonzero <span class="math inline">\(x\)</span>, <span class="math display">\[\frac{w(x)}{\sin x}
+ =\frac{1/\cos x-1}{1+\sin x}
+ =\frac{1-\cos x}{\cos x(1+\sin x)}\longrightarrow0.\]</span> Thus the logarithm tends to <span class="math inline">\(0\)</span>, and the power tends to <span class="math inline">\(\boxed1\)</span>. Notice that the exponent by itself has no finite limit. We control the product appearing after taking a logarithm.</p>
+<p>Put <span class="math inline">\(w(x)=\sin\pi x\)</span>. Then <span class="math inline">\(w(x)\to0\)</span> and <span class="math display">\[(\cot\pi x)w(x)=\cos\pi x\longrightarrow-1.\]</span> Consequently the answer is <span class="math inline">\(\boxed{e^{-1}}\)</span>.</p>
+<p>Since <span class="math inline">\(\sin a\ne0\)</span>, the ratio <span class="math inline">\(\sin x/\sin a\)</span> is positive for <span class="math inline">\(x\)</span> sufficiently close to <span class="math inline">\(a\)</span>. Set <span class="math display">\[w(x)=\frac{\sin x-\sin a}{\sin a}.\]</span> The sine difference identity gives <span class="math display">\[\begin{aligned}
+ \frac{w(x)}{x-a}
+ &amp;=\frac{2\cos((x+a)/2)\sin((x-a)/2)}{(x-a)\sin a}\\
+ &amp;=\frac{\cos((x+a)/2)}{\sin a}
+   \frac{\sin((x-a)/2)}{(x-a)/2}
+ \longrightarrow\frac{\cos a}{\sin a}=\cot a.
+\end{aligned}\]</span> Therefore the limit is <span class="math inline">\(\boxed{e^{\cot a}}\)</span>. This proof uses a trigonometric identity and the fundamental sine limit; no differentiation is needed.</p>
+</div>
+</div>
+<div class="inset-example"><div class="box-label">Example 11.7</div><h3>Two Per Cent Growth for a Century</h3>
+<p> A population increases by <span class="math inline">\(2\%\)</span> each year. By what factor does it increase in <span class="math inline">\(100\)</span> years? How can the standard exponential limit help us estimate the answer?</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 11.7</div>
+<p>Let the initial population be <span class="math inline">\(P\)</span>. After one year it is <span class="math inline">\(1.02P\)</span>, after two years it is <span class="math inline">\((1.02)^2P\)</span>, and after <span class="math inline">\(100\)</span> years it is <span class="math inline">\((1.02)^{100}P\)</span>. Thus the exact multiplying factor is <span class="math display">\[\boxed{(1.02)^{100}=\left(1+\frac1{50}\right)^{100}
+       \approx7.24465.}\]</span> To connect this with the standard limit, write <span class="math display">\[\left(1+\frac1{50}\right)^{100}
+ =\left[\left(1+\frac1{50}\right)^{50}\right]^2.\]</span> The expression inside the square brackets is a finite-stage approximation to <span class="math inline">\(e\)</span>. Replacing it by <span class="math inline">\(e\)</span> gives the rough estimate <span class="math inline">\(e^2\approx7.38906\)</span>. This is close to, but different from, the exact factor: it overestimates it by about <span class="math inline">\(0.14441\)</span>, or about <span class="math inline">\(1.99\%\)</span> of the exact factor. A limit provides an approximation here, not an exact equality at <span class="math inline">\(n=50\)</span>.</p>
+</div>
+<h3 id="more-exponential-and-power-examples">More Exponential and Power Examples</h3>
+<div class="note-box"><div class="box-label">Remark 11.2</div>
+<p>We will use <span class="math inline">\(\ln y/y\to0\)</span> as <span class="math inline">\(y\to+\infty\)</span>. Here is a proof using only sequences already studied. Put <span class="math inline">\(n=\lfloor\ln y\rfloor\)</span>. Then <span class="math inline">\(n\to\infty\)</span>, <span class="math inline">\(\ln y&lt;n+1\)</span> and <span class="math inline">\(y\ge e^n\)</span>, so <span class="math display">\[0\le\frac{\ln y}{y}\le\frac{n+1}{e^n}\longrightarrow0.\]</span> The ratio criterion shows that the last sequence tends to zero: the ratio of consecutive terms tends to <span class="math inline">\(1/e&lt;1\)</span>. For a prescribed <span class="math inline">\(\varepsilon&gt;0\)</span>, choose <span class="math inline">\(N\)</span> so that <span class="math inline">\((n+1)/e^n&lt;\varepsilon\)</span> for <span class="math inline">\(n\ge N\)</span>. Then <span class="math inline">\(y&gt;e^N\)</span> ensures <span class="math inline">\(n\ge N\)</span>, so <span class="math inline">\(\ln y/y&lt;\varepsilon\)</span>.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 11.8</div><h3>Eleven Exponential and Power Limits</h3>
+<p> Evaluate the following limits on their real domains. Assume <span class="math inline">\(a&gt;0\)</span> in part (c), and <span class="math inline">\(\alpha,\beta\in\mathbb{R}\)</span> in part (k).</p>
+<div class="parts">
+<p><span class="math inline">\(\displaystyle\lim_{x\to+\infty}(1+4/x)^{x+3}\)</span>;</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to0}\frac{e^{-x}-1}{x}\)</span>;</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to0}\frac{a^{2x}-1}{x}\)</span>;</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to0}(1+3\tan^2x)^{\cot^2x}\)</span>;</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to\pi/4}(\sin2x)^{\tan^22x}\)</span>;</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to+\infty}\left(\frac{2x-1}{2x+1}\right)^x\)</span>;</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to\pi/2}(\tan x)^{\tan2x}\)</span>;</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to\pi/2}(\sin x)^{\tan x}\)</span>;</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to+\infty}\left(\frac{3x^2+2x+1}{x^2+x+2}\right)^{(6x+1)/(3x+2)}\)</span>;</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to+\infty}\left(\frac{1+3x}{2+3x}\right)^{(1-\sqrt{x})/(1-x)}\)</span>;</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to0}\frac{e^{\alpha x}-e^{\beta x}}{x}\)</span>.</p>
+</div>
+</div>
+<div class="note-box"><div class="box-label">Explanation 11.8</div>
+<div class="parts">
+<p>The base is <span class="math inline">\(1+w\)</span> with <span class="math inline">\(w=4/x\to0\)</span>, and <span class="math inline">\((x+3)w=4+12/x\to4\)</span>. Taking logarithms as above gives the answer <span class="math inline">\(\boxed{e^4}\)</span>.</p>
+<p>With <span class="math inline">\(u=-x\)</span>, <span class="math display">\[\frac{e^{-x}-1}{x}=-\frac{e^u-1}{u}\longrightarrow\boxed{-1}.\]</span></p>
+<p>Put <span class="math inline">\(u=2x\)</span>. Then <span class="math display">\[\frac{a^{2x}-1}{x}=2\frac{a^u-1}{u}\longrightarrow\boxed{2\ln a}.\]</span> For <span class="math inline">\(a=1\)</span> the numerator is identically zero, in agreement with the formula.</p>
+<p>Take <span class="math inline">\(w=3\tan^2x\)</span>. The product of the exponent and <span class="math inline">\(w\)</span> is exactly <span class="math display">\[\cot^2x\cdot3\tan^2x=3\]</span> where the expression is defined. The logarithm therefore tends to <span class="math inline">\(3\)</span>, and the answer is <span class="math inline">\(\boxed{e^3}\)</span>.</p>
+<p>Put <span class="math inline">\(t=2x-\pi/2\)</span>. Then <span class="math inline">\(t\to0\)</span>, <span class="math inline">\(\sin2x=\cos t\)</span> and <span class="math inline">\(\tan^22x=\cot^2t\)</span>. The base is positive close to the point. Moreover, <span class="math display">\[\begin{aligned}
+ (\cos t-1)\cot^2t
+ &amp;=-\frac{\sin^2t}{1+\cos t}\frac{\cos^2t}{\sin^2t}\\
+ &amp;=-\frac{\cos^2t}{1+\cos t}\longrightarrow-\frac12.
+\end{aligned}\]</span> The answer is <span class="math inline">\(\boxed{e^{-1/2}}\)</span>.</p>
+<p>Write the base as <span class="math inline">\(1-2/(2x+1)\)</span>. Since <span class="math display">\[x\left(-\frac2{2x+1}\right)\longrightarrow-1,\]</span> the limit is <span class="math inline">\(\boxed{e^{-1}}\)</span>.</p>
+<p>The usual real variable power <span class="math inline">\(u^v=e^{v\ln u}\)</span> requires <span class="math inline">\(u&gt;0\)</span>. Near <span class="math inline">\(\pi/2\)</span>, the base <span class="math inline">\(\tan x\)</span> is positive on the left, so this is a limit along that part of its natural real domain. Put <span class="math inline">\(y=\tan x\)</span>; then <span class="math inline">\(y\to+\infty\)</span> and <span class="math display">\[(\tan2x)\ln(\tan x)
+ =\frac{2y}{1-y^2}\ln y
+ =-\frac{2y^2}{y^2-1}\frac{\ln y}{y}\longrightarrow0.\]</span> The logarithm tends to zero, so the power tends to <span class="math inline">\(\boxed1\)</span>. A two-sided interpretation with an arbitrary real exponent and a negative base would not define a real function on a right-hand interval.</p>
+<p>Here <span class="math inline">\(\sin x&gt;0\)</span> on both sides of <span class="math inline">\(\pi/2\)</span> close to the point. The exponent can tend to different infinities, but <span class="math display">\[(\tan x)(\sin x-1)
+ =\frac{\sin x}{\cos x}\frac{-\cos^2x}{1+\sin x}
+ =-\frac{\sin x\cos x}{1+\sin x}\longrightarrow0.\]</span> The logarithmic factor <span class="math inline">\(\ln(\sin x)/(\sin x-1)\)</span> tends to <span class="math inline">\(1\)</span>, so the logarithm of the whole expression tends to zero. Hence the two-sided limit is <span class="math inline">\(\boxed1\)</span>.</p>
+<p>The base tends to <span class="math inline">\(3\)</span> and the exponent to <span class="math inline">\(2\)</span>. More explicitly, the logarithm is <span class="math display">\[\frac{6x+1}{3x+2}\ln\left(\frac{3x^2+2x+1}{x^2+x+2}\right)
+ \longrightarrow2\ln3.\]</span> Exponentiating gives <span class="math inline">\(\boxed9\)</span>. The logarithm has the stated limit because, if a positive <span class="math inline">\(u(x)\to3\)</span>, then <span class="math inline">\(\ln u(x)=\ln3+\ln(u(x)/3)\)</span> and <span class="math inline">\(\ln(u(x)/3)\to0\)</span> by the standard logarithmic limit.</p>
+<p>For <span class="math inline">\(x\ne1\)</span>, rationalising the exponent gives <span class="math display">\[\frac{1-\sqrt{x}}{1-x}=\frac1{1+\sqrt{x}}\longrightarrow0.\]</span> The base tends to <span class="math inline">\(1\)</span> through positive values, so its logarithm tends to zero. The logarithm of the power is their product and tends to zero; the answer is <span class="math inline">\(\boxed1\)</span>.</p>
+<p>Subtract and add <span class="math inline">\(1\)</span> in the numerator: <span class="math display">\[\frac{e^{\alpha x}-e^{\beta x}}x
+ =\frac{e^{\alpha x}-1}{x}-\frac{e^{\beta x}-1}{x}
+ \longrightarrow\boxed{\alpha-\beta}.\]</span> If a parameter is zero, its corresponding numerator is identically zero. Thus the formula covers all real <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>.</p>
+</div>
+</div>
+<h2 class="section-title" id="section-4-root-and-integer-power-limits">Root and Integer-Power Limits</h2>
+<p>Let <span class="math inline">\(k\)</span> be a positive integer, <span class="math inline">\(x\)</span> be sufficiently near <span class="math inline">\(0\)</span>, and <span class="math inline">\(y=(1+x)^{1/k}&gt;0\)</span>. The factorisation <span class="math display">\[x=y^k-1=(y-1)(1+y+\cdots+y^{k-1})\]</span> shows first that <span class="math display">\[|y-1|=\frac{|x|}{1+y+\cdots+y^{k-1}}\le |x|.\]</span> Thus <span class="math inline">\(y\to1\)</span> by a direct error bound. For <span class="math inline">\(x\ne0\)</span>, we may divide and obtain <span class="math display">\[\frac{(1+x)^{1/k}-1}{x}
+ =\frac1{1+y+\cdots+y^{k-1}}\longrightarrow\frac1k.\]</span> Only a finite algebraic sum is involved.</p>
+<div class="math-box"><div class="box-label">Formula 11.4</div><h3>Radical and Integer-Power Limits</h3>
+<p> For every positive integer <span class="math inline">\(k\)</span>, <span class="math display">\[\lim_{x\to0}\frac{(1+x)^{1/k}-1}{x}=\frac1k.\]</span> For integers <span class="math inline">\(p,q\)</span> with <span class="math inline">\(q\ne0\)</span>, <span class="math display">\[\lim_{x\to1}\frac{x^p-1}{x^q-1}=\frac pq.\]</span></p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> The radical formula has just been established. For the second formula, a positive integer <span class="math inline">\(m\)</span> gives <span class="math display">\[\frac{x^m-1}{x-1}=1+x+\cdots+x^{m-1}\longrightarrow m.\]</span> For a negative integer <span class="math inline">\(m=-r\)</span>, where <span class="math inline">\(r&gt;0\)</span>, <span class="math display">\[\frac{x^{-r}-1}{x-1}
+ =-\frac1{x^r}\frac{x^r-1}{x-1}\longrightarrow-r=m.\]</span> For <span class="math inline">\(m=0\)</span>, the numerator is identically zero. Thus the numerator and denominator of <span class="math display">\[\frac{x^p-1}{x^q-1}
+ =\frac{(x^p-1)/(x-1)}{(x^q-1)/(x-1)}\]</span> have limits <span class="math inline">\(p\)</span> and <span class="math inline">\(q\ne0\)</span>; the quotient law gives <span class="math inline">\(p/q\)</span>. All expressions are considered near <span class="math inline">\(1\)</span>, where <span class="math inline">\(x&gt;0\)</span>, and away from <span class="math inline">\(x=1\)</span>. ◻</p>
+</div></details>
+<p>For example, rationalising gives <span class="math display">\[\lim_{x\to0}\frac{\sqrt{1+4x}-1}{x}
+ =\lim_{x\to0}\frac4{\sqrt{1+4x}+1}=2.\]</span> The general root limit is the same factorisation idea with more terms.</p>
+<div class="math-box theorem"><div class="box-label">Theorem 11.1</div><h3>Taking a Root of a Moving Input</h3>
+<p> Let <span class="math inline">\(k\)</span> be a positive integer. For <span class="math inline">\(b\ge0\)</span>, with inputs <span class="math inline">\(t\ge0\)</span>, <span class="math display">\[\lim_{t\to b}t^{1/k}=b^{1/k}.\]</span> If <span class="math inline">\(k\)</span> is odd, the same assertion holds for every <span class="math inline">\(b\in\mathbb{R}\)</span>, with the real <span class="math inline">\(k\)</span>th root taken at every real input.</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> For <span class="math inline">\(b&gt;0\)</span>, put <span class="math inline">\(r=t^{1/k}\ge0\)</span> and <span class="math inline">\(s=b^{1/k}&gt;0\)</span>. The finite factorisation gives <span class="math display">\[|t^{1/k}-b^{1/k}|
+ =\frac{|t-b|}{r^{k-1}+r^{k-2}s+\cdots+s^{k-1}}
+ \le\frac{|t-b|}{s^{k-1}}.\]</span> The denominator includes the positive term <span class="math inline">\(s^{k-1}\)</span> (for <span class="math inline">\(k=1\)</span> it is simply <span class="math inline">\(1\)</span>). Thus <span class="math inline">\(\delta=\varepsilon s^{k-1}\)</span> gives a root error less than <span class="math inline">\(\varepsilon\)</span> whenever <span class="math inline">\(0&lt;|t-b|&lt;\delta\)</span>.</p>
+<p>At <span class="math inline">\(b=0\)</span>, choose <span class="math inline">\(\delta=\varepsilon^k\)</span>: then <span class="math inline">\(0\le t&lt;\delta\)</span> gives <span class="math inline">\(t^{1/k}&lt;\varepsilon\)</span>. For odd <span class="math inline">\(k\)</span> the same argument allows negative inputs, since <span class="math inline">\(|t^{1/k}|=|t|^{1/k}\)</span>. Finally, for <span class="math inline">\(b&lt;0\)</span> and odd <span class="math inline">\(k\)</span>, first restrict to <span class="math inline">\(|t-b|&lt;|b|/2\)</span>, so <span class="math inline">\(t&lt;0\)</span>. The positive-input result applied to <span class="math inline">\(-t\to-b\)</span> proves the assertion, because the root errors are equal. Take the minimum of the positive-input radius and <span class="math inline">\(|b|/2\)</span>. ◻</p>
+</div></details>
+<p>These error bounds also permit a moving input <span class="math inline">\(t=g(x)\to b\)</span>, including points where <span class="math inline">\(g(x)=b\)</span>. For example, <span class="math inline">\(g(x)\to8\)</span> gives <span class="math inline">\(\sqrt[3]{g(x)}\to2\)</span>, and <span class="math inline">\(g(x)\to-1\)</span> gives <span class="math inline">\(\sqrt[3]{g(x)}\to-1\)</span>.</p>
+<h2 class="section-title" id="section-5-calculating-limits-by-algebra">Calculating Limits by Algebra</h2>
+<div class="note-box"><div class="box-label">Motivation 11.2</div>
+<p>The definition tells us what a limit means. The laws tell us how to calculate it. Our first question in a calculation should be: can we use the quotient law immediately? If the denominator tends to a nonzero number, we can. If both numerator and denominator tend to zero, look for a simplification. In these examples, factoring or multiplying by a conjugate reveals a common factor that can be cancelled on a deleted neighbourhood. The symbol <span class="math inline">\(0/0\)</span> is a signal to investigate; it is not a number.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 11.9</div><h3>Cancellation and Rationalisation</h3>
+<p> Find the following limits. In (d), <span class="math inline">\(p,q\in\mathbb{Z}\)</span> with <span class="math inline">\(q\ne0\)</span>; in (h), <span class="math inline">\(a&gt;0\)</span> and <span class="math inline">\(a\ne1\)</span>.</p>
+<div class="parts">
+<p><span class="math inline">\(\displaystyle\lim_{x\to1}\frac{4x^5+9x+7}{3x^6+x^3+1}\)</span>.</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to2}\frac{x^3+3x^2-9x-2}{x^3-x-6}\)</span>.</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to-1}\frac{x+1}{\sqrt{6x^2+3}+3x}\)</span>.</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to1}\frac{x^p-1}{x^q-1}\)</span>.</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to0}\frac{\sqrt{9+5x+4x^2}-3}{x}\)</span>.</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to2}\frac{\sqrt[3]{10-x}-2}{x-2}\)</span>.</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to2}\frac{\sqrt{x+7}-3\sqrt{2x-3}}{\sqrt[3]{x+6}-2\sqrt[3]{3x-5}}\)</span>.</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to3}\log_a\left(\frac{x-3}{\sqrt{x+6}-3}\right)\)</span>.</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to1}\frac{x^3-x^2-x+1}{x^3-3x+2}\)</span>.</p>
+<p><span class="math inline">\(\displaystyle\lim_{x\to1}\frac{\sqrt{x+8}-\sqrt{8x+1}}{\sqrt{5-x}-\sqrt{7x-3}}\)</span>.</p>
+</div>
+</div>
+<div class="note-box"><div class="box-label">Explanation 11.9</div>
+<p><strong>(a)</strong> The denominator tends to <span class="math inline">\(3+1+1=5\ne0\)</span>. Therefore the quotient law gives <span class="math display">\[\frac{4+9+7}{3+1+1}=4.\]</span></p>
+<p><strong>(b)</strong> Direct substitution gives <span class="math inline">\(0/0\)</span>, so it does not settle the problem. Factor both polynomials: <span class="math display">\[x^3+3x^2-9x-2=(x-2)(x^2+5x+1),\qquad
+ x^3-x-6=(x-2)(x^2+2x+3).\]</span> For <span class="math inline">\(x\ne2\)</span> their quotient equals <span class="math inline">\((x^2+5x+1)/(x^2+2x+3)\)</span>. The latter denominator tends to <span class="math inline">\(11\)</span>, so the required limit is <span class="math inline">\(15/11\)</span>.</p>
+<p><strong>(c)</strong> Multiply by the conjugate. For <span class="math inline">\(x\)</span> near <span class="math inline">\(-1\)</span>, <span class="math inline">\(x\ne-1\)</span>, <span class="math display">\[\frac{x+1}{\sqrt{6x^2+3}+3x}
+ =\frac{(x+1)(\sqrt{6x^2+3}-3x)}{3-3x^2}
+ =\frac{\sqrt{6x^2+3}-3x}{3(1-x)}.\]</span> The final denominator tends to <span class="math inline">\(6\)</span>, while its numerator tends to <span class="math inline">\(6\)</span>. The limit is <span class="math inline">\(1\)</span>.</p>
+<p><strong>(d)</strong> The integer-power formula above applies since <span class="math inline">\(q\ne0\)</span>: after dividing both differences by <span class="math inline">\(x-1\)</span>, their limits are <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span>. The limit of the quotient is <span class="math inline">\(p/q\)</span>.</p>
+<p><strong>(e)</strong> Conjugation removes the radical difference: <span class="math display">\[\frac{\sqrt{9+5x+4x^2}-3}{x}
+ =\frac{5+4x}{\sqrt{9+5x+4x^2}+3}\longrightarrow\frac56.\]</span></p>
+<p><strong>(f)</strong> Put <span class="math inline">\(u=\sqrt[3]{10-x}\)</span>, so <span class="math inline">\(u\to2\)</span>. Since <span class="math inline">\((u-2)(u^2+2u+4)=u^3-8=2-x\)</span>, <span class="math display">\[\frac{\sqrt[3]{10-x}-2}{x-2}
+ =-\frac1{u^2+2u+4}\longrightarrow-\frac1{12}.\]</span></p>
+<p><strong>(g)</strong> Every difference vanishes at <span class="math inline">\(x=2\)</span>. We extract <span class="math inline">\(x-2\)</span> from each. Write <span class="math inline">\(u=\sqrt[3]{x+6}\)</span> and <span class="math inline">\(v=\sqrt[3]{3x-5}\)</span>. Then <span class="math display">\[\frac{\sqrt{x+7}-3\sqrt{2x-3}}{x-2}
+ =\frac1{\sqrt{x+7}+3}-\frac6{\sqrt{2x-3}+1}
+ \longrightarrow\frac16-3=-\frac{17}{6},\]</span> where we first wrote the numerator as <span class="math inline">\((\sqrt{x+7}-3)-3(\sqrt{2x-3}-1)\)</span>. Similarly, <span class="math display">\[\frac{u-2v}{x-2}
+ =\frac1{u^2+2u+4}-\frac6{v^2+v+1}
+ \longrightarrow\frac1{12}-2=-\frac{23}{12}.\]</span> The second limit is nonzero. Dividing these two limits gives <span class="math inline">\(34/23\)</span>.</p>
+<p><strong>(h)</strong> For <span class="math inline">\(x\ne3\)</span>, rationalisation gives <span class="math display">\[\frac{x-3}{\sqrt{x+6}-3}=\sqrt{x+6}+3\longrightarrow6.\]</span> The expression is positive near <span class="math inline">\(3\)</span>. To justify passing to the logarithm, write its value as <span class="math inline">\(6(1+u)\)</span>, where <span class="math inline">\(u\to0\)</span>. Then <span class="math inline">\(\log_a(6(1+u))=\log_a6+\ln(1+u)/\ln a\to\log_a6\)</span>, because the standard logarithmic limit implies <span class="math inline">\(\ln(1+u)\to0\)</span>.</p>
+<p><strong>(i)</strong> The factorisations are <span class="math display">\[x^3-x^2-x+1=(x-1)^2(x+1),\qquad
+ x^3-3x+2=(x-1)^2(x+2).\]</span> After cancellation for <span class="math inline">\(x\ne1\)</span>, the quotient is <span class="math inline">\((x+1)/(x+2)\)</span>, so its limit is <span class="math inline">\(2/3\)</span>.</p>
+<p><strong>(j)</strong> Rationalise the numerator and denominator separately: <span class="math display">\[\sqrt{x+8}-\sqrt{8x+1}
+ =\frac{-7(x-1)}{\sqrt{x+8}+\sqrt{8x+1}},\]</span> <span class="math display">\[\sqrt{5-x}-\sqrt{7x-3}
+ =\frac{-8(x-1)}{\sqrt{5-x}+\sqrt{7x-3}}.\]</span> Their quotient, for <span class="math inline">\(x\ne1\)</span>, is <span class="math display">\[\frac78\,
+ \frac{\sqrt{5-x}+\sqrt{7x-3}}{\sqrt{x+8}+\sqrt{8x+1}}
+ \longrightarrow\frac78\cdot\frac46=\frac7{12}.\]</span></p>
+</div>
+<h2 class="section-title" id="section-6-first-look-at-one-sided-limits">First Look at One-Sided Limits</h2>
+<div class="note-box"><div class="box-label">Motivation 11.3</div>
+<p>On the real input line, every nearby <span class="math inline">\(x\ne c\)</span> lies either to the left or to the right of <span class="math inline">\(c\)</span>. There is no third side. Although the graph is drawn in <span class="math inline">\(\mathbb{R}^2\)</span>, the input here moves in <span class="math inline">\(\mathbb{R}\)</span>; the plane itself has many directions of approach.</p>
+<p>Think of two roads to the same place. If both sides bring the output to the same number <span class="math inline">\(L\)</span>, we expect a single limit. If the destinations differ, there cannot be one answer for the unrestricted approach. We still need to control <em>all</em> inputs on each side, not merely test one chosen sequence from each. We will define both approaches now and see what happens when the two answers differ.</p>
+</div>
+<div class="math-box"><div class="box-label">Definition 11.1</div><h3>Right- and Left-Hand Limits</h3>
+<p> Let <span class="math inline">\(f:A\to\mathbb{R}\)</span> and <span class="math inline">\(c\in\mathbb{R}\)</span>. To discuss a right-hand limit, assume that every interval <span class="math inline">\((c,c+r)\)</span>, <span class="math inline">\(r&gt;0\)</span>, contains a point of <span class="math inline">\(A\)</span>. We write <span class="math display">\[\lim_{x\to c^+}f(x)=L\]</span> if, for every <span class="math inline">\(\varepsilon&gt;0\)</span>, there exists <span class="math inline">\(\delta&gt;0\)</span> such that <span class="math display">\[x\in A,\qquad 0&lt;x-c&lt;\delta
+ \quad\Longrightarrow\quad |f(x)-L|&lt;\varepsilon.\]</span> For a left-hand limit, assume that every <span class="math inline">\((c-r,c)\)</span> contains a point of <span class="math inline">\(A\)</span>. The notation <span class="math inline">\(\lim_{x\to c^-}f(x)=L\)</span> means that, for every <span class="math inline">\(\varepsilon&gt;0\)</span>, some <span class="math inline">\(\delta&gt;0\)</span> satisfies <span class="math display">\[x\in A,\qquad 0&lt;c-x&lt;\delta
+ \quad\Longrightarrow\quad |f(x)-L|&lt;\varepsilon.\]</span> The alternative notations <span class="math inline">\(f(c+0)\)</span> and <span class="math inline">\(f(c-0)\)</span> denote these limits, when they exist.</p>
+</div>
+<p>The small <span class="math inline">\(+\)</span> or <span class="math inline">\(-\)</span> describes the side from which the input approaches; it does not prescribe the sign of the answer. For example, a right-hand limit can be negative. As before, the value <span class="math inline">\(f(c)\)</span> is excluded from the definition.</p>
+<div class="figure-or-centered">
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+</div>
+<div class="inset-example"><div class="box-label">Example 11.10</div><h3>Two Formulas Meeting at One Input</h3>
+<p> Find both one-sided limits at <span class="math inline">\(1\)</span> for <span class="math display">\[f(x)=\begin{cases}-2x+3,&amp;x\le1,\\3x-5,&amp;x&gt;1.\end{cases}\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 11.10</div>
+<p>When <span class="math inline">\(x\)</span> approaches <span class="math inline">\(1\)</span> from the left, we use only the first formula. Thus <span class="math display">\[\lim_{x\to1^-}f(x)=-2\cdot1+3=1.\]</span> This can also be checked directly: for <span class="math inline">\(x&lt;1\)</span>, <span class="math inline">\(|f(x)-1|=|-2x+2|=2|x-1|\)</span>, so <span class="math inline">\(\delta=\varepsilon/2\)</span> works. On the right, the second formula gives <span class="math display">\[\lim_{x\to1^+}f(x)=3\cdot1-5=-2;\]</span> here <span class="math inline">\(|f(x)-(-2)|=3|x-1|\)</span>, and <span class="math inline">\(\delta=\varepsilon/3\)</span> works. If a full limit existed, its <span class="math inline">\(\delta\)</span> would work on each side and both sides would have to approach the same number. They do not, so <span class="math inline">\(\lim_{x\to1}f(x)\)</span> does not exist. The value <span class="math inline">\(f(1)=1\)</span> cannot change either answer.</p>
+</div>
+<div class="figure-or-centered">
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+</div>
+<p>The second graph represents <span class="math inline">\(f(x)=x+1\)</span> for <span class="math inline">\(x\ne1\)</span>, with a different value assigned at <span class="math inline">\(1\)</span>. Both sides approach the same height <span class="math inline">\(2\)</span> despite that assignment.</p>
+</div>
+<div class="edition-note"><strong>About this web edition.</strong> This page is converted from the LaTeX lecture manuscript. Some original TikZ illustrations are marked for conversion. End-of-lecture homework and separate answer keys are not included here. Please consult the author before redistributing.</div>
+<nav class="reader-end" aria-label="Next and previous lecture"><a href="lecture-10.html">← Lecture 10</a><a href="lecture-12.html">Lecture 12 →</a></nav><div class="copyright">© 2026 Aritra Dey. All rights reserved.</div></div></main>
+<aside class="on-this-page"><h2>On this page</h2><a href="#section-1-changing-the-input-in-a-known-limit">Changing the Input in a Known Limit</a><a href="#section-2-standard-trigonometric-limits">Standard Trigonometric Limits</a><a href="#section-3-exponential-and-logarithmic-standard-limits">Exponential and Logarithmic Standard Limits</a><a href="#section-4-root-and-integer-power-limits">Root and Integer-Power Limits</a><a href="#section-5-calculating-limits-by-algebra">Calculating Limits by Algebra</a><a href="#section-6-first-look-at-one-sided-limits">First Look at One-Sided Limits</a></aside></div></body></html>
