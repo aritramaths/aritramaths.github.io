@@ -1,0 +1,16 @@
+.page-content .when-open,.page-content details[open] > summary > .when-closed{display:none}
+.page-content details[open] > summary > .when-open{display:inline}
+.page-content .ref-point{scroll-margin-top:6rem}
+.page-content .reader-voice{margin:1rem 0}
+.page-content .reader-voice>strong{font-size:.92em;color:var(--accent-deep)}
+.page-content .reader-voice>p:first-of-type{display:inline}
+.page-content .math-box>h4,.page-content .math-box>.box-label{margin:.2rem 0 .6rem}
+.page-content .worked{margin:1.15rem 0}
+.page-content .answer-body>.solution>.work-label{display:none}
+.page-content .work-label{font-family:var(--ui)}
+.page-content .solution-directory{columns:2;column-gap:2.5rem}
+.page-content .solution-directory li{break-inside:avoid;list-style:none}
+.page-content .code-caption a{margin-left:.65em}
+.page-content img{display:block;margin:1rem auto;max-width:100%;height:auto;background:white}
+.page-content .table-scroll{max-width:100%;overflow-x:auto}
+@media(max-width:650px){.page-content .solution-directory{columns:1}}
