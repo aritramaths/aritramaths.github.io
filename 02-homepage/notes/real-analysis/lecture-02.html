@@ -1,0 +1,296 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Lecture 2: Countability and Uncountability — Aritra Dey's online real analysis lecture notes."><title>Lecture 2: Countability and Uncountability | Aritra Dey</title><link rel="stylesheet" href="../assets/book.css"><script src="../assets/mathjax.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><script defer src="../assets/book.js"></script></head><body><a class="skip" href="#reader-main">Skip to lecture</a><header class="topbar"><a class="brand" href="../../"><span class="brand-mark">A</span><span>Aritra Dey <span style="opacity:.42;padding:0 7px">/</span> Mathematics</span></a><nav class="top-links"><a href="../">All books</a><a href="./">Contents</a><button class="circle-button" data-theme-toggle aria-label="Toggle light and dark mode"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></nav></header><div class="reader-shell"><aside class="sidebar" id="toc-sidebar" aria-label="Book table of contents"><div class="toc-label">Book one · Real Analysis</div><a class="side-book" href="./">Contents</a><a class="side-item" href="lecture-01.html"><span>01</span>Real numbers &amp; completeness</a><a class="side-item active" href="lecture-02.html" aria-current="page"><span>02</span>Countability</a><a class="side-item" href="lecture-03.html"><span>03</span>Sequences &amp; limits</a><a class="side-item" href="lecture-04.html"><span>04</span>Direct epsilon proofs</a><a class="side-item" href="lecture-05.html"><span>05</span>Limit laws</a><a class="side-item" href="lecture-06.html"><span>06</span>Monotone convergence</a><a class="side-item" href="lecture-07.html"><span>07</span>Cauchy sequences</a><a class="side-item" href="lecture-08.html"><span>08</span>Density &amp; cluster points</a><a class="side-item" href="lecture-09.html"><span>09</span>Function limits</a><a class="side-item" href="lecture-10.html"><span>10</span>Limits at infinity</a><a class="side-item" href="lecture-11.html"><span>11</span>Standard limits</a><a class="side-item" href="lecture-12.html"><span>12</span>One-sided limits</a><a class="side-item" href="lecture-13.html"><span>13</span>Infinitesimals</a><a class="side-item" href="lecture-14.html"><span>14</span>Continuity</a><a class="side-item" href="lecture-15.html"><span>15</span>Discontinuities</a><a class="side-item" href="lecture-16.html"><span>16</span>Intermediate Value Theorem</a></aside>
+<main class="reader-main" id="reader-main"><div class="reading-width"><button id="toc-toggle" class="sidebar-toggle" aria-expanded="false" aria-controls="toc-sidebar">☰ All lectures</button>
+<nav class="book-breadcrumb" aria-label="Breadcrumb"><a href="../">Books</a><span>›</span><a href="./">Real Analysis</a><span>›</span><span>Lecture 02</span></nav>
+<header class="chapter-head"><div class="chapter-label">Lecture 02 · Online reading edition</div><h1>Countability and Uncountability</h1><p>Read this lecture online, then continue to the next chapter. Figures and exercises are being adapted separately for the web edition.</p><div class="reading-tools"><button type="button" id="type-toggle" aria-pressed="false">Larger text</button><button type="button" id="proof-toggle">Expand all proofs &amp; worked solutions</button></div></header>
+<div class="lecture-content">
+<p><span id="chap:countability"></span> <span id="app:countability"></span></p>
+<h2 class="section-title" id="section-1-what-does-the-size-of-a-set-mean">What Does the “Size” of a Set Mean?</h2>
+<p>For a finite set, size means the number of elements. For example, <span class="math display">\[\abs{\{a,b,c,d\}}=4.\]</span> For infinite sets, counting one element at a time never finishes. We therefore compare sets by pairing their elements.</p>
+<div class="note-box"><div class="box-label">Motivation 2.1</div>
+<p>Suppose a closet contains left shoes and right shoes. We do not need to count each collection separately. If every left shoe can be paired with exactly one right shoe and no shoe is left over, then the two collections have the same size. This pairing idea continues to make sense even for infinite sets.</p>
+</div>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<div class="math-box"><div class="box-label">Definition 2.1</div><h3>Equal Cardinality</h3>
+<p> Two sets <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have the same cardinality, written <span class="math inline">\(X\approx Y\)</span>, if there exists a bijection <span class="math inline">\(f:X\to Y\)</span>.</p>
+<p>We write <span class="math inline">\(\abs X\le\abs Y\)</span> if there exists an injection from <span class="math inline">\(X\)</span> into <span class="math inline">\(Y\)</span>.</p>
+</div>
+<p>Recall the three important kinds of maps:</p>
+<ul>
+<li><p><strong>Injective:</strong> different inputs have different outputs.</p></li>
+<li><p><strong>Surjective:</strong> every element of the codomain occurs as an output.</p></li>
+<li><p><strong>Bijective:</strong> both injective and surjective.</p></li>
+</ul>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<p>The relation <span class="math inline">\(\approx\)</span> behaves like equality of size. It is reflexive, symmetric, and transitive. For example, if <span class="math inline">\(f:X\to Y\)</span> and <span class="math inline">\(g:Y\to Z\)</span> are bijections, then the composition <span class="math inline">\(g\circ f:X\to Z\)</span> is also a bijection.</p>
+<h2 class="section-title" id="section-2-countable-and-uncountable-sets">Countable and Uncountable Sets</h2>
+<div class="note-box"><div class="box-label">Intuition 2.1</div>
+<p>To count a collection, we say “first, second, third, …”. Therefore, a set is countable when its elements can be indexed by natural numbers without missing any.</p>
+</div>
+<div class="math-box"><div class="box-label">Definition 2.2</div><h3>Countable Sets</h3>
+
+<ol>
+<li><p>A set <span class="math inline">\(S\)</span> is <strong>denumerable</strong> or <strong>countably infinite</strong> if there is a bijection <span class="math inline">\(\mathbb{N}\to S\)</span>.</p></li>
+<li><p>A set is <strong>countable</strong> if it is finite or countably infinite.</p></li>
+<li><p>A set is <strong>uncountable</strong> if it is not countable.</p></li>
+</ol>
+</div>
+<div class="inset-example"><div class="box-label">Example 2.1</div><h3>The Natural Numbers</h3>
+<p> The set <span class="math inline">\(\mathbb{N}\)</span> is countable.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>The identity map <span class="math inline">\(f(n)=n\)</span> is a bijection from <span class="math inline">\(\mathbb{N}\)</span> to itself.</p>
+</div></details>
+<div class="inset-example"><div class="box-label">Example 2.2</div><h3>The Even Positive Integers</h3>
+<p> The set <span class="math inline">\(E=\{2,4,6,8,\ldots\}\)</span> is countable.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>The map <span class="math inline">\(f:\mathbb{N}\to E\)</span> given by <span class="math inline">\(f(n)=2n\)</span> is a bijection. Thus an infinite proper subset of <span class="math inline">\(\mathbb{N}\)</span> can have the same cardinality as <span class="math inline">\(\mathbb{N}\)</span>.</p>
+</div></details>
+<div class="inset-example"><div class="box-label">Example 2.3</div><h3>The Prime Numbers</h3>
+<p> The set <span class="math inline">\(\mathcal P=\{2,3,5,7,11,\ldots\}\)</span> of prime numbers is countable.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>The primes can be listed in increasing order. If <span class="math inline">\(p_n\)</span> denotes the <span class="math inline">\(n\)</span>th prime, then <span class="math inline">\(n\mapsto p_n\)</span> is a bijection from <span class="math inline">\(\mathbb{N}\)</span> to <span class="math inline">\(\mathcal P\)</span>.</p>
+</div></details>
+<div class="note-box"><div class="box-label">Connection 2.1</div>
+<p>For finite sets, a proper subset is always smaller. Infinite sets behave differently: <span class="math display">\[\mathbb{N}\approx\{2,4,6,\ldots\}.\]</span> This is one reason cardinality must be defined using bijections rather than physical containment.</p>
+</div>
+<h2 class="section-title" id="section-3-the-grid-mathbb-n-times-mathbb-n-is-countable">The Grid <span class="math inline">\(\mathbb{N}\times\mathbb{N}\)</span> Is Countable</h2>
+<div class="math-box theorem"><div class="box-label">Theorem 2.1</div><h3>\(\mathbb{N}\times\mathbb{N}\) Is Countable</h3>
+<p> The set of ordered pairs of natural numbers is countable.</p>
+</div>
+<p>Arrange all pairs in an infinite grid and read them along diagonals of constant sum.</p>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<p>The beginning of the list is <span class="math display">\[(1,1),(1,2),(2,1),(3,1),(2,2),(1,3),\ldots.\]</span> Every pair <span class="math inline">\((m,n)\)</span> lies on the finite diagonal <span class="math inline">\(m+n=k\)</span> for some <span class="math inline">\(k\)</span>, so it is reached after finitely many earlier diagonals.</p>
+<p>An explicit bijection can also be written using Cantor’s pairing function, but the zigzag picture contains the central idea.</p>
+<h2 class="section-title" id="section-4-why-the-rational-numbers-are-countable">Why the Rational Numbers Are Countable</h2>
+<div class="math-box theorem"><div class="box-label">Theorem 2.2</div><h3>\(\mathbb{Q}\) Is Countable</h3>
+<p> The set of rational numbers is countable.</p>
+</div>
+<p>First consider positive rationals. Place the fraction <span class="math inline">\(p/q\)</span> in row <span class="math inline">\(p\)</span> and column <span class="math inline">\(q\)</span>.</p>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<p>Since <span class="math inline">\(\mathbb{N}\times\mathbb{N}\)</span> is countable, the set of all pairs <span class="math inline">\((p,q)\)</span> is countable. The map <span class="math inline">\((p,q)\mapsto p/q\)</span> is onto <span class="math inline">\(\mathbb{Q}_{&gt;0}\)</span>, so list all pairs diagonally, replace each by its fraction, and discard repeated fractions. Every positive rational appears at a finite stage, giving a countable listing.</p>
+<p>Finally, <span class="math display">\[\mathbb{Q}=\mathbb{Q}_{&lt;0}\cup\{0\}\cup\mathbb{Q}_{&gt;0}.\]</span> The negative rationals are in bijection with the positive rationals via <span class="math inline">\(x\mapsto-x\)</span>. A finite union of countable sets is countable, so <span class="math inline">\(\mathbb{Q}\)</span> is countable.</p>
+<h2 class="section-title" id="section-5-unions-of-countable-sets">Unions of Countable Sets</h2>
+<div class="math-box theorem"><div class="box-label">Theorem 2.3</div><h3>Finite Unions</h3>
+<p> If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are countable, then <span class="math inline">\(A\cup B\)</span> is countable.</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> Empty sets may be omitted. For a nonempty finite set, repeat its last entry after all elements have appeared. With this convention, list the elements of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> as <span class="math display">\[A=\{a_1,a_2,a_3,\ldots\},\qquad
+  B=\{b_1,b_2,b_3,\ldots\}.\]</span> Interleave the lists: <span class="math display">\[a_1,b_1,a_2,b_2,a_3,b_3,\ldots.\]</span> If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> overlap, some elements may appear more than once. Remove every repetition after its first appearance. The remaining list contains every element of <span class="math inline">\(A\cup B\)</span>, so the union is countable. ◻</p>
+</div></details>
+<div class="note-box"><div class="box-label">Warning 2.1</div>
+<p>The simple alternating map need not be injective when <span class="math inline">\(A\cap B\ne\varnothing\)</span>. It first gives a surjection onto <span class="math inline">\(A\cup B\)</span>. Removing repeated entries produces the required enumeration.</p>
+</div>
+<div class="math-box theorem"><div class="box-label">Theorem 2.4</div><h3>Countable Union Theorem</h3>
+<p> If <span class="math inline">\(A_1,A_2,A_3,\ldots\)</span> are countable sets, then <span class="math display">\[\bigcup_{n=1}^{\infty}A_n\]</span> is countable.</p>
+</div>
+<div class="note-box"><div class="box-label">Proof strategy 2.1</div>
+<p>Omit empty rows and repeat entries as needed for finite nonempty rows. Place a listing of <span class="math inline">\(A_n\)</span> in row <span class="math inline">\(n\)</span>. We then obtain a grid indexed by <span class="math inline">\(\mathbb{N}\times\mathbb{N}\)</span>. Traverse the grid diagonally and skip repetitions.</p>
+</div>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<h2 class="section-title" id="section-6-useful-equivalent-tests-for-countability">Useful Equivalent Tests for Countability</h2>
+<div class="math-box theorem"><div class="box-label">Theorem 2.5</div><h3>Subsets of Countable Sets</h3>
+<p> If <span class="math inline">\(T\subseteq S\)</span> and <span class="math inline">\(S\)</span> is countable, then <span class="math inline">\(T\)</span> is countable. Equivalently, if <span class="math inline">\(T\)</span> is uncountable and <span class="math inline">\(T\subseteq S\)</span>, then <span class="math inline">\(S\)</span> is uncountable.</p>
+</div>
+<div class="math-box theorem"><div class="box-label">Theorem 2.6</div><h3>Three Equivalent Characterisations</h3>
+<p> For a nonempty set <span class="math inline">\(S\)</span>, the following are equivalent:</p>
+<ol>
+<li><p><span class="math inline">\(S\)</span> is countable;</p></li>
+<li><p>there exists a surjection <span class="math inline">\(\mathbb{N}\to S\)</span>;</p></li>
+<li><p>there exists an injection <span class="math inline">\(S\to\mathbb{N}\)</span>.</p></li>
+</ol>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> <span class="math inline">\((1)\Rightarrow(2)\)</span>: If <span class="math inline">\(S\)</span> is countably infinite, a bijection <span class="math inline">\(\mathbb{N}\to S\)</span> is already a surjection. If <span class="math inline">\(S=\{s_1,\ldots,s_k\}\)</span> is finite and nonempty, define <span class="math display">\[H(n)=
+ \begin{cases}
+ s_n,&amp;1\le n\le k,\\
+ s_k,&amp;n&gt;k.
+ \end{cases}\]</span> Then <span class="math inline">\(H\)</span> is onto. The empty set is countable and injects into <span class="math inline">\(\mathbb{N}\)</span>, but no map from <span class="math inline">\(\mathbb{N}\)</span> onto it exists; this is why the statement assumes <span class="math inline">\(S\ne\varnothing\)</span>.</p>
+<p><span class="math inline">\((2)\Rightarrow(3)\)</span>: Suppose <span class="math inline">\(H:\mathbb{N}\to S\)</span> is onto. For each <span class="math inline">\(s\in S\)</span>, the set <span class="math inline">\(H^{-1}(s)\)</span> is nonempty. Let <span class="math inline">\(G(s)\)</span> be its least element. If <span class="math inline">\(G(s)=G(t)\)</span>, then <span class="math display">\[s=H(G(s))=H(G(t))=t,\]</span> so <span class="math inline">\(G\)</span> is injective.</p>
+<p><span class="math inline">\((3)\Rightarrow(1)\)</span>: If <span class="math inline">\(G:S\to\mathbb{N}\)</span> is injective, then <span class="math inline">\(G\)</span> is a bijection from <span class="math inline">\(S\)</span> onto the subset <span class="math inline">\(G(S)\subseteq\mathbb{N}\)</span>. Every subset of <span class="math inline">\(\mathbb{N}\)</span> can be listed in increasing order, hence is countable. Therefore <span class="math inline">\(S\)</span> is countable. ◻</p>
+</div></details>
+<div class="note-box"><div class="box-label">Connection 2.2</div>
+<p>Creating a bijection directly can be difficult. Often it is easier to inject the set into <span class="math inline">\(\mathbb{N}\)</span> or to construct a surjection from <span class="math inline">\(\mathbb{N}\)</span>. This is the same strategic flexibility that appears in combinatorics when we compare sets using injections and surjections.</p>
+</div>
+<h2 class="section-title" id="section-7-cantor-and-different-sizes-of-infinity">Cantor and Different Sizes of Infinity</h2>
+<p>In the nineteenth century, Georg Cantor showed that infinite sets need not all have the same size.</p>
+<ul>
+<li><p>A set is <em>countably infinite</em> if its elements can be listed as first, second, third, and so on. The sets <span class="math inline">\(\mathbb{N}\)</span>, <span class="math inline">\(\mathbb{Z}\)</span>, and <span class="math inline">\(\mathbb{Q}\)</span> are countable.</p></li>
+<li><p>The set <span class="math inline">\(\mathbb{R}\)</span> is <em>uncountable</em>: no list can contain every real number.</p></li>
+</ul>
+<p>A simplified picture of Cantor’s diagonal idea is shown below. Suppose someone claims to have listed every decimal in <span class="math inline">\((0,1)\)</span>.</p>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<p>The new decimal cannot equal the first listed number because its first chosen digit is different. It cannot equal the second because its second chosen digit is different, and so on. Therefore, the proposed list was incomplete. The complete proof appears below, in the section on Cantor’s diagonal argument.</p>
+<h2 class="section-title" id="section-8-from-the-rational-line-to-the-real-line">From the Rational Line to the Real Line</h2>
+<p>The rational numbers can be placed on a number line. Between any two different rationals <span class="math inline">\(r&lt;s\)</span>, the average <span class="math inline">\((r+s)/2\)</span> is another rational. Thus rational points appear everywhere. Nevertheless, the diagonal of the unit square shows that not every point on the line corresponds to a rational number.</p>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<p>The real number system <span class="math inline">\(\mathbb{R}\)</span> contains <span class="math inline">\(\mathbb{Q}\)</span> and all irrational numbers. Addition, multiplication, and order extend the familiar operations on <span class="math inline">\(\mathbb{Q}\)</span>. More importantly, <span class="math inline">\(\mathbb{R}\)</span> is complete: sequences that should have limits do not fall into missing gaps.</p>
+<h2 class="section-title" id="section-9-cantor-s-diagonal-argument">Cantor’s Diagonal Argument</h2>
+<div class="math-box theorem"><div class="box-label">Theorem 2.7</div><h3>The Unit Interval Is Uncountable</h3>
+<p> The interval <span class="math inline">\((0,1)\)</span> is uncountable.</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> Suppose, for contradiction, that all elements of <span class="math inline">\((0,1)\)</span> can be listed: <span class="math display">\[\begin{array}{rcl}
+x_1&amp;=&amp;0.b_{11}b_{12}b_{13}\ldots,\\
+x_2&amp;=&amp;0.b_{21}b_{22}b_{23}\ldots,\\
+x_3&amp;=&amp;0.b_{31}b_{32}b_{33}\ldots,\\
+&amp;\vdots&amp;
+\end{array}\]</span> Choose a new decimal <span class="math inline">\(y=0.y_1y_2y_3\ldots\)</span> by <span class="math display">\[y_n=
+ \begin{cases}
+ 2,&amp;b_{nn}\ge5,\\
+ 7,&amp;b_{nn}\le4.
+ \end{cases}\]</span> The digits <span class="math inline">\(2\)</span> and <span class="math inline">\(7\)</span> avoid the ambiguity caused by decimals ending in infinitely many <span class="math inline">\(9\)</span>s. For every <span class="math inline">\(n\)</span>, the number <span class="math inline">\(y\)</span> differs from <span class="math inline">\(x_n\)</span> in the <span class="math inline">\(n\)</span>th decimal place. Hence <span class="math inline">\(y\ne x_n\)</span> for every <span class="math inline">\(n\)</span>.</p>
+<p>But <span class="math inline">\(y\in(0,1)\)</span>, so it should have appeared somewhere in the supposedly complete list. This contradiction proves that <span class="math inline">\((0,1)\)</span> is uncountable. ◻</p>
+</div></details>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<div class="note-box"><div class="box-label">Warning 2.2</div>
+<p>Why does <span class="math inline">\(0.4999\ldots=0.5000\ldots\)</span>? After <span class="math inline">\(n\)</span> decimal places, the shortfall is <span class="math inline">\(10^{-n}\)</span>; its limit is zero. Hardy explains this double representation in <a href="https://www.gutenberg.org/ebooks/38769"><em>A Course of Pure Mathematics</em>, Chapter IV</a>. Our diagonal uses only <span class="math inline">\(2\)</span> and <span class="math inline">\(7\)</span>, so a tail of nines can never disguise a match.</p>
+</div>
+<h2 class="section-title" id="section-10-all-open-intervals-have-the-same-cardinality">All Open Intervals Have the Same Cardinality</h2>
+<p>For <span class="math inline">\(a&lt;b\)</span>, the affine map <span class="math display">\[f(x)=a+(b-a)x\]</span> is a bijection from <span class="math inline">\((0,1)\)</span> to <span class="math inline">\((a,b)\)</span>. Therefore every nonempty open interval is uncountable.</p>
+<p>Also, <span class="math display">\[g(x)=\tan\!\left(\pi x-\frac\pi2\right)\]</span> is a bijection from <span class="math inline">\((0,1)\)</span> onto <span class="math inline">\(\mathbb{R}\)</span>. Thus <span class="math display">\[(0,1)\approx(a,b)\approx\mathbb{R}.\]</span> This is striking: an arbitrarily short open interval contains as many points as the entire real line. For a way to compare sizes using two injections, see Appendix A.</p>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<h2 class="section-title" id="section-11-power-sets-and-a-second-diagonal-argument">Power Sets and a Second Diagonal Argument</h2>
+<p>The power set <span class="math inline">\(\mathcal P(X)\)</span> is the set of all subsets of <span class="math inline">\(X\)</span>. If <span class="math inline">\(X=\{a,b\}\)</span>, its four members are <span class="math inline">\(\varnothing,\{a\},\{b\},\{a,b\}\)</span>. For a finite set of <span class="math inline">\(n\)</span> elements, each element may be included or omitted independently, giving <span class="math inline">\(2^n\)</span> subsets. The following theorem is the infinite analogue of the fact that there are more subsets than elements.</p>
+<div class="math-box theorem"><div class="box-label">Theorem 2.8</div><h3>Cantor’s Power-Set Theorem</h3>
+<p> There is no surjection from a set <span class="math inline">\(X\)</span> onto <span class="math inline">\(\mathcal P(X)\)</span>.</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> Suppose <span class="math inline">\(F:X\to\mathcal P(X)\)</span> were onto. Form the subset <span class="math inline">\(D=\{x\in X:x\notin F(x)\}\)</span>. Surjectivity would give <span class="math inline">\(d\in X\)</span> such that <span class="math inline">\(F(d)=D\)</span>. But then <span class="math display">\[d\in D\iff d\notin F(d)\iff d\notin D,\]</span> a contradiction. Therefore no such surjection exists. ◻</p>
+</div></details>
+<p>The argument does not claim that every set is countable. It shows that no matter which set we start with, forming its power set goes beyond what that set can enumerate. Applying the theorem to <span class="math inline">\(\mathbb{N}\)</span> proves that <span class="math inline">\(\mathcal P(\mathbb{N})\)</span> is uncountable.</p>
+<p>A subset <span class="math inline">\(A\subseteq\mathbb{N}\)</span> can also be recorded by its indicator sequence <span class="math inline">\((s_n)\)</span>, where <span class="math inline">\(s_n=1\)</span> if <span class="math inline">\(n\in A\)</span> and <span class="math inline">\(s_n=0\)</span> otherwise. Thus subsets of <span class="math inline">\(\mathbb{N}\)</span> and infinite binary sequences are two descriptions of the same information. Finite binary strings form a countable set, while infinite binary sequences do not. The change from finite strings of arbitrary length to actually infinite strings is essential.</p>
+<h2 class="section-title" id="section-12-algebraic-and-transcendental-numbers">Algebraic and Transcendental Numbers</h2>
+<p>A real number is algebraic if it is a root of a nonzero polynomial with integer coefficients. Thus <span class="math inline">\(\sqrt2\)</span> is algebraic, since it is a root of <span class="math inline">\(x^2-2\)</span>. A real number that is not algebraic is called transcendental.</p>
+<div class="math-box theorem"><div class="box-label">Theorem 2.9</div><h3>Algebraic Numbers Are Countable</h3>
+<p> The set of real algebraic numbers is countable. Consequently there exist uncountably many transcendental real numbers.</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> For each degree bound <span class="math inline">\(d\)</span>, the coefficient lists <span class="math inline">\((a_0,\ldots,a_d)\in\mathbb{Z}^{d+1}\)</span> form a countable set, because a finite product of countable sets is countable. The union over all <span class="math inline">\(d\)</span> is countable. Each nonzero polynomial has only finitely many roots: successive use of the factor theorem shows that a degree-<span class="math inline">\(d\)</span> polynomial has at most <span class="math inline">\(d\)</span> distinct roots. The union of the finite root sets over all integer polynomials is therefore countable.</p>
+<p>If the transcendental reals were countable too, their union with the algebraic reals would make <span class="math inline">\(\mathbb{R}\)</span> countable, contrary to Cantor’s diagonal argument. ◻</p>
+</div></details>
+<p>This proof establishes existence without naming a particular transcendental number. Such a proof is fully valid, but it answers a different question from constructing a specific example and proving its transcendence.</p>
+<div class="inset-example"><div class="box-label">Example 2.4</div><h3>Countable Does Not Mean Sparse</h3>
+<p> The rationals are countable and are dense in the real line. How can both assertions be true?</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>Countability asks whether the elements can be assigned distinct natural-number positions in a list. Density asks whether every open interval contains an element. The first concerns the size of a set; the second concerns its location in an ordered space. An enumeration need not follow numerical order. Indeed there is no increasing enumeration of all rationals: between any two distinct rationals another rational must occur.</p>
+</div></details>
+<h2 class="section-title" id="section-13-foundations-a-connecting-review">Foundations: A Connecting Review</h2>
+<div class="note-box"><div class="box-label">Checkpoint 2.1</div>
+<ol>
+<li><p>The diagonal of a unit square has length <span class="math inline">\(\sqrt2\)</span>.</p></li>
+<li><p>The contradiction proof shows that <span class="math inline">\(\sqrt2\notin\mathbb{Q}\)</span>.</p></li>
+<li><p>Rational numbers lie densely on the number line but do not contain every possible limit.</p></li>
+<li><p><span class="math inline">\(\mathbb{R}\)</span> contains both rational and irrational numbers.</p></li>
+<li><p><span class="math inline">\(\mathbb{Q}\)</span> is countable, while <span class="math inline">\(\mathbb{R}\)</span> is uncountable.</p></li>
+<li><p>Completeness is the structural property that allows rigorous calculus.</p></li>
+</ol>
+</div>
+<h2 class="section-title" id="section-14-non-submitting-homework-exercises">Non-Submitting Homework Exercises</h2>
+<p>All thirty-four questions form one non-submitting homework bank. The later questions use material developed elsewhere in the book; return to them after the relevant lecture. Click a solution only after trying the problem independently.</p>
+<div class="enumerate">
+</div>
+<h2 class="section-title" id="section-15-from-enumerations-to-sequences">From Enumerations to Sequences</h2>
+<p>An indexed list is about to become an object in its own right. Let us give it a precise name before calculating any of its terms.</p>
+<div class="math-box"><div class="box-label">Definition 2.3</div><h3>Sequence of Real Numbers</h3>
+<p> A sequence of real numbers is a function <span class="math display">\[x:\mathbb{N}\to\mathbb{R}.\]</span> We write <span class="math inline">\(x(n)=x_n\)</span> and denote the sequence by <span class="math display">\[(x_n)_{n\ge1},\qquad (x_n),\qquad x_1,x_2,x_3,\ldots.\]</span></p>
+</div>
+<p>To say that an infinite set is countable is to place its elements in an indexed list <span class="math inline">\(q_1,q_2,q_3,\ldots\)</span> (possibly deleting repeats). Thus our enumeration of <span class="math inline">\(\mathbb{Q}\)</span> is also a sequence: a function <span class="math inline">\(q:\mathbb{N}\to\mathbb{Q}\)</span>. An index remembers <em>which</em> term was selected; the set <span class="math inline">\(\{q_n:n\in\mathbb{N}\}\)</span> only remembers the values. In the next lecture we shall ask what happens when the indices grow.</p>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<h3 class="unnumbered" id="reading-a-sequence-from-its-formula">Reading a sequence from its formula</h3>
+<div class="inset-example"><div class="box-label">Example 2.5</div><h3>A trigonometric sequence whose signs change</h3>
+<p> Let <span class="math inline">\(x_n=\sin(n\pi/2)/n\)</span>. Find the first five terms and describe what the numerator does as <span class="math inline">\(n\)</span> varies.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>At <span class="math inline">\(n=1,2,3,4,5\)</span>, the numerator is <span class="math inline">\(1,0,-1,0,1\)</span>, respectively. Thus <span class="math display">\[(x_1,x_2,x_3,x_4,x_5)=\left(1,0,-\frac13,0,\frac15\right).\]</span> The numerators follow the repeating pattern <span class="math inline">\(1,0,-1,0\)</span>, while <span class="math inline">\(|x_n|\le 1/n\)</span>. The values lie inside the shrinking bounds <span class="math inline">\(-1/n\)</span> and <span class="math inline">\(1/n\)</span>, although their distances from <span class="math inline">\(0\)</span> need not decrease at each step: a zero term can be followed by a nonzero term. We will use the formal definition of a limit to express this observation in the next lecture.</p>
+</div></details>
+<div class="inset-example"><div class="box-label">Example 2.6</div><h3>Guessing a formula from finitely many terms</h3>
+<p> Give a simple possible formula for each sequence:</p>
+<div class="parts">
+<p><span class="math inline">\(\frac23,\frac58,\frac{10}{13},\frac{17}{18},\frac{26}{23},\ldots\)</span>;</p>
+<p><span class="math inline">\(1,\frac12,2,\frac13,3,\frac14,4,\frac15,\ldots\)</span>.</p>
+</div>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<div class="parts">
+<p>At position <span class="math inline">\(n\)</span>, the numerator is <span class="math inline">\(n^2+1\)</span>, while the denominator starts at <span class="math inline">\(3\)</span> and increases by <span class="math inline">\(5\)</span>. One possible rule is therefore <span class="math display">\[x_n=\frac{n^2+1}{5n-2}\qquad(n\ge1).\]</span></p>
+<p>Separate odd and even positions. The terms in positions <span class="math inline">\(1,3,5,7,\ldots\)</span> are <span class="math inline">\(1,2,3,4,\ldots\)</span>; those in positions <span class="math inline">\(2,4,6,8,\ldots\)</span> are <span class="math inline">\(1/2,1/3,1/4,1/5,\ldots\)</span>. Thus <span class="math display">\[x_{2k-1}=k,\qquad x_{2k}=\frac1{k+1}\qquad(k\ge1).\]</span></p>
+</div>
+</div></details>
+<p>Sequences and Convergence</p>
+</div>
+<div class="edition-note"><strong>About this web edition.</strong> This page is converted from the LaTeX lecture manuscript. Some original TikZ illustrations are marked for conversion. End-of-lecture homework and separate answer keys are not included here. Please consult the author before redistributing.</div>
+<nav class="reader-end" aria-label="Next and previous lecture"><a href="lecture-01.html">← Lecture 01</a><a href="lecture-03.html">Lecture 03 →</a></nav><div class="copyright">© 2026 Aritra Dey. All rights reserved. Reuse, reproduction or redistribution requires the author’s prior written permission.</div></div></main>
+<aside class="on-this-page"><h2>On this page</h2><a href="#section-1-what-does-the-size-of-a-set-mean">What Does the “Size” of a Set Mean?</a><a href="#section-2-countable-and-uncountable-sets">Countable and Uncountable Sets</a><a href="#section-3-the-grid-mathbb-n-times-mathbb-n-is-countable">The Grid \(\mathbb{N}\times\mathbb{N}\) Is Countable</a><a href="#section-4-why-the-rational-numbers-are-countable">Why the Rational Numbers Are Countable</a><a href="#section-5-unions-of-countable-sets">Unions of Countable Sets</a><a href="#section-6-useful-equivalent-tests-for-countability">Useful Equivalent Tests for Countability</a><a href="#section-7-cantor-and-different-sizes-of-infinity">Cantor and Different Sizes of Infinity</a><a href="#section-8-from-the-rational-line-to-the-real-line">From the Rational Line to the Real Line</a><a href="#section-9-cantor-s-diagonal-argument">Cantor’s Diagonal Argument</a><a href="#section-10-all-open-intervals-have-the-same-cardinality">All Open Intervals Have the Same Cardinality</a><a href="#section-11-power-sets-and-a-second-diagonal-argument">Power Sets and a Second Diagonal Argument</a><a href="#section-12-algebraic-and-transcendental-numbers">Algebraic and Transcendental Numbers</a><a href="#section-13-foundations-a-connecting-review">Foundations: A Connecting Review</a><a href="#section-14-non-submitting-homework-exercises">Non-Submitting Homework Exercises</a><a href="#section-15-from-enumerations-to-sequences">From Enumerations to Sequences</a></aside></div></body></html>

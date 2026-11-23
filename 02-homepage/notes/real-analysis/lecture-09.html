@@ -1,0 +1,340 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Lecture 9: Seeing What a Function Limit Means — Aritra Dey's online real analysis lecture notes."><title>Lecture 9: Seeing What a Function Limit Means | Aritra Dey</title><link rel="stylesheet" href="../assets/book.css"><script src="../assets/mathjax.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><script defer src="../assets/book.js"></script></head><body><a class="skip" href="#reader-main">Skip to lecture</a><header class="topbar"><a class="brand" href="../../"><span class="brand-mark">A</span><span>Aritra Dey <span style="opacity:.42;padding:0 7px">/</span> Mathematics</span></a><nav class="top-links"><a href="../">All books</a><a href="./">Contents</a><button class="circle-button" data-theme-toggle aria-label="Toggle light and dark mode"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></nav></header><div class="reader-shell"><aside class="sidebar" id="toc-sidebar" aria-label="Book table of contents"><div class="toc-label">Book one · Real Analysis</div><a class="side-book" href="./">Contents</a><a class="side-item" href="lecture-01.html"><span>01</span>Real numbers &amp; completeness</a><a class="side-item" href="lecture-02.html"><span>02</span>Countability</a><a class="side-item" href="lecture-03.html"><span>03</span>Sequences &amp; limits</a><a class="side-item" href="lecture-04.html"><span>04</span>Direct epsilon proofs</a><a class="side-item" href="lecture-05.html"><span>05</span>Limit laws</a><a class="side-item" href="lecture-06.html"><span>06</span>Monotone convergence</a><a class="side-item" href="lecture-07.html"><span>07</span>Cauchy sequences</a><a class="side-item" href="lecture-08.html"><span>08</span>Density &amp; cluster points</a><a class="side-item active" href="lecture-09.html" aria-current="page"><span>09</span>Function limits</a><a class="side-item" href="lecture-10.html"><span>10</span>Limits at infinity</a><a class="side-item" href="lecture-11.html"><span>11</span>Standard limits</a><a class="side-item" href="lecture-12.html"><span>12</span>One-sided limits</a><a class="side-item" href="lecture-13.html"><span>13</span>Infinitesimals</a><a class="side-item" href="lecture-14.html"><span>14</span>Continuity</a><a class="side-item" href="lecture-15.html"><span>15</span>Discontinuities</a><a class="side-item" href="lecture-16.html"><span>16</span>Intermediate Value Theorem</a></aside>
+<main class="reader-main" id="reader-main"><div class="reading-width"><button id="toc-toggle" class="sidebar-toggle" aria-expanded="false" aria-controls="toc-sidebar">☰ All lectures</button>
+<nav class="book-breadcrumb" aria-label="Breadcrumb"><a href="../">Books</a><span>›</span><a href="./">Real Analysis</a><span>›</span><span>Lecture 09</span></nav>
+<header class="chapter-head"><div class="chapter-label">Lecture 09 · Online reading edition</div><h1>Seeing What a Function Limit Means</h1><p>Read this lecture online, then continue to the next chapter. Figures and exercises are being adapted separately for the web edition.</p><div class="reading-tools"><button type="button" id="type-toggle" aria-pressed="false">Larger text</button><button type="button" id="proof-toggle">Expand all proofs &amp; worked solutions</button></div></header>
+<div class="lecture-content">
+<p><span id="chap:function-limits"></span></p>
+<h2 class="section-title" id="section-1-why-this-definition-is-natural">Why This Definition Is Natural</h2>
+<div class="note-box"><div class="box-label">Motivation 9.1</div>
+<p>Remember the pendulum experiment from our discussion of sequences. One fortunate reading close to the resting position was not enough: the pendulum might swing far away again. What we wanted was a guarantee. First we specified how much error we were prepared to allow, and then asked for a stage after which every reading met that demand. A narrower allowed band required a stronger guarantee.</p>
+<p>For a function, keep the same question but change the way we choose the inputs. Imagine an experiment with a controlled setting <span class="math inline">\(x\)</span> and a measured response <span class="math inline">\(f(x)\)</span>. We are interested in settings near a fixed value <span class="math inline">\(a\)</span>, and we suspect that the readings should be near <span class="math inline">\(L\)</span>. If I say, “I want every reading to be within <span class="math inline">\(0.1\)</span> of <span class="math inline">\(L\)</span>”, can you tell me how close the setting must be to <span class="math inline">\(a\)</span>? If I change my demand to <span class="math inline">\(0.01\)</span>, can you give me a suitable new restriction? We are describing the logic of the experiment; we are not assuming that every physical experiment necessarily has a limit.</p>
+<p>The order is natural: <em>first decide the accuracy required of the output; then decide how accurately the input must be controlled</em>. For instance, with the response <span class="math inline">\(f(x)=x+3\)</span> near <span class="math inline">\(a=3\)</span>, keeping the input error below <span class="math inline">\(0.1\)</span> keeps the output error from <span class="math inline">\(6\)</span> below <span class="math inline">\(0.1\)</span>, since <span class="math inline">\(|f(x)-6|=|x-3|\)</span>. The important promise concerns <em>every</em> allowed input in that small region, not just the few readings we happen to try.</p>
+<p>The symbols <span class="math inline">\(\varepsilon\)</span> and <span class="math inline">\(\delta\)</span> will simply give names to these two positive tolerances: <span class="math inline">\(\varepsilon\)</span> for the permitted output error, and <span class="math inline">\(\delta\)</span> for a sufficient input restriction. We never ask for an error tolerance of zero. Instead, we ask whether <em>every positive demand</em>, however small, can be met. We shall now explore a concrete example, draw the two windows, and then write this everyday guarantee as a precise definition.</p>
+</div>
+<h2 class="section-title" id="section-2-a-missing-value-but-a-visible-destination">A Missing Value, but a Visible Destination</h2>
+<div class="note-box"><div class="box-label">Motivation 9.2</div>
+<p>Let us begin with a question which can be explored before we introduce any new symbols: <span class="math display">\[f(x)=\frac{x^2-9}{x-3},\qquad x\ne3.\]</span> What happens to the outputs if the input gets closer and closer to <span class="math inline">\(3\)</span>? We cannot substitute <span class="math inline">\(x=3\)</span> in this formula: both numerator and denominator would be zero. But we can choose inputs near <span class="math inline">\(3\)</span> and look at their outputs.</p>
+</div>
+<p>For every allowed input, factorisation gives <span class="math display">\[\frac{x^2-9}{x-3}=\frac{(x-3)(x+3)}{x-3}=x+3.\]</span> The simplified formula makes the following table easy to calculate.</p>
+<div class="figure-or-centered">
+<table>
+<tbody>
+<tr class="odd">
+<td colspan="2" style="text-align: center;">Inputs below <span class="math inline">\(3\)</span></td>
+<td colspan="2" style="text-align: center;">Inputs above <span class="math inline">\(3\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><span class="math inline">\(x\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(f(x)\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(x\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(f(x)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(5\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(4\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(7\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><span class="math inline">\(2.9\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(5.9\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(3.1\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(6.1\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><span class="math inline">\(2.99\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(5.99\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(3.01\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(6.01\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><span class="math inline">\(2.999\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(5.999\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(3.001\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(6.001\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>On either side, the inputs move towards <span class="math inline">\(3\)</span> and the outputs move towards <span class="math inline">\(6\)</span>. This suggests <span class="math display">\[\lim_{x\to3}\frac{x^2-9}{x-3}=6.\]</span> Notice that this is a claim about the nearby outputs. It does not assign a value to the original formula at <span class="math inline">\(3\)</span>.</p>
+<div class="figure-or-centered">
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+</div>
+<p>The arrows show the two approaches seen in the table. Both bring the graph towards the same missing point; we will turn this observation into an exact guarantee.</p>
+<h2 class="section-title" id="section-3-how-the-idea-of-a-limit-became-precise">How the Idea of a Limit Became Precise</h2>
+<div class="note-box"><div class="box-label">Historical note 9.1</div>
+<p>Before meeting the symbols <span class="math inline">\(\varepsilon\)</span> and <span class="math inline">\(\delta\)</span>, let us ask why mathematicians needed them. A table can strongly suggest that an output is approaching a number. A graph can make the approach look convincing. But how do we turn that impression into a statement that works for <em>every</em> sufficiently close input, including inputs that our table never lists?</p>
+<p>This difficulty is part of the history of calculus. In the seventeenth century, Pierre de Fermat developed methods for tangents and for maximum and minimum problems, using what he called <em>adequality</em>. These methods helped mathematicians calculate with small changes. They were important predecessors of calculus; they were not the modern <span class="math inline">\(\varepsilon\)</span>–<span class="math inline">\(\delta\)</span> definition. We should distinguish an early method for finding an answer from the later language used to justify such answers.<a class="footnote-ref" href="#fn1" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Isaac Newton also had to explain what happens to ratios when the quantities involved become very small. In Book I, Section I of the <em>Principia</em>, he described <em>first and ultimate ratios</em>. In Andrew Motte’s English translation, he says that the ultimate ratios are</p>
+<blockquote>
+<p>“not truly the ratios of ultimate quantities, but limits towards which the ratios of quantities decreasing without limit do always converge”.</p>
+</blockquote>
+<p>The point is especially relevant to a quotient whose numerator and denominator both become small: the answer is not obtained by taking a ratio of two final zeros. Newton’s discussion concerns the limiting behaviour of ratios.<a class="footnote-ref" href="#fn2" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>The nineteenth century brought a more systematic search for precise foundations. Bernard Bolzano’s work of 1817 was an important step towards an analytic treatment of continuity. In his <em>Cours d’analyse</em> of 1821, Augustin-Louis Cauchy explained a limit through variable values approaching a fixed value with an error that can become as small as desired. These were major steps towards rigorous analysis, although their language and foundations should not simply be identified with every detail of a present-day textbook.<a class="footnote-ref" href="#fn3" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>Karl Weierstrass’s nineteenth-century teaching developed the systematic use of inequalities of the kind we now express using <span class="math inline">\(\varepsilon\)</span> and <span class="math inline">\(\delta\)</span>. His 1861 differential-calculus lectures are an important source for this development. The crucial feature for us is the order of the demands: first prescribe how accurate the output must be; then find an input restriction that guarantees that accuracy. The statement is about numbers and inequalities, and does not require an imagined particle to move with time.<a class="footnote-ref" href="#fn4" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>Later, G. H. Hardy’s <em>A Course of Pure Mathematics</em>, first published in 1908, helped bring rigorous analysis into English university teaching. Hardy did not invent the definition. His role here is that of an influential expositor: his book carefully teaches limits through prescribed errors and suitable bounds on the input.<a class="footnote-ref" href="#fn5" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+<p>So the definition that follows is not an arbitrary collection of Greek letters. It answers a very old question: <em>what exact guarantee is hidden inside the phrase “the output approaches <span class="math inline">\(L\)</span>”?</em> Our pictures will make the guarantee visible; the inequalities will make it provable.</p>
+</div>
+<h2 class="section-title" id="section-4-from-an-output-demand-to-an-input-guarantee">From an Output Demand to an Input Guarantee</h2>
+<p>Write <span class="math inline">\(f:A\to\mathbb{R}\)</span>, where <span class="math inline">\(A\subseteq\mathbb{R}\)</span>. We approach <span class="math inline">\(c\)</span> through points of <span class="math inline">\(A\)</span>. We assume that <span class="math inline">\(c\)</span> is an accumulation point of <span class="math inline">\(A\)</span>: every interval <span class="math inline">\((c-r,c+r)\)</span>, <span class="math inline">\(r&gt;0\)</span>, contains a point of <span class="math inline">\(A\)</span> different from <span class="math inline">\(c\)</span>. This gives us nearby inputs to work with. The point <span class="math inline">\(c\)</span> itself need not belong to <span class="math inline">\(A\)</span>.</p>
+<div class="math-box"><div class="box-label">Definition 9.1</div><h3>Deleted Neighbourhood</h3>
+<p> The deleted or punctured <span class="math inline">\(\delta\)</span>-neighbourhood of <span class="math inline">\(c\)</span> is <span class="math display">\[(c-\delta,c)\cup(c,c+\delta)
+ =\{x\in\mathbb{R}:0&lt;|x-c|&lt;\delta\},\qquad\delta&gt;0.\]</span> For a function on <span class="math inline">\(A\)</span>, only points in the intersection of this set with <span class="math inline">\(A\)</span> are considered.</p>
+</div>
+<div class="math-box"><div class="box-label">Definition 9.2</div><h3>Limit of a Function</h3>
+<p> Let <span class="math inline">\(c\)</span> be an accumulation point of <span class="math inline">\(A\)</span>. We write <span class="math display">\[\lim_{x\to c}f(x)=L\]</span> if, for every <span class="math inline">\(\varepsilon&gt;0\)</span>, there exists <span class="math inline">\(\delta&gt;0\)</span> such that <span class="math display">\[x\in A,\qquad0&lt;|x-c|&lt;\delta
+ \quad\Longrightarrow\quad |f(x)-L|&lt;\varepsilon.\]</span> This is the <span class="math inline">\(\varepsilon\)</span>–<span class="math inline">\(\delta\)</span> definition, also called Cauchy’s definition of a function limit.</p>
+</div>
+<p>The number <span class="math inline">\(\varepsilon\)</span> measures the permitted <em>output error</em>; <span class="math inline">\(\delta\)</span> tells us how small the <em>input error</em> must be. Read the order carefully: <span class="math display">\[\forall\varepsilon&gt;0\quad\exists\delta&gt;0\quad\forall x\in A:
+ \quad0&lt;|x-c|&lt;\delta\Longrightarrow|f(x)-L|&lt;\varepsilon.\]</span> First someone chooses <span class="math inline">\(\varepsilon\)</span>. We then choose <span class="math inline">\(\delta\)</span>, possibly depending on <span class="math inline">\(\varepsilon\)</span>, <span class="math inline">\(c\)</span>, and the function. After that, the same <span class="math inline">\(\delta\)</span> must work for <em>every</em> admissible <span class="math inline">\(x\)</span>. We cannot wait to see <span class="math inline">\(x\)</span> and then change <span class="math inline">\(\delta\)</span>.</p>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<h3 id="why-is-the-centre-removed">Why is the centre removed?</h3>
+<p>The inequality <span class="math inline">\(0&lt;|x-c|\)</span> says that <span class="math inline">\(x\ne c\)</span>. A limit examines values <em>near</em> <span class="math inline">\(c\)</span>; it does not ask for the value <em>at</em> <span class="math inline">\(c\)</span>. We may change <span class="math inline">\(f(c)\)</span>, or leave it undefined, without changing the limit.</p>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<div class="note-box"><div class="box-label">Warning 9.1</div>
+<p>A picture can suggest a limit, but it does not prove one. Also, a function is not required to be defined on a whole interval around <span class="math inline">\(c\)</span>: its own domain determines which inputs are admissible. At an isolated domain point there is no approach through other domain points, so we do not define a function limit there by a vacuous condition.</p>
+</div>
+<h3 id="what-does-approaches-mean-in-this-definition">What does “approaches” mean in this definition?</h3>
+<p>In this picture, <span class="math inline">\(a\)</span> is the fixed input point denoted by <span class="math inline">\(c\)</span> in the definition. The expression <span class="math inline">\(x\to a\)</span> does not describe one particular journey, and it does not require the input to move at a particular speed. It asks for a guarantee about <em>all</em> sufficiently close inputs. To understand that guarantee, start at the output end.</p>
+<p>Choose an open interval <span class="math display">\[V=(L-\varepsilon,L+\varepsilon)\]</span> around the proposed limit <span class="math inline">\(L\)</span>. We want every nearby output to fall into this interval. We then seek an open interval <span class="math display">\[U=(a-\delta,a+\delta)\]</span> around the input point <span class="math inline">\(a\)</span> which makes that happen. If the domain is <span class="math inline">\(A\)</span>, the exact requirement is <span class="math display">\[\boxed{\quad f\bigl((U\setminus\{a\})\cap A\bigr)\subseteq V.\quad}\]</span> In words: take the points of the input neighbourhood which belong to the domain, remove the centre point, and send all the remaining points through the function. <em>Their entire image must lie inside the prescribed output neighbourhood.</em></p>
+<div class="figure-or-centered">
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+</div>
+<p>Now make <span class="math inline">\(V\)</span> smaller, so the permitted output error is smaller. We are allowed to choose a different, usually smaller, input neighbourhood <span class="math inline">\(U\)</span>. A limit exists with value <span class="math inline">\(L\)</span> when this can be done for <em>every</em> positive output tolerance. There is no final, smallest tolerance to reach. We never put <span class="math inline">\(\varepsilon=0\)</span>: instead, we meet every positive demand.</p>
+<div class="note-box"><div class="box-label">Checkpoint 9.1</div>
+<p>First choose the output tolerance <span class="math inline">\(\varepsilon&gt;0\)</span>. Next choose one input radius <span class="math inline">\(\delta&gt;0\)</span>. Finally, test <em>any</em> domain point with <span class="math inline">\(0&lt;|x-a|&lt;\delta\)</span>. The chosen radius must work for all of them. It may depend on <span class="math inline">\(\varepsilon\)</span> and the fixed function, but it may not be changed after the test input is chosen.</p>
+</div>
+<h3 id="a-working-radius-need-not-be-the-largest-radius">A working radius need not be the largest radius</h3>
+<p>For <span class="math inline">\(f(x)=x+3\)</span> at <span class="math inline">\(a=3\)</span>, with output tolerance <span class="math inline">\(\varepsilon=0.1\)</span>, the choice <span class="math inline">\(\delta=0.1\)</span> works. So do <span class="math inline">\(\delta=0.05\)</span> and <span class="math inline">\(\delta=0.001\)</span>. These smaller choices merely admit fewer inputs. In general, if <span class="math inline">\(\delta\)</span> works, then every <span class="math inline">\(0&lt;\delta'\le\delta\)</span> also works.</p>
+<p>We need to find <em>a</em> suitable positive radius, not the best possible one. Choosing a minimum such as <span class="math inline">\(\min\{1,\varepsilon/5\}\)</span> is therefore perfectly legitimate: one restriction keeps the input in a region we understand, and the other makes the output error sufficiently small.</p>
+<div class="note-box"><div class="box-label">Remark 9.1</div>
+<p>An arbitrary open neighbourhood <span class="math inline">\(V\)</span> of <span class="math inline">\(L\)</span> contains some interval <span class="math inline">\((L-\varepsilon,L+\varepsilon)\)</span>. If we put the entire relevant image inside that smaller interval, it is also inside <span class="math inline">\(V\)</span>. Conversely, these symmetric intervals are themselves open neighbourhoods. Thus the window formulation and the <span class="math inline">\(\varepsilon\)</span>–<span class="math inline">\(\delta\)</span> formulation say exactly the same thing.</p>
+</div>
+
+<p><em>The axes have the same scales in all three pictures. Blue marks the permitted output band around <span class="math inline">\(6\)</span>; orange marks a chosen input strip around <span class="math inline">\(3\)</span>. The thick green graph inside the strip remains inside the blue band. The open circle records the missing value at <span class="math inline">\(x=3\)</span>.</em></p>
+<p>Let us read the pictures numerically. To make the output error less than <span class="math inline">\(1\)</span>, it is enough to make the input error less than <span class="math inline">\(1\)</span>. To demand an output error less than <span class="math inline">\(0.5\)</span>, use an input error less than <span class="math inline">\(0.5\)</span>. For an output error less than <span class="math inline">\(0.1\)</span>, use an input error less than <span class="math inline">\(0.1\)</span>. This works because the errors are exactly equal: <span class="math display">\[|f(x)-6|=|x+3-6|=|x-3|\qquad(x\ne3).\]</span> For any positive demand <span class="math inline">\(\varepsilon\)</span>, choosing <span class="math inline">\(\delta=\varepsilon\)</span> therefore gives <span class="math display">\[0&lt;|x-3|&lt;\delta\quad\Longrightarrow\quad |f(x)-6|&lt;\varepsilon.\]</span> That single calculation works for <em>every</em> positive <span class="math inline">\(\varepsilon\)</span>, not merely the three values we drew.</p>
+<div class="note-box"><div class="box-label">Warning 9.2</div>
+<p>A table checks only finitely many chosen inputs. A graph has finite resolution. Neither can check every real input near <span class="math inline">\(3\)</span>. The estimate <span class="math inline">\(|f(x)-6|=|x-3|\)</span> is stronger: it controls all the allowed inputs at once, however close they are to the missing point.</p>
+</div>
+<h2 class="section-title" id="section-5-designing-a-delta-direct-proofs">Designing a Delta: Direct Proofs</h2>
+<div class="note-box"><div class="box-label">Method 9.1</div>
+<p>Start with <span class="math inline">\(|f(x)-L|\)</span> and find an estimate in terms of <span class="math inline">\(|x-c|\)</span>. This calculation suggests a choice of <span class="math inline">\(\delta\)</span>. The finished proof then runs forwards: fix <span class="math inline">\(\varepsilon&gt;0\)</span>, state the choice of <span class="math inline">\(\delta\)</span>, assume <span class="math inline">\(0&lt;|x-c|&lt;\delta\)</span>, and prove the required output bound.</p>
+</div>
+<div class="inset-example" id="ex:constant-and-identity-limits"><div class="box-label">Example 9.1</div><h3>Constants and the identity function</h3>
+<p> Prove directly that <span class="math inline">\(\lim_{x\to c}b=b\)</span> and <span class="math inline">\(\lim_{x\to c}x=c\)</span>.</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 9.1</div>
+<p>For the constant function, any <span class="math inline">\(\delta&gt;0\)</span> works, because <span class="math inline">\(|b-b|=0&lt;\varepsilon\)</span>. For the identity function choose <span class="math inline">\(\delta=\varepsilon\)</span>. Then <span class="math inline">\(0&lt;|x-c|&lt;\delta\)</span> immediately gives <span class="math inline">\(|x-c|&lt;\varepsilon\)</span>. These are the simplest examples of the definition.</p>
+</div>
+<div class="note-box"><div class="box-label">Remark 9.2</div>
+<p>Each <span class="math inline">\(\varepsilon&gt;0\)</span> is a fixed demand, and we choose a positive <span class="math inline">\(\delta\)</span> to meet it. The definition does not require a particular formula <span class="math inline">\(\delta(\varepsilon)\)</span>, or even require that our choices tend to zero. For a constant function equal to its proposed limit, <span class="math inline">\(\delta=1\)</span> works for every positive <span class="math inline">\(\varepsilon\)</span>. A smaller radius also works, but there is no need to use one.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 9.2</div><h3>Two linear functions</h3>
+<p> Prove, using the definition, <span class="math display">\[\lim_{x\to1}(3x-8)=-5,\qquad
+ \lim_{x\to1}(3x-2)=1.\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 9.2</div>
+<p>In the first problem the output error is <span class="math display">\[|(3x-8)-(-5)|=|3x-3|=3|x-1|.\]</span> Given <span class="math inline">\(\varepsilon&gt;0\)</span>, choose <span class="math inline">\(\delta=\varepsilon/3\)</span>. Then <span class="math inline">\(0&lt;|x-1|&lt;\delta\)</span> implies that this error is less than <span class="math inline">\(3\delta=\varepsilon\)</span>. In the second problem, <span class="math display">\[|(3x-2)-1|=3|x-1|,\]</span> so exactly the same choice works. More generally, a nonconstant linear function <span class="math inline">\(ax+b\)</span> has limit <span class="math inline">\(ac+b\)</span> at <span class="math inline">\(c\)</span>, with <span class="math inline">\(\delta=\varepsilon/|a|\)</span>.</p>
+</div>
+<h3 id="a-steeper-line-needs-a-narrower-input-strip">A steeper line needs a narrower input strip</h3>
+<p>For <span class="math inline">\(f(x)=3x-8\)</span> at <span class="math inline">\(a=1\)</span>, the proposed output limit is <span class="math inline">\(-5\)</span> and <span class="math display">\[|f(x)-(-5)|=3|x-1|.\]</span> The output error is three times the input error. Hence an output demand <span class="math inline">\(\varepsilon\)</span> is met by choosing <span class="math inline">\(\delta=\varepsilon/3\)</span>.</p>
+
+<p>The three chosen radii are <span class="math inline">\(1/3\)</span>, <span class="math inline">\(1/6\)</span>, and <span class="math inline">\(1/30\)</span>, respectively. The same error calculation applies to <span class="math inline">\(g(x)=3x-2\)</span> at <span class="math inline">\(1\)</span>, whose output limit is <span class="math inline">\(1\)</span>:</p>
+
+<p>Moving the graph up or down changes the proposed output limit, but it does not change the relation between the two errors.</p>
+<h3 id="seeing-a-failed-choice-then-repairing-it">Seeing a failed choice, then repairing it</h3>
+<p>Suppose the required output error is <span class="math inline">\(0.3\)</span> for <span class="math inline">\(f(x)=3x-8\)</span> at <span class="math inline">\(1\)</span>. The choice <span class="math inline">\(\delta=0.2\)</span> is too generous: the admissible input <span class="math inline">\(x=1.15\)</span> has input error <span class="math inline">\(0.15&lt;0.2\)</span>, but output error <span class="math inline">\(3(0.15)=0.45&gt;0.3\)</span>. Some of the graph in the orange strip escapes the blue band. Reducing the radius to <span class="math inline">\(\delta=0.1\)</span> repairs the problem, since <span class="math inline">\(3|x-1|&lt;0.3\)</span> for every allowed input.</p>
+
+<p><em>Left: the proposed radius fails. Right: the repaired radius works. A failed radius does not disprove the limit; it tells us to choose a more suitable radius.</em></p>
+<div class="inset-example"><div class="box-label">Example 9.3</div><h3>A quadratic at an arbitrary point</h3>
+<p> Prove that <span class="math inline">\(\lim_{x\to c}x^2=c^2\)</span> for every real <span class="math inline">\(c\)</span>.</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 9.3</div>
+<p>Factor the error: <span class="math display">\[|x^2-c^2|=|x-c||x+c|.\]</span> The factor <span class="math inline">\(|x-c|\)</span> is under our control, but <span class="math inline">\(|x+c|\)</span> still moves with <span class="math inline">\(x\)</span>. First impose <span class="math inline">\(|x-c|&lt;1\)</span>. Then <span class="math display">\[|x+c|\le|x-c|+2|c|&lt;1+2|c|.\]</span> For a given <span class="math inline">\(\varepsilon&gt;0\)</span> choose <span class="math display">\[\delta=\min\left\{1,\frac{\varepsilon}{1+2|c|}\right\}.\]</span> If <span class="math inline">\(0&lt;|x-c|&lt;\delta\)</span>, both restrictions hold, and <span class="math display">\[|x^2-c^2|&lt;(1+2|c|)|x-c|&lt;\varepsilon.\]</span> The minimum simply records two jobs: keep the extra factor bounded, and make the final error small.</p>
+</div>
+<h3 id="a-curved-graph-the-square-function">A curved graph: the square function</h3>
+<p>For <span class="math inline">\(f(x)=x^2\)</span> at <span class="math inline">\(a=2\)</span>, the proposed limit is <span class="math inline">\(4\)</span>. The error factorises as <span class="math display">\[|x^2-4|=|x-2||x+2|.\]</span> If <span class="math inline">\(|x-2|&lt;1\)</span>, then <span class="math inline">\(1&lt;x&lt;3\)</span> and <span class="math inline">\(|x+2|&lt;5\)</span>. Thus the choice <span class="math display">\[\delta=\min\{1,\varepsilon/5\}\]</span> works. Here are three positive tolerances with the radii supplied by that rule.</p>
+
+<p>The curvature means that equal input displacements on the two sides need not give equal output errors. The estimate <span class="math inline">\(|x+2|&lt;5\)</span> handles both sides at once. We chose an easily proved radius rather than calculating the largest possible one.</p>
+<div class="figure-or-centered">
+<p><strong>A magnified view of the third panel.</strong> Here we have changed only the axis scales, so that the narrow input strip can be inspected more closely. The function, the point <span class="math inline">\(a=2\)</span>, the proposed limit <span class="math inline">\(4\)</span>, and the chosen numbers <span class="math inline">\(\varepsilon=0.1\)</span>, <span class="math inline">\(\delta=0.02\)</span> are exactly the same. The enlarged picture shows why every selected output stays between <span class="math inline">\(3.9\)</span> and <span class="math inline">\(4.1\)</span>.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 9.4</div><h3>Controlling a denominator</h3>
+<p> For <span class="math inline">\(c\ne0\)</span>, prove that <span class="math inline">\(\lim_{x\to c}1/x=1/c\)</span>.</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 9.4</div>
+<p>We have <span class="math display">\[\left|\frac1x-\frac1c\right|=\frac{|x-c|}{|x||c|}.\]</span> To keep the denominator away from zero, require <span class="math inline">\(|x-c|&lt;|c|/2\)</span>. The reverse triangle inequality gives <span class="math display">\[|x|\ge |c|-|x-c|&gt;|c|/2.\]</span> Hence the error is less than <span class="math inline">\(2|x-c|/|c|^2\)</span>. Choose <span class="math display">\[\delta=\min\left\{\frac{|c|}{2},\frac{\varepsilon|c|^2}{2}\right\}.\]</span> For <span class="math inline">\(0&lt;|x-c|&lt;\delta\)</span>, the displayed bounds give an error smaller than <span class="math inline">\(\varepsilon\)</span>. Notice that this proof works for negative as well as positive <span class="math inline">\(c\)</span>.</p>
+</div>
+<h3 id="a-denominator-tells-us-to-keep-away-from-zero">A denominator tells us to keep away from zero</h3>
+<p>For <span class="math inline">\(f(x)=1/x\)</span> at <span class="math inline">\(a=1\)</span>, the output limit is <span class="math inline">\(1\)</span>. If <span class="math inline">\(|x-1|&lt;1/2\)</span>, then <span class="math inline">\(x&gt;1/2\)</span> and <span class="math display">\[\left|\frac1x-1\right|=\frac{|x-1|}{|x|}&lt;2|x-1|.\]</span> It is enough to choose <span class="math inline">\(\delta=\min\{1/2,\varepsilon/2\}\)</span>. The first restriction prevents the denominator from getting too small; the second controls the output error.</p>
+
+<p>The radii are sufficient, even though they are not generally maximal. As the requested blue band narrows, our chosen orange strip narrows enough to keep all the corresponding outputs inside it.</p>
+<div class="inset-example"><div class="box-label">Example 9.5</div><h3>A radical with a missing value</h3>
+<p> Prove directly that <span class="math display">\[\lim_{x\to1}\frac{x-1}{\sqrt x-1}=2.\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 9.5</div>
+<p>The domain is <span class="math inline">\([0,\infty)\setminus\{1\}\)</span>. At every admissible input, <span class="math display">\[\frac{x-1}{\sqrt x-1}=\sqrt x+1.\]</span> Consequently, <span class="math display">\[\left|\frac{x-1}{\sqrt x-1}-2\right|
+ =|\sqrt x-1|=\frac{|x-1|}{\sqrt x+1}\le|x-1|.\]</span> Given <span class="math inline">\(\varepsilon&gt;0\)</span>, choose <span class="math inline">\(\delta=\varepsilon\)</span>. The required bound follows. There is no need to define the original quotient at <span class="math inline">\(1\)</span>.</p>
+</div>
+<h3 id="cancelling-a-missing-factor-does-not-fill-the-hole">Cancelling a missing factor does not fill the hole</h3>
+<p>For <span class="math inline">\(f(x)=(x-1)/(\sqrt{x}-1)\)</span>, the original domain excludes <span class="math inline">\(1\)</span>. Away from that point, the function equals <span class="math inline">\(\sqrt{x}+1\)</span>, and <span class="math display">\[|f(x)-2|=\frac{|x-1|}{\sqrt{x}+1}\le|x-1|.\]</span> The proof permits <span class="math inline">\(\delta=\varepsilon\)</span>. To keep the pictures in a small positive-input region, we may use the smaller choice <span class="math inline">\(\delta=\min\{1/2,\varepsilon\}\)</span> instead.</p>
+
+<p>In the first two pictures the same radius works for two different tolerances. The definition does not require the chosen radius to change every time the tolerance changes. It requires only that the chosen radius meet the particular demand.</p>
+<div class="inset-example"><div class="box-label">Example 9.6</div><h3>Another missing point and an endpoint</h3>
+<p> Prove that <span class="math display">\[\lim_{x\to9}\frac{x-9}{\sqrt x-3}=6,
+ \qquad \lim_{\substack{x\to0\\x\ge0}}\sqrt x=0.\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 9.6</div>
+<p>For the first limit, cancellation gives <span class="math inline">\(\sqrt x+3\)</span> when <span class="math inline">\(x\ne9\)</span>. Thus <span class="math display">\[\left|\frac{x-9}{\sqrt x-3}-6\right|
+ =\frac{|x-9|}{\sqrt x+3}\le\frac{|x-9|}{3}.\]</span> Choose <span class="math inline">\(\delta=3\varepsilon\)</span>. For the second limit choose <span class="math inline">\(\delta=\varepsilon^2\)</span>: every domain point with <span class="math inline">\(0&lt;x&lt;\delta\)</span> satisfies <span class="math inline">\(|\sqrt x|&lt;\varepsilon\)</span>. The domain restriction is part of the statement; negative real inputs are not being tested.</p>
+</div>
+<h3 id="at-an-endpoint-use-only-the-available-inputs">At an endpoint, use only the available inputs</h3>
+<p>For <span class="math inline">\(f(x)=\sqrt{x}\)</span> on <span class="math inline">\([0,\infty)\)</span> at <span class="math inline">\(a=0\)</span>, the proposed output limit is <span class="math inline">\(0\)</span>. The input interval around <span class="math inline">\(0\)</span> meets the domain only on the nonnegative side. The condition we must control is therefore <span class="math inline">\(0&lt;x&lt;\delta\)</span>. <span class="math display">\[0&lt;x&lt;\varepsilon^2\quad\Longrightarrow\quad0&lt;\sqrt{x}&lt;\varepsilon.\]</span> Choose <span class="math inline">\(\delta=\varepsilon^2\)</span>.</p>
+
+<p>Here making <span class="math inline">\(\varepsilon\)</span> ten times smaller makes this particular choice of <span class="math inline">\(\delta\)</span> one hundred times smaller. There is no universal formula linking the two symbols: the function determines the error estimate. The increasingly narrow orange strip is a feature of the square-root graph, not a change in the meaning of a limit.</p>
+<div class="figure-or-centered">
+<p><strong>The same third panel, magnified.</strong> The axes now show a smaller region near <span class="math inline">\((0,0)\)</span>, but the tolerance and chosen radius remain <span class="math inline">\(\varepsilon=0.1\)</span> and <span class="math inline">\(\delta=0.01\)</span>. The graph over <span class="math inline">\(0&lt;x&lt;0.01\)</span> lies below the horizontal level <span class="math inline">\(y=0.1\)</span>. Only this zoom changes the axis scales; the preceding three panels used one fixed scale.</p>
+</div>
+<h3 id="a-useful-geometric-estimate-for-trigonometric-functions">A useful geometric estimate for trigonometric functions</h3>
+<p>All angles in these notes are in radians. Elementary unit-circle geometry gives <span class="math display">\[|\sin u|\le|u|\qquad(u\in\mathbb{R}).\]</span> For <span class="math inline">\(0&lt;u&lt;\pi/2\)</span>, compare the area of the inscribed triangle with the circular sector to get <span class="math inline">\(\sin u\le u\)</span>; use symmetry for negative <span class="math inline">\(u\)</span>. For <span class="math inline">\(|u|\ge1\)</span>, the inequality follows from <span class="math inline">\(|\sin u|\le1\le|u|\)</span>, so the estimate covers all real <span class="math inline">\(u\)</span>. The addition identities then give <span class="math display">\[|\sin x-\sin c|
+ =2\left|\cos\frac{x+c}{2}\sin\frac{x-c}{2}\right|
+ \le|x-c|,\]</span> <span class="math display">\[|\cos x-\cos c|
+ =2\left|\sin\frac{x+c}{2}\sin\frac{x-c}{2}\right|
+ \le|x-c|.\]</span> These are estimates, obtained before using any general theorem about continuity.</p>
+<div class="inset-example"><div class="box-label">Example 9.7</div><h3>Three trigonometric limits from the definition</h3>
+<p> Prove <span class="math display">\[\lim_{x\to0}\sin x=0,\qquad
+ \lim_{x\to0}\cos x=1,\qquad
+ \lim_{x\to\pi/6}\sin x=\frac12.\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 9.7</div>
+<p>For the sine limits, the preceding inequality gives <span class="math display">\[|\sin x-\sin c|\le|x-c|.\]</span> Choose <span class="math inline">\(\delta=\varepsilon\)</span> and then put <span class="math inline">\(c=0\)</span> or <span class="math inline">\(c=\pi/6\)</span>, recalling that <span class="math inline">\(\sin0=0\)</span> and <span class="math inline">\(\sin(\pi/6)=1/2\)</span>. For cosine use <span class="math inline">\(|\cos x-\cos0|\le|x|\)</span> and choose <span class="math inline">\(\delta=\varepsilon\)</span> again. Each output error is less than <span class="math inline">\(\varepsilon\)</span> for every allowed input.</p>
+</div>
+<div class="figure-or-centered">
+<p><span><span class="math inline">\(\varepsilon=0.3\)</span>, <span class="math inline">\(\delta=0.3\)</span></span></p>
+<p><span><span class="math inline">\(\varepsilon=0.15\)</span>, <span class="math inline">\(\delta=0.15\)</span></span></p>
+<p><span><span class="math inline">\(\varepsilon=0.05\)</span>, <span class="math inline">\(\delta=0.05\)</span></span></p>
+</div>
+<p>For <span class="math inline">\(\sin x\)</span> at <span class="math inline">\(a=\pi/6\)</span>, the blue output window is centred at <span class="math inline">\(L=1/2\)</span>. The orange input window is centred at <span class="math inline">\(a\)</span>. The axes are identical in all three pictures. Since <span class="math inline">\(|\sin x-1/2|\le|x-\pi/6|\)</span>, choosing <span class="math inline">\(\delta=\varepsilon\)</span> guarantees that the <em>whole</em> highlighted curve segment, apart from the excluded centre input, lies within the blue window. The same error estimate explains the choices for <span class="math inline">\(\sin x\)</span> and <span class="math inline">\(\cos x\)</span> at zero.</p>
+<div class="inset-example"><div class="box-label">Example 9.8</div><h3>Approaching Does Not Mean Moving Steadily</h3>
+<p> The function <span class="math display">\[g(x)=(x-3)\sin\frac1{x-3},\qquad x\ne3,\]</span> keeps changing direction near <span class="math inline">\(3\)</span>. Can its output nevertheless approach <span class="math inline">\(0\)</span>?</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 9.8</div>
+<p>Yes. Since the absolute value of every sine is at most <span class="math inline">\(1\)</span>, <span class="math display">\[|g(x)-0|\le|x-3|.\]</span> For any prescribed <span class="math inline">\(\varepsilon&gt;0\)</span>, choose <span class="math inline">\(\delta=\varepsilon\)</span>. Every input with <span class="math inline">\(0&lt;|x-3|&lt;\delta\)</span> then gives <span class="math inline">\(|g(x)|&lt;\varepsilon\)</span>. This is a direct proof from the definition. The output may go up and down, or equal the limiting value many times, while still obeying every sufficiently small output window.</p>
+</div>
+<div class="figure-or-centered">
+<p><span><span class="math inline">\(\varepsilon=0.5\)</span>, <span class="math inline">\(\delta=0.5\)</span></span></p>
+<p><span><span class="math inline">\(\varepsilon=0.2\)</span>, <span class="math inline">\(\delta=0.2\)</span></span></p>
+<p><span><span class="math inline">\(\varepsilon=0.05\)</span>, <span class="math inline">\(\delta=0.05\)</span></span></p>
+</div>
+<p>The dotted envelopes <span class="math inline">\(\pm|x-3|\)</span> explain the guarantee even where the oscillations are too fine to draw. The axes stay fixed, so we can see the output window shrinking without hiding the oscillation by changing the scale.</p>
+<h2 class="section-title" id="section-6-a-limit-cannot-have-two-values">A Limit Cannot Have Two Values</h2>
+<div class="math-box theorem"><div class="box-label">Theorem 9.1</div><h3>Uniqueness of a Function Limit</h3>
+<p> At an accumulation point of its domain, a function has at most one finite limit.</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> Suppose <span class="math inline">\(L_1\ne L_2\)</span> are both limits and put <span class="math inline">\(d=|L_1-L_2|&gt;0\)</span>. Apply each limit definition with tolerance <span class="math inline">\(d/3\)</span>, obtaining radii <span class="math inline">\(\delta_1,\delta_2\)</span>. Since <span class="math inline">\(c\)</span> is an accumulation point, there is a domain point <span class="math inline">\(x\)</span> with <span class="math inline">\(0&lt;|x-c|&lt;\min(\delta_1,\delta_2)\)</span>. At that point, <span class="math display">\[d=|L_1-L_2|\le|L_1-f(x)|+|f(x)-L_2|&lt;\frac{2d}{3},\]</span> which is impossible. ◻</p>
+</div></details>
+<h2 class="section-title" id="section-7-when-a-proposed-limit-fails">When a Proposed Limit Fails</h2>
+<div class="note-box"><div class="box-label">Motivation 9.3</div>
+<p>At the beginning of our course, we learnt how to negate a statement. Let us use that skill again. “For every” changes to “there exists”, and “there exists” changes to “for every”. But changing the quantifiers is only part of the work: we must also say precisely how the final condition fails.</p>
+<p>Someone proposes a number <span class="math inline">\(L\)</span> as the limit. We now try to defeat that claim. Can we choose one output tolerance which no input radius can guarantee? If we can, then this particular <span class="math inline">\(L\)</span> is not the limit.</p>
+</div>
+<p>Recall the assertion we are trying to negate: <span class="math display">\[\forall\varepsilon&gt;0\ \exists\delta&gt;0\ \forall x\in A:
+ \quad 0&lt;|x-a|&lt;\delta\ \Longrightarrow\ |f(x)-L|&lt;\varepsilon.\]</span> The negation of an implication <span class="math inline">\(P\Rightarrow Q\)</span> is <em><span class="math inline">\(P\)</span> holds and <span class="math inline">\(Q\)</span> fails</em>. It is not the implication “<span class="math inline">\(P\)</span> implies not <span class="math inline">\(Q\)</span>”. Thus, to make the limit condition fail, we need a nearby admissible input whose output is still too far away: <span class="math display">\[0&lt;|x-a|&lt;\delta
+ \qquad\text{and}\qquad |f(x)-L|\ge\varepsilon_0.\]</span> Notice the weak inequality <span class="math inline">\(\ge\)</span>: this is the exact negation of <span class="math inline">\(&lt;\)</span>.</p>
+<div class="math-box"><div class="box-label">Definition 9.3</div><h3>A Number Which Is Not the Limit</h3>
+<p> Let <span class="math inline">\(a\)</span> be an accumulation point of the domain <span class="math inline">\(A\)</span>. A proposed real number <span class="math inline">\(L\)</span> is <em>not</em> the limit of <span class="math inline">\(f\)</span> as <span class="math inline">\(x\to a\)</span> if and only if <span class="math display">\[\exists\varepsilon_0&gt;0\ \forall\delta&gt;0\ \exists x\in A:
+ \qquad
+ \begin{cases}
+  0&lt;|x-a|&lt;\delta,\\
+  |f(x)-L|\ge\varepsilon_0.
+ \end{cases}\]</span> In words: one fixed output demand defeats every positive input radius.</p>
+</div>
+<p>Read the order as a short conversation. First we choose <span class="math inline">\(\varepsilon_0&gt;0\)</span>. Someone then offers any <span class="math inline">\(\delta&gt;0\)</span>, however small. After seeing that radius, we find a troublesome input <span class="math inline">\(x\)</span> inside its punctured neighbourhood. The troublesome input may depend on <span class="math inline">\(\delta\)</span>; the positive number <span class="math inline">\(\varepsilon_0\)</span> must remain fixed throughout.</p>
+<div class="note-box"><div class="box-label">Warning 9.3</div>
+<p>Showing that one choice of <span class="math inline">\(\delta\)</span> fails does not disprove a proposed limit. A smaller radius might work. To disprove it, we must defeat <em>every</em> positive radius using the same fixed output tolerance. Also, the troublesome input must satisfy <span class="math inline">\(x\ne a\)</span> and belong to the domain.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 9.9</div><h3>Why Four Is Not the Limit of the Square at Three</h3>
+<p> Use the definition to disprove <span class="math display">\[\lim_{x\to3}x^2=4.\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 9.9</div>
+<p>The proposed output limit is <span class="math inline">\(4\)</span>. Choose the fixed tolerance <span class="math inline">\(\varepsilon_0=1\)</span>, so the required output window would be <span class="math inline">\((3,5)\)</span>.</p>
+<p>Now let <em>any</em> <span class="math inline">\(\delta&gt;0\)</span> be offered. Choose <span class="math display">\[x=3+\frac\delta2.\]</span> This is an admissible input, different from <span class="math inline">\(3\)</span>, and <span class="math display">\[0&lt;|x-3|=\frac\delta2&lt;\delta.\]</span> But <span class="math inline">\(x&gt;3\)</span>, so <span class="math inline">\(x^2&gt;9\)</span>, and therefore <span class="math display">\[|x^2-4|=x^2-4&gt;5&gt;1=\varepsilon_0.\]</span> We have found a troublesome input for every offered radius. Thus <span class="math inline">\(4\)</span> is not the limit, directly by the negated definition.</p>
+</div>
+<div class="figure-or-centered">
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+</div>
+<p>The drawing illustrates the failed output window with one radius, <span class="math inline">\(\delta=0.2\)</span>. The argument above is stronger: it defeats <em>every</em> radius, not merely the one shown.</p>
+<div class="note-box"><div class="box-label">Warning 9.4</div>
+<p>The square function does have a limit at <span class="math inline">\(3\)</span>: its limit is <span class="math inline">\(9\)</span>, as the earlier direct proof of <span class="math inline">\(x^2\to a^2\)</span> shows. We have disproved the answer <span class="math inline">\(4\)</span>, not the existence of a limit. These are different statements.</p>
+</div>
+<h3 id="disproving-every-finite-candidate">Disproving Every Finite Candidate</h3>
+<p>To say that a function has <em>no finite limit</em> at <span class="math inline">\(a\)</span>, we must rule out every proposed real number, rather than just one of them. The full statement is <span class="math display">\[\forall L\in\mathbb{R}\ \exists\varepsilon_0&gt;0\ \forall\delta&gt;0\
+ \exists x\in A:
+ \quad 0&lt;|x-a|&lt;\delta,
+ \quad |f(x)-L|\ge\varepsilon_0.\]</span> Here <span class="math inline">\(\varepsilon_0\)</span> may depend on the candidate <span class="math inline">\(L\)</span>, but it may not depend on the subsequently offered radius <span class="math inline">\(\delta\)</span>.</p>
+<div class="inset-example"><div class="box-label">Example 9.10</div><h3>Two Sides Which Cannot Fit One Output Window</h3>
+<p> Prove directly from the definition that <span class="math display">\[f(x)=\frac{|x|}{x},\qquad x\ne0,\]</span> has no finite limit as <span class="math inline">\(x\to0\)</span>.</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 9.10</div>
+<p>Let <span class="math inline">\(L\in\mathbb{R}\)</span> be any proposed limit. We will use the fixed tolerance <span class="math inline">\(\varepsilon_0=1\)</span>. Let <span class="math inline">\(\delta&gt;0\)</span> be arbitrary.</p>
+<p>If <span class="math inline">\(L\ge0\)</span>, choose <span class="math inline">\(x=-\delta/2\)</span>. Then <span class="math inline">\(0&lt;|x|&lt;\delta\)</span>, while <span class="math inline">\(f(x)=-1\)</span> and <span class="math display">\[|f(x)-L|=|-1-L|=1+L\ge1.\]</span> If <span class="math inline">\(L&lt;0\)</span>, choose <span class="math inline">\(x=\delta/2\)</span>. Again <span class="math inline">\(0&lt;|x|&lt;\delta\)</span>, but <span class="math inline">\(f(x)=1\)</span> and <span class="math display">\[|f(x)-L|=|1-L|=1-L&gt;1.\]</span> Thus, whichever real number is proposed, every positive radius admits an input whose output misses the required window. No finite limit exists.</p>
+</div>
+<div class="figure-or-centered">
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+</div>
+<p>Every punctured interval around zero contains inputs giving each of the two heights. Making the input interval narrower cannot remove that disagreement.</p>
+<div class="inset-example"><div class="box-label">Example 9.11</div><h3>Rational and Irrational Inputs Keep Both Outputs Nearby</h3>
+<p> Let <span class="math display">\[D(x)=\begin{cases}
+ 1,&amp;x\in\mathbb{Q},\\
+ 0,&amp;x\notin\mathbb{Q}.
+ \end{cases}\]</span> Use the density results from Lecture 8 and the negated limit definition to prove that <span class="math inline">\(D\)</span> has no finite limit at <span class="math inline">\(0\)</span>.</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 9.11</div>
+<p>Let <span class="math inline">\(L\in\mathbb{R}\)</span> be any proposed limit. Choose <span class="math inline">\(\varepsilon_0=1/2\)</span>. For every <span class="math inline">\(\delta&gt;0\)</span>, the interval <span class="math inline">\((0,\delta)\)</span> contains both a rational number and an irrational number, by density. These are nonzero inputs whose distances from zero are less than <span class="math inline">\(\delta\)</span>.</p>
+<p>If <span class="math inline">\(L\ge1/2\)</span>, choose an irrational <span class="math inline">\(x\)</span> in that interval. Then <span class="math inline">\(D(x)=0\)</span>, so <span class="math inline">\(|D(x)-L|=|L|\ge1/2\)</span>. If <span class="math inline">\(L&lt;1/2\)</span>, choose a rational <span class="math inline">\(x\)</span> there. Then <span class="math inline">\(D(x)=1\)</span>, so <span class="math inline">\(|D(x)-L|=1-L&gt;1/2\)</span>.</p>
+<p>For every proposed <span class="math inline">\(L\)</span>, one fixed output demand therefore defeats every input radius. Consequently <span class="math inline">\(D\)</span> has no finite limit at zero. The same argument works at any real input point, using <span class="math inline">\((a,a+\delta)\)</span>.</p>
+</div>
+<div class="figure-or-centered">
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+</div>
+<p>The dots are a schematic sample, not a numerical plot or the whole graph. The density theorem gives the essential information which no finite drawing can display: both output heights occur in every nonempty open input interval, however small.</p>
+<p>We can now describe both success and failure precisely. A successful limit meets every positive output demand with a suitable input radius. For a failed candidate, one positive demand survives every attempt to shrink the input neighbourhood. To prove that no finite limit exists, we must defeat every real candidate in this way.</p>
+<section class="footnotes footnotes-end-of-document" id="footnotes" role="doc-endnotes">
+<hr/>
+<ol>
+<li id="fn1"><p>For Fermat’s methods and their mathematical setting, see the <em>Dictionary of Scientific Biography</em> article, hosted by the University of St Andrews: <a href="https://mathshistory.st-andrews.ac.uk/DSB/Fermat.pdf">Pierre de Fermat</a>, especially the discussion of adequality and tangents.<a class="footnote-back" href="#fnref1" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Newton, <em>Principia</em>, Book I, Section I, Scholium; Andrew Motte’s translation, 1846 edition, p. 103: <a href="https://en.wikisource.org/wiki/Page:Newton's_Principia_(1846).djvu/109">scanned page and transcription</a>. Trinity College Dublin also provides <a href="https://www.maths.tcd.ie/pub/HistMath/People/Newton/Principia/Bk1Sect1/">the Latin text and Motte’s English translation</a>. The quotation above follows the 1846 spelling.<a class="footnote-back" href="#fnref2" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Bolzano’s <a href="https://www.dml.cz/handle/10338.dmlcz/400018?show=full">1817 paper</a> is available from the Czech Digital Mathematics Library. Cauchy’s original <a href="https://books.google.com/books?id=wAsOAAAAQAAJ"><em>Cours d’analyse</em></a> contains the definition in its preliminaries; see also the University of St Andrews’ <a href="https://mathshistory.st-andrews.ac.uk/Extras/Cauchy_Calculus/">translation and discussion</a>.<a class="footnote-back" href="#fnref3" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>For a study based on the historical lecture tradition, see <a href="https://www.jstage.jst.go.jp/article/jhsj/48/251/48_142/_article/-char/en">“Cauchy’s and Weierstrass’s Contributions to the Formation of Analysis in Epsilonics”</a>, <em>Journal of History of Science, Japan</em> 48 (2009), 142–151.<a class="footnote-back" href="#fnref4" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Hardy’s <a href="https://www.gutenberg.org/ebooks/38769"><em>A Course of Pure Mathematics</em></a>, third edition (1921), records the first-edition date and treats function limits in Chapter V, especially §§89–94. For its teaching influence, see the University of St Andrews’ <a href="https://mathshistory.st-andrews.ac.uk/Biographies/Hardy/">Hardy biography</a>.<a class="footnote-back" href="#fnref5" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</div>
+<div class="edition-note"><strong>About this web edition.</strong> This page is converted from the LaTeX lecture manuscript. Some original TikZ illustrations are marked for conversion. End-of-lecture homework and separate answer keys are not included here. Please consult the author before redistributing.</div>
+<nav class="reader-end" aria-label="Next and previous lecture"><a href="lecture-08.html">← Lecture 08</a><a href="lecture-10.html">Lecture 10 →</a></nav><div class="copyright">© 2026 Aritra Dey. All rights reserved. Reuse, reproduction or redistribution requires the author’s prior written permission.</div></div></main>
+<aside class="on-this-page"><h2>On this page</h2><a href="#section-1-why-this-definition-is-natural">Why This Definition Is Natural</a><a href="#section-2-a-missing-value-but-a-visible-destination">A Missing Value, but a Visible Destination</a><a href="#section-3-how-the-idea-of-a-limit-became-precise">How the Idea of a Limit Became Precise</a><a href="#section-4-from-an-output-demand-to-an-input-guarantee">From an Output Demand to an Input Guarantee</a><a href="#section-5-designing-a-delta-direct-proofs">Designing a Delta: Direct Proofs</a><a href="#section-6-a-limit-cannot-have-two-values">A Limit Cannot Have Two Values</a><a href="#section-7-when-a-proposed-limit-fails">When a Proposed Limit Fails</a></aside></div></body></html>

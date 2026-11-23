@@ -1,0 +1,400 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Lecture 13: Concept of Infinitesimals — Aritra Dey's online real analysis lecture notes."><title>Lecture 13: Concept of Infinitesimals | Aritra Dey</title><link rel="stylesheet" href="../assets/book.css"><script src="../assets/mathjax.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><script defer src="../assets/book.js"></script></head><body><a class="skip" href="#reader-main">Skip to lecture</a><header class="topbar"><a class="brand" href="../../"><span class="brand-mark">A</span><span>Aritra Dey <span style="opacity:.42;padding:0 7px">/</span> Mathematics</span></a><nav class="top-links"><a href="../">All books</a><a href="./">Contents</a><button class="circle-button" data-theme-toggle aria-label="Toggle light and dark mode"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></nav></header><div class="reader-shell"><aside class="sidebar" id="toc-sidebar" aria-label="Book table of contents"><div class="toc-label">Book one · Real Analysis</div><a class="side-book" href="./">Contents</a><a class="side-item" href="lecture-01.html"><span>01</span>Real numbers &amp; completeness</a><a class="side-item" href="lecture-02.html"><span>02</span>Countability</a><a class="side-item" href="lecture-03.html"><span>03</span>Sequences &amp; limits</a><a class="side-item" href="lecture-04.html"><span>04</span>Direct epsilon proofs</a><a class="side-item" href="lecture-05.html"><span>05</span>Limit laws</a><a class="side-item" href="lecture-06.html"><span>06</span>Monotone convergence</a><a class="side-item" href="lecture-07.html"><span>07</span>Cauchy sequences</a><a class="side-item" href="lecture-08.html"><span>08</span>Density &amp; cluster points</a><a class="side-item" href="lecture-09.html"><span>09</span>Function limits</a><a class="side-item" href="lecture-10.html"><span>10</span>Limits at infinity</a><a class="side-item" href="lecture-11.html"><span>11</span>Standard limits</a><a class="side-item" href="lecture-12.html"><span>12</span>One-sided limits</a><a class="side-item active" href="lecture-13.html" aria-current="page"><span>13</span>Infinitesimals</a><a class="side-item" href="lecture-14.html"><span>14</span>Continuity</a><a class="side-item" href="lecture-15.html"><span>15</span>Discontinuities</a><a class="side-item" href="lecture-16.html"><span>16</span>Intermediate Value Theorem</a></aside>
+<main class="reader-main" id="reader-main"><div class="reading-width"><button id="toc-toggle" class="sidebar-toggle" aria-expanded="false" aria-controls="toc-sidebar">☰ All lectures</button>
+<nav class="book-breadcrumb" aria-label="Breadcrumb"><a href="../">Books</a><span>›</span><a href="./">Real Analysis</a><span>›</span><span>Lecture 13</span></nav>
+<header class="chapter-head"><div class="chapter-label">Lecture 13 · Online reading edition</div><h1>Concept of Infinitesimals</h1><p>Read this lecture online, then continue to the next chapter. Figures and exercises are being adapted separately for the web edition.</p><div class="reading-tools"><button type="button" id="type-toggle" aria-pressed="false">Larger text</button><button type="button" id="proof-toggle">Expand all proofs &amp; worked solutions</button></div></header>
+<div class="lecture-content">
+<p>We use the standard limits of Lecture 11 and the ideas about one-sided limits and squeezing from Lecture 12.</p>
+<h2 class="section-title" id="section-1-what-is-an-infinitesimal">What is an infinitesimal?</h2>
+<div class="note-box"><div class="box-label">Motivation 13.1</div>
+<p>Imagine two machines. When you give both machines the input <span class="math inline">\(x\)</span>, the first returns <span class="math inline">\(x\)</span> and the second returns <span class="math inline">\(x^2\)</span>. Try <span class="math inline">\(x=0.1\)</span>: the answers are <span class="math inline">\(0.1\)</span> and <span class="math inline">\(0.01\)</span>. Try <span class="math inline">\(x=0.001\)</span>: the answers are <span class="math inline">\(0.001\)</span> and <span class="math inline">\(0.000001\)</span>. Both outputs are heading towards zero. But each time you make the input ten times smaller, the second output becomes a hundred times smaller. The two limits are the same; the ways of reaching them are different.</p>
+</div>
+<p>The word <em>infinitesimal</em> in this lecture describes a function at a specified approach. There is no smallest positive real number: given any <span class="math inline">\(c&gt;0\)</span>, the number <span class="math inline">\(c/2\)</span> is positive and smaller. The constant function <span class="math inline">\(f(x)=0.000001\)</span> is small in everyday language, but it does not tend to zero. On the other hand, <span class="math inline">\(x-2\)</span> is infinitesimal as <span class="math inline">\(x\to2\)</span>, even though it takes large values far from <span class="math inline">\(2\)</span>.</p>
+<div class="math-box"><div class="box-label">Definition 13.1</div><h3>Infinitesimal function</h3>
+<p> A real-valued function <span class="math inline">\(\alpha\)</span> is <strong>infinitesimal</strong> at a specified approach if its limit there is <span class="math inline">\(0\)</span>. For example, as <span class="math inline">\(x\to a\)</span> this means <span class="math display">\[\forall\varepsilon&gt;0\ \exists\delta&gt;0:\quad
+  0&lt;|x-a|&lt;\delta\ \Longrightarrow\ |\alpha(x)|&lt;\varepsilon .\]</span> As <span class="math inline">\(x\to+\infty\)</span> it means <span class="math display">\[\forall\varepsilon&gt;0\ \exists M&gt;0:\quad
+  x&gt;M\ \Longrightarrow\ |\alpha(x)|&lt;\varepsilon .\]</span> The implications are tested at inputs in the domain of <span class="math inline">\(\alpha\)</span>. One-sided approaches and <span class="math inline">\(x\to-\infty\)</span> use the corresponding input conditions.</p>
+</div>
+<p>At a finite point, <span class="math inline">\(a\)</span> must be a limit point of the domain so that there are inputs to test arbitrarily close to it. For <span class="math inline">\(x\to+\infty\)</span> the domain must contain arbitrarily large inputs. In either case, the definition asks us to get the output into the band <span class="math inline">\((-\varepsilon,\varepsilon)\)</span> and keep it there for <em>all</em> sufficiently close inputs, or for all sufficiently large inputs, respectively. The output can approach zero from above, from below, or by changing sign; it may even be exactly zero at some inputs. The value at <span class="math inline">\(a\)</span>, if there is one, plays no part in the limit. For instance, <span class="math inline">\(1/x\)</span> is infinitesimal as <span class="math inline">\(x\to+\infty\)</span> because <span class="math inline">\(x&gt;1/\varepsilon\)</span> implies <span class="math inline">\(|1/x|&lt;\varepsilon\)</span>.</p>
+<div class="note-box"><div class="box-label">Historical note 13.1</div>
+<p> In his <a href="https://www.e-rara.ch/zut/content/pagetext/8442846"><em>Cours d’analyse</em> (1821), Chapter II</a>, Augustin-Louis Cauchy described an infinitesimal as a variable quantity tending to zero. G. H. Hardy later asked readers to pay attention to <em>how fast</em> quantities change. His <a href="https://www.gutenberg.org/files/38079/38079-pdf.pdf"><em>Orders of Infinity</em> (1910)</a> built on the work of Paul du Bois-Reymond and supplied detailed proofs. Here is the link with our two machines: as , <span class="math inline">\(t^2\)</span> outgrows <span class="math inline">\(t\)</span>, since <span class="math inline">\(t^2/t=t\to+\infty\)</span>. Turn both outputs upside down: <span class="math inline">\((1/t^2)/(1/t)=1/t\to0\)</span>. A comparison of growth has become a comparison of infinitesimals.</p>
+</div>
+<h3 id="infinite-functions-and-reciprocals">Infinite functions and reciprocals</h3>
+<p>A function is <strong>infinite in magnitude</strong> at an approach if <span class="math inline">\(|f(x)|\to+\infty\)</span>. This says that for every height <span class="math inline">\(H&gt;0\)</span>, all inputs sufficiently far along the approach satisfy <span class="math inline">\(|f(x)|&gt;H\)</span>. If <span class="math inline">\(f(x)&gt;H\)</span> eventually for every <span class="math inline">\(H\)</span>, we write <span class="math inline">\(f(x)\to+\infty\)</span>. If <span class="math inline">\(f(x)&lt;-H\)</span> eventually for every <span class="math inline">\(H\)</span>, we write <span class="math inline">\(f(x)\to-\infty\)</span>. These last two statements specify a direction on the output axis.</p>
+<div class="math-box theorem"><div class="box-label">Theorem 13.1</div><h3>The reciprocal turns large magnitudes into small ones</h3>
+<p> Suppose <span class="math inline">\(f\)</span> is nonzero at all inputs sufficiently far along a specified approach. Then <span class="math display">\[\left|f(x)\right|\longrightarrow+\infty
+  \qquad\Longleftrightarrow\qquad
+  \frac{1}{f(x)}\longrightarrow0 .\]</span></p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> If <span class="math inline">\(|f(x)|\to+\infty\)</span>, then for any <span class="math inline">\(\varepsilon&gt;0\)</span> we eventually have <span class="math inline">\(|f(x)|&gt;1/\varepsilon\)</span>. Therefore <span class="math inline">\(|1/f(x)|&lt;\varepsilon\)</span>. Conversely, if <span class="math inline">\(1/f(x)\to0\)</span>, fix any <span class="math inline">\(H&gt;0\)</span> and apply the limit definition with <span class="math inline">\(\varepsilon=1/H\)</span>. Eventually <span class="math inline">\(0&lt;|1/f(x)|&lt;1/H\)</span>, which gives <span class="math inline">\(|f(x)|&gt;H\)</span>. ◻</p>
+</div></details>
+<p>Thus the reciprocal of an infinitesimal <span class="math inline">\(\alpha\)</span> is infinite in magnitude provided <span class="math inline">\(\alpha\)</span> is eventually nonzero. If <span class="math inline">\(\alpha\)</span> is eventually positive, <span class="math inline">\(1/\alpha\to+\infty\)</span>; if it is eventually negative, <span class="math inline">\(1/\alpha\to-\infty\)</span>. For <span class="math inline">\(\alpha(x)=x\)</span> as <span class="math inline">\(x\to0\)</span>, the reciprocal has magnitude tending to infinity, but it tends to <span class="math inline">\(-\infty\)</span> from the left and <span class="math inline">\(+\infty\)</span> from the right. There is no two-sided signed infinite limit.</p>
+<div class="note-box"><div class="box-label">Warning 13.1</div>
+<p>For <span class="math inline">\(x\to0\)</span> the function <span class="math inline">\(f(x)=\sin(1/x)/x\)</span> is unbounded near <span class="math inline">\(0\)</span>: at <span class="math inline">\(x_n=1/(2\pi n+\pi/2)\)</span> its magnitude is <span class="math inline">\(1/x_n\to+\infty\)</span>. But at <span class="math inline">\(y_n=1/(2\pi n)\)</span> it is zero, so <span class="math inline">\(|f(x)|\)</span> does not tend to infinity. A large value somewhere in every neighbourhood is different from large values <em>everywhere</em> in a sufficiently small deleted neighbourhood.</p>
+</div>
+<h2 class="section-title" id="section-2-arithmetic-with-infinitesimals">Arithmetic with infinitesimals</h2>
+<div class="math-box theorem"><div class="box-label">Theorem 13.2</div><h3>Finite sums, products, and bounded factors</h3>
+<p> At a common approach on a common domain:</p>
+<ol>
+<li><p>A sum of finitely many infinitesimals is infinitesimal.</p></li>
+<li><p>A product of finitely many infinitesimals is infinitesimal.</p></li>
+<li><p>If <span class="math inline">\(\alpha\)</span> is infinitesimal and <span class="math inline">\(g\)</span> is bounded near the approach, then <span class="math inline">\(g\alpha\)</span> is infinitesimal.</p></li>
+</ol>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> The sum and product laws give <span class="math inline">\(0+0=0\)</span> and <span class="math inline">\(0\cdot0=0\)</span> for two infinitesimals. Applying the same laws repeatedly gives (i) and (ii) for any finite number of terms.</p>
+<p>For (iii), boundedness near the approach means <span class="math inline">\(|g(x)|\le B\)</span> for some fixed <span class="math inline">\(B\ge0\)</span> and for all sufficiently close inputs (or all sufficiently large inputs in a limit at <span class="math inline">\(+\infty\)</span>). Given <span class="math inline">\(\varepsilon&gt;0\)</span>, go far enough along the approach for that bound to hold and for <span class="math inline">\(|\alpha(x)|&lt;\varepsilon/(B+1)\)</span>. Then <span class="math display">\[|g(x)\alpha(x)|
+  \le B|\alpha(x)|
+  \le (B+1)|\alpha(x)|
+  &lt;\varepsilon.\]</span> This proof does not require <span class="math inline">\(g\)</span> to have a limit. ◻</p>
+</div></details>
+<div class="inset-example"><div class="box-label">Example 13.1</div><h3>Two ways to show that a function tends to zero</h3>
+<p> Show that each function is infinitesimal at the indicated approach: <span class="math display">\[\text{(a)}\quad \frac{2x-4}{x^2+5}\quad(x\to2),
+  \qquad
+  \text{(b)}\quad (x-1)^2\sin^3\!\left(\frac1{x-1}\right)
+         \quad(x\to1).\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 13.1</div>
+<p><strong>(a)</strong> The numerator tends to <span class="math inline">\(0\)</span>, while the denominator tends to <span class="math inline">\(9\ne0\)</span>. The quotient law gives limit <span class="math inline">\(0\)</span>. We can also see the definition directly: <span class="math display">\[\left|\frac{2x-4}{x^2+5}\right|
+  =\frac{2|x-2|}{x^2+5}\le\frac25|x-2|.\]</span> So <span class="math inline">\(0&lt;|x-2|&lt;5\varepsilon/2\)</span> makes the output magnitude less than <span class="math inline">\(\varepsilon\)</span>.</p>
+<p><strong>(b)</strong> The factor <span class="math inline">\((x-1)^2\)</span> tends to zero. The other factor may oscillate, but its magnitude is at most <span class="math inline">\(1\)</span> whenever <span class="math inline">\(x\ne1\)</span>. Thus <span class="math display">\[\left|(x-1)^2\sin^3\!\left(\frac1{x-1}\right)\right|
+  \le |x-1|^2.\]</span> The choice <span class="math inline">\(\delta=\sqrt{\varepsilon}\)</span> proves the limit directly. This is the bounded-factor argument with bound <span class="math inline">\(1\)</span>.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 13.2</div><h3>An oscillation squeezed into a narrowing band</h3>
+<p> Find <span class="math inline">\(\displaystyle\lim_{x\to0}x\sin(1/x)\)</span>.</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 13.2</div>
+<p>The sine factor keeps changing as <span class="math inline">\(1/x\)</span> grows in magnitude. Its values always stay between <span class="math inline">\(-1\)</span> and <span class="math inline">\(1\)</span>. Hence <span class="math display">\[-|x|\le x\sin(1/x)\le |x|\qquad(x\ne0).\]</span> Both outer functions tend to <span class="math inline">\(0\)</span>, so the squeeze theorem gives limit <span class="math inline">\(0\)</span>. Equivalently, <span class="math inline">\(0&lt;|x|&lt;\varepsilon\)</span> forces the magnitude of the middle expression below <span class="math inline">\(\varepsilon\)</span>. Even a rapidly changing sine factor cannot escape the shrinking band.</p>
+</div>
+<div class="figure-or-centered">
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+</div>
+<p>The sine curve is drawn up to a small gap around zero; the two bounds hold right through that gap for every nonzero input.</p>
+<div class="note-box"><div class="box-label">Warning 13.2</div>
+<p>If both <span class="math inline">\(\alpha\to0\)</span> and <span class="math inline">\(g\to+\infty\)</span>, the product need not be infinitesimal. For <span class="math inline">\(x\to+\infty\)</span>, take <span class="math inline">\(\alpha(x)=1/x\)</span> and <span class="math inline">\(g(x)=\sqrt{x}\)</span>, <span class="math inline">\(x\)</span>, or <span class="math inline">\(x^2\)</span>. Their products tend to <span class="math inline">\(0\)</span>, equal <span class="math inline">\(1\)</span>, or tend to <span class="math inline">\(+\infty\)</span>, respectively.</p>
+</div>
+<h2 class="section-title" id="section-3-comparing-the-rates-of-approach-to-zero">Comparing the rates of approach to zero</h2>
+<div class="note-box"><div class="box-label">Motivation 13.2</div>
+<p>Suppose two functions approach zero. At each input where the denominator is nonzero, their ratio asks: <em>How big is the first output, measured in units of the second?</em> That is the question which distinguishes <span class="math inline">\(x^2\)</span> from <span class="math inline">\(x\)</span> near zero, even though both limits are zero.</p>
+</div>
+<div class="math-box" id="defn:inf13-orders"><div class="box-label">Definition 13.2</div><h3>Higher order, same order, and lower order</h3>
+<p> Let <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> be infinitesimal at the same approach, with <span class="math inline">\(\beta\)</span> eventually nonzero on the common domain.</p>
+<ol>
+<li><p>If <span class="math inline">\(\alpha/\beta\to0\)</span>, <span class="math inline">\(\alpha\)</span> is of <strong>higher order</strong> than <span class="math inline">\(\beta\)</span>. We write <span class="math inline">\(\alpha=o(\beta)\)</span> (read: little <span class="math inline">\(o\)</span> of <span class="math inline">\(\beta\)</span>).</p></li>
+<li><p>If <span class="math inline">\(\alpha/\beta\to c\)</span> for a finite <span class="math inline">\(c\ne0\)</span>, they are of the <strong>same order</strong>. If <span class="math inline">\(c=1\)</span>, they are also <strong>equivalent</strong>, written <span class="math inline">\(\alpha\sim\beta\)</span>.</p></li>
+<li><p>If <span class="math inline">\(|\alpha/\beta|\to+\infty\)</span>, <span class="math inline">\(\alpha\)</span> is of <strong>lower order</strong> than <span class="math inline">\(\beta\)</span>. In this case <span class="math inline">\(\alpha\)</span> is eventually nonzero and <span class="math inline">\(\beta=o(\alpha)\)</span>.</p></li>
+</ol>
+</div>
+<p>In the first case, <span class="math inline">\(\alpha\)</span> eventually fits within any prescribed positive fraction of <span class="math inline">\(\beta\)</span> in magnitude. In the third case the roles are reversed. Thus a <em>higher-order infinitesimal</em> is the one which becomes <em>smaller</em> in this comparison. In the middle case the outputs stay at a definite relative scale. For instance, <span class="math inline">\(-2x\)</span> and <span class="math inline">\(x\)</span> have the same order near zero because their ratio is <span class="math inline">\(-2\)</span>, but they are not equivalent.</p>
+<div class="figure-or-centered">
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(t\)</span></th>
+<th style="text-align: center;">reference <span class="math inline">\(t/t\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(t^2/t\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(t^{2/3}/t\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(10^{-3}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(10^{-3}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(10\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(10^{-6}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(10^{-6}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(100\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(10^{-9}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(10^{-9}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1000\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The graph shows that the magnitudes of <span class="math inline">\(x\)</span>, <span class="math inline">\(x^2\)</span>, and <span class="math inline">\(|x|^{2/3}\)</span> all tend to zero. The table gives the relative sizes: in units of <span class="math inline">\(|x|\)</span>, the size of <span class="math inline">\(x^2\)</span> tends to zero, while the size of <span class="math inline">\(|x|^{2/3}\)</span> grows without bound. The exact ratios are <span class="math inline">\(t\)</span> and <span class="math inline">\(t^{-1/3}\)</span>.</p>
+<div class="note-box"><div class="box-label">Warning 13.3</div>
+<p>Here <em>eventually nonzero</em> means nonzero at every sufficiently close input in the deleted domain, or at every sufficiently large input for a limit at <span class="math inline">\(+\infty\)</span>. If a denominator has zeros arbitrarily far along the approach, a quotient on a smaller domain is a different limit question. The zero function is an infinitesimal; it cannot serve as a denominator in these comparisons. Also, a ratio can tend to infinity in magnitude while taking opposite signs on the two sides of the approach point. Equivalence always requires the signed ratio to tend to <span class="math inline">\(1\)</span>.</p>
+</div>
+<h3 id="measuring-an-order-by-a-power">Measuring an order by a power</h3>
+<p>If <span class="math inline">\(\beta\)</span> is an infinitesimal, is eventually nonzero, and <span class="math inline">\(m\)</span> is a positive integer, we say <span class="math inline">\(\alpha\)</span> has order <span class="math inline">\(m\)</span> relative to <span class="math inline">\(\beta\)</span> when <span class="math display">\[\frac{\alpha(x)}{\beta(x)^m}\longrightarrow c
+  \quad\text{for some finite }c\ne0.\]</span> This gives both a power and a leading factor: <span class="math inline">\(\alpha\sim c\beta^m\)</span>. With an eventually positive reference <span class="math inline">\(\beta\)</span>, the same definition works with a real power <span class="math inline">\(p&gt;0\)</span>.</p>
+<p>For a two-sided approach <span class="math inline">\(x\to0\)</span>, the always-positive reference on the deleted domain is <span class="math inline">\(|x|\)</span>. In particular we say that <span class="math inline">\(\alpha\)</span> has <strong>magnitude order <span class="math inline">\(p\)</span></strong> relative to <span class="math inline">\(x\)</span> if <span class="math display">\[\frac{|\alpha(x)|}{|x|^p}\longrightarrow C,
+  \qquad 0&lt;C&lt;+\infty .\]</span> This tells us about size and allows fractional orders without trying to raise negative numbers to arbitrary real powers. It does not by itself give a signed equivalence. The example <span class="math inline">\(\alpha(x)=|x|\)</span> has magnitude order <span class="math inline">\(1\)</span> relative to <span class="math inline">\(x\)</span>; its signed ratio to <span class="math inline">\(x\)</span> takes the values <span class="math inline">\(-1\)</span> and <span class="math inline">\(1\)</span>.</p>
+<h3 id="three-comparisons-with-the-reference-x">Three comparisons with the reference <span class="math inline">\(x\)</span></h3>
+<p>We will use <span class="math inline">\(\sin u/u\to1\)</span> and <span class="math inline">\(\cos u\to1\)</span> as <span class="math inline">\(u\to0\)</span>, with angles in radians. In particular <span class="math inline">\(\tan u/u=(\sin u/u)/\cos u\to1\)</span>.</p>
+<div class="inset-example"><div class="box-label">Example 13.3</div><h3>Faster, slower, and the same order</h3>
+<p> Compare each infinitesimal with <span class="math inline">\(x\)</span> as <span class="math inline">\(x\to0\)</span>: <span class="math display">\[\text{(a)}\quad\tan(x^3),\qquad
+  \text{(b)}\quad\sqrt[3]{\sin^2 x},\qquad
+  \text{(c)}\quad\sqrt{9+x}-3.\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 13.3</div>
+<p><strong>(a)</strong> For nonzero <span class="math inline">\(x\)</span> close to zero, <span class="math display">\[\frac{\tan(x^3)}{x}=
+  \frac{\tan(x^3)}{x^3}\,x^2\longrightarrow1\cdot0=0.\]</span> It is of higher order than <span class="math inline">\(x\)</span>. The first factor also gives the more precise statement <span class="math inline">\(\tan(x^3)\sim x^3\)</span>.</p>
+<p><strong>(b)</strong> Because the cube root of <span class="math inline">\(\sin^2 x\)</span> is <span class="math inline">\(|\sin x|^{2/3}\)</span>, we have <span class="math display">\[\frac{\sqrt[3]{\sin^2 x}}{|x|^{2/3}}
+ =\left|\frac{\sin x}{x}\right|^{2/3}\longrightarrow1,
+ \qquad
+ \left|\frac{\sqrt[3]{\sin^2 x}}{x}\right|
+ =\left|\frac{\sin x}{x}\right|^{2/3}\frac1{|x|^{1/3}}
+ \longrightarrow+\infty.\]</span> This gives magnitude order <span class="math inline">\(2/3\)</span> and lower order than <span class="math inline">\(x\)</span>. The signed quotient by <span class="math inline">\(x\)</span> tends to <span class="math inline">\(-\infty\)</span> on the left and <span class="math inline">\(+\infty\)</span> on the right. The absolute value in the comparison matters.</p>
+<p><strong>(c)</strong> Rationalize first so that the factor <span class="math inline">\(x\)</span> appears: <span class="math display">\[\frac{\sqrt{9+x}-3}{x}
+  =\frac{(9+x)-9}{x(\sqrt{9+x}+3)}
+  =\frac1{\sqrt{9+x}+3}\longrightarrow\frac16.\]</span> The two infinitesimals have the same order, and the more precise equivalence is <span class="math inline">\(\sqrt{9+x}-3\sim x/6\)</span>.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 13.4</div><h3>When the first visible terms cancel</h3>
+<p> Find the order of smallness relative to <span class="math inline">\(\alpha\)</span> as <span class="math inline">\(\alpha\to0\)</span>: <span class="math display">\[\text{(a)}\quad\beta=\cos\alpha-\cos(2\alpha),\qquad
+  \text{(b)}\quad\beta=\tan\alpha-\sin\alpha .\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 13.4</div>
+<p><strong>(a)</strong> By the difference-of-cosines identity, <span class="math display">\[\cos\alpha-\cos(2\alpha)=2\sin(3\alpha/2)\sin(\alpha/2).\]</span> Now each sine contributes one power of <span class="math inline">\(\alpha\)</span>: <span class="math display">\[\frac{\beta}{\alpha^2}
+  =\frac32\,
+    \frac{\sin(3\alpha/2)}{3\alpha/2}
+    \frac{\sin(\alpha/2)}{\alpha/2}
+  \longrightarrow\frac32.\]</span> The order is <span class="math inline">\(2\)</span>, and <span class="math inline">\(\beta\sim(3/2)\alpha^2\)</span>.</p>
+<p><strong>(b)</strong> First factor out <span class="math inline">\(\sin\alpha\)</span>. The expression left over contains <span class="math inline">\(1-\cos\alpha=2\sin^2(\alpha/2)\)</span>: <span class="math display">\[\frac{\tan\alpha-\sin\alpha}{\alpha^3}
+ =\frac{\sin\alpha}{\alpha}
+   \frac{1-\cos\alpha}{\alpha^2}\frac1{\cos\alpha}
+ =\frac12\,
+   \frac{\sin\alpha}{\alpha}
+   \left(\frac{\sin(\alpha/2)}{\alpha/2}\right)^2
+   \frac1{\cos\alpha}
+ \longrightarrow\frac12.\]</span> The order is <span class="math inline">\(3\)</span>, and <span class="math inline">\(\beta\sim\alpha^3/2\)</span>. In both parts the identities expose the powers hidden by the subtraction.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 13.5</div><h3>When a ratio has no stable scale</h3>
+<p> Compare <span class="math inline">\(\alpha(x)=x\)</span> and <span class="math inline">\(\beta(x)=x\cos(1/x)\)</span> as <span class="math inline">\(x\to0\)</span>.</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 13.5</div>
+<p>Both are infinitesimal, since <span class="math inline">\(|\beta(x)|\le |x|\)</span>. Nevertheless <span class="math inline">\(\beta(x)/\alpha(x)=\cos(1/x)\)</span> keeps oscillating. Along <span class="math inline">\(x_n=1/(2\pi n)\)</span> the ratio is <span class="math inline">\(1\)</span>, and along <span class="math inline">\(y_n=1/(2\pi n+\pi/2)\)</span> it is <span class="math inline">\(0\)</span>. These sequences both tend to zero, so the signed ratio has no limit, and neither does its magnitude. There is no higher, same, or lower order comparison in the sense of Definition <a data-reference="defn:inf13-orders" data-reference-type="ref" href="#defn:inf13-orders">[defn:inf13-orders]</a>. The inequality <span class="math inline">\(|\beta(x)|\le|x|\)</span> still gives useful information: it is a bound rather than a ratio limit. Notice that <span class="math inline">\(\beta(y_n)=0\)</span>; reversing the quotient does not give a denominator that is eventually nonzero.</p>
+</div>
+<h3 id="three-orders-in-one-cube">Three orders in one cube</h3>
+<div class="inset-example"><div class="box-label">Example 13.6</div><h3>A cube whose edge shrinks</h3>
+<p> Let <span class="math inline">\(s&gt;0\)</span> be a cube’s side length. As <span class="math inline">\(s\to0^+\)</span>, compare the orders of its space diagonal <span class="math inline">\(d\)</span>, total surface area <span class="math inline">\(S\)</span>, and volume <span class="math inline">\(V\)</span> relative to <span class="math inline">\(s\)</span>.</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 13.6</div>
+<p>The diagonal of a square face has length <span class="math inline">\(\sqrt{2}\,s\)</span>. Applying Pythagoras again with the perpendicular edge gives <span class="math inline">\(d=\sqrt{(\sqrt2\,s)^2+s^2}=\sqrt3\,s\)</span>. The six square faces have total area <span class="math inline">\(S=6s^2\)</span>, and the volume is <span class="math inline">\(V=s^3\)</span>.</p>
+<div class="figure-or-centered">
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Quantity</th>
+<th style="text-align: center;">Formula</th>
+<th style="text-align: center;">Order relative to <span class="math inline">\(s\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Diagonal</td>
+<td style="text-align: center;"><span class="math inline">\(\sqrt3\,s\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Surface area</td>
+<td style="text-align: center;"><span class="math inline">\(6s^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Volume</td>
+<td style="text-align: center;"><span class="math inline">\(s^3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Each order is read from the nonzero constant ratio to the appropriate power of <span class="math inline">\(s\)</span>. Halve the edge: the diagonal halves, the area becomes one quarter, and the volume becomes one eighth. The powers explain these different changes in scale.</p>
+</div>
+<h2 class="section-title" id="section-4-comparing-functions-that-grow-without-bound">Comparing functions that grow without bound</h2>
+<p>The ratio test is useful for large magnitudes too. For functions whose magnitudes both tend to infinity, <span class="math inline">\(|f/g|\to0\)</span> means that <span class="math inline">\(f\)</span> has <strong>lower growth order</strong> than <span class="math inline">\(g\)</span>, while <span class="math inline">\(|f/g|\to+\infty\)</span> means that <span class="math inline">\(f\)</span> has higher growth order. A finite nonzero signed ratio limit gives the same growth order, and ratio limit <span class="math inline">\(1\)</span> gives equivalence. For example, <span class="math inline">\(x^2\)</span> is a higher-order <em>infinitesimal</em> than <span class="math inline">\(x\)</span> near zero, but it has higher <em>growth order</em> than <span class="math inline">\(x\)</span> at <span class="math inline">\(+\infty\)</span>. The ratio is <span class="math inline">\(x\)</span> in both cases; the approach decides what it does.</p>
+<div class="inset-example"><div class="box-label">Example 13.7</div><h3>Three comparisons at infinity</h3>
+<p> For <span class="math inline">\(x\to+\infty\)</span> compare <span class="math inline">\(f\)</span> with <span class="math inline">\(g\)</span> in each pair: <span class="math display">\[\begin{array}{c|c|c}
+  &amp; f(x)&amp;g(x)\\ \hline
+  \text{(a)}&amp;3x^2+2x+5 &amp;2x^3+2x-1\\
+  \text{(b)}&amp;2x^2+3x &amp;(x+2)^2\\
+  \text{(c)}&amp;\sqrt[3]{x+a} &amp;\sqrt[3]{x}\quad (a\text{ fixed})
+\end{array}\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 13.7</div>
+<p>In all three pairs the functions are eventually positive and tend to <span class="math inline">\(+\infty\)</span>. For the polynomials this follows by factoring out the highest power, leaving a factor tending to a positive constant. Both cube roots grow without bound because their arguments do.</p>
+<p><strong>(a)</strong> Divide numerator and denominator of <span class="math inline">\(f/g\)</span> by <span class="math inline">\(x^3\)</span>: <span class="math display">\[\frac{3x^2+2x+5}{2x^3+2x-1}
+  =\frac{3/x+2/x^2+5/x^3}{2+2/x^2-1/x^3}\longrightarrow0 .\]</span> So <span class="math inline">\(f\)</span> has lower growth order than <span class="math inline">\(g\)</span>.</p>
+<p><strong>(b)</strong> Divide by <span class="math inline">\(x^2\)</span>: <span class="math display">\[\frac{2x^2+3x}{(x+2)^2}
+  =\frac{2+3/x}{(1+2/x)^2}\longrightarrow2 .\]</span> The growth order is the same, and <span class="math inline">\(f\sim 2g\)</span>.</p>
+<p><strong>(c)</strong> The ratio is <span class="math display">\[\frac{\sqrt[3]{x+a}}{\sqrt[3]{x}}
+  =\sqrt[3]{1+a/x}\longrightarrow1 .\]</span> These functions are equivalent at <span class="math inline">\(+\infty\)</span>: adding a fixed <span class="math inline">\(a\)</span> inside the cube root changes the output by a vanishing relative amount.</p>
+</div>
+<h2 class="section-title" id="section-5-equivalent-infinitesimals">Equivalent Infinitesimals</h2>
+<div class="note-box"><div class="box-label">Motivation 13.3</div>
+<p>Suppose someone tells you that <span class="math inline">\(x+x^2\)</span> is almost <span class="math inline">\(x\)</span> when <span class="math inline">\(x\)</span> is near zero. The difference is <span class="math inline">\(x^2\)</span>, which tends to zero. But <span class="math inline">\(2x\)</span> also differs from <span class="math inline">\(x\)</span> by a quantity that tends to zero, and <span class="math inline">\(2x\)</span> is always twice <span class="math inline">\(x\)</span>. The useful question is: <em>how large is the error compared with <span class="math inline">\(x\)</span> itself?</em></p>
+</div>
+<div class="math-box"><div class="box-label">Definition 13.3</div><h3>Equivalent Infinitesimals</h3>
+<p> Let <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> be infinitesimals for the same approach, with <span class="math inline">\(\beta\)</span> eventually nonzero. We write <span class="math display">\[\alpha(x)\sim\beta(x)
+ \qquad\text{if}\qquad
+ \lim\frac{\alpha(x)}{\beta(x)}=1.\]</span> The quotient is signed. It lies between <span class="math inline">\(1/2\)</span> and <span class="math inline">\(3/2\)</span> eventually, so <span class="math inline">\(\alpha\)</span> is also eventually nonzero and has the same sign as <span class="math inline">\(\beta\)</span> there.</p>
+</div>
+<p>The limit is taken on the common domain with the indicated approach. Here <em>eventually</em> means sufficiently close to the point of approach, excluding that point itself, or sufficiently far out for a limit at infinity. For example, as <span class="math inline">\(x\to0\)</span>, <span class="math display">\[\frac{x+x^2}{x}=1+x\longrightarrow1,
+ \qquad
+ \frac{2x}{x}=2,
+ \qquad
+ \frac{x^2}{x}=x\longrightarrow0.\]</span> All three numerators tend to zero. Only the first is equivalent to <span class="math inline">\(x\)</span>.</p>
+<div class="figure-or-centered">
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+<p>The blue strip marks a tolerance around the target ratio <span class="math inline">\(1\)</span>. As <span class="math inline">\(x\)</span> approaches <span class="math inline">\(0\)</span>, the blue line can be kept in arbitrarily narrow strips around <span class="math inline">\(1\)</span>. The holes show where the original quotients are undefined.</p>
+</div>
+<div class="math-box theorem"><div class="box-label">Theorem 13.3</div><h3>Equivalent Means Negligible Relative Error</h3>
+<p> For eventually nonzero infinitesimals <span class="math inline">\(\alpha,\beta\)</span>, <span class="math display">\[\alpha\sim\beta
+ \quad\Longleftrightarrow\quad
+ \alpha-\beta=o(\beta)
+ \quad\Longleftrightarrow\quad
+ \alpha-\beta=o(\alpha).\]</span></p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> Since <span class="math inline">\((\alpha-\beta)/\beta=\alpha/\beta-1\)</span>, the first ratio on the right tends to zero exactly when <span class="math inline">\(\alpha/\beta\to1\)</span>. Likewise, <span class="math inline">\((\alpha-\beta)/\alpha=1-\beta/\alpha\)</span> tends to zero exactly when <span class="math inline">\(\beta/\alpha\to1\)</span>. By the reciprocal law, this is equivalent to <span class="math inline">\(\alpha/\beta\to1\)</span>. ◻</p>
+</div></details>
+<p>The same reciprocal law shows that equivalence is symmetric. It is reflexive for eventually nonzero infinitesimals because <span class="math inline">\(\alpha/\alpha=1\)</span>. It is transitive: if <span class="math inline">\(\alpha\sim\beta\)</span> and <span class="math inline">\(\beta\sim\gamma\)</span>, then <span class="math display">\[\frac{\alpha}{\gamma}
+ =\frac{\alpha}{\beta}\frac{\beta}{\gamma}
+ \longrightarrow1\cdot1=1.\]</span> So two infinitesimals equivalent to the same simpler expression are equivalent to each other.</p>
+<h2 class="section-title" id="section-6-when-we-can-replace-an-infinitesimal">When We Can Replace an Infinitesimal</h2>
+<div class="math-box theorem"><div class="box-label">Theorem 13.4</div><h3>Replacement in Products and Quotients</h3>
+<p> Suppose <span class="math inline">\(\alpha\sim\gamma\)</span> and <span class="math inline">\(\beta\sim\delta\)</span>. Then <span class="math inline">\(\alpha\beta\sim\gamma\delta\)</span>. Moreover, if <span class="math inline">\(\gamma/\delta\)</span> has a finite limit or tends to <span class="math inline">\(+\infty\)</span> or <span class="math inline">\(-\infty\)</span>, then <span class="math inline">\(\alpha/\beta\)</span> has the same limit.</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> The ratio of the products is <span class="math inline">\((\alpha/\gamma)(\beta/\delta)\to1\)</span>. For the quotient, write <span class="math display">\[\frac{\alpha}{\beta}
+ =\frac{\gamma}{\delta}
+ \underbrace{\frac{\alpha}{\gamma}\frac{\delta}{\beta}}_{r(x)}.\]</span> Here <span class="math inline">\(r(x)\to1\)</span>. If <span class="math inline">\(\gamma/\delta\)</span> has a finite limit <span class="math inline">\(L\)</span>, the product law gives <span class="math inline">\(L\cdot1=L\)</span>. If <span class="math inline">\(\gamma/\delta\to+\infty\)</span>, then for any <span class="math inline">\(M&gt;0\)</span> we eventually have <span class="math inline">\(\gamma/\delta&gt;2M\)</span> and <span class="math inline">\(r(x)&gt;1/2\)</span>, so the product exceeds <span class="math inline">\(M\)</span>. If <span class="math inline">\(\gamma/\delta\to-\infty\)</span>, the inequalities <span class="math inline">\(\gamma/\delta&lt;-2M\)</span> and <span class="math inline">\(r(x)&gt;1/2\)</span> give a product less than <span class="math inline">\(-M\)</span>. All the divisions are valid eventually by the definition of equivalence. ◻</p>
+</div></details>
+<p>Another useful case is a factor <span class="math inline">\(f(x)\)</span> with a finite nonzero limit <span class="math inline">\(k\)</span>. If <span class="math inline">\(\alpha\)</span> is an eventually nonzero infinitesimal, then <span class="math inline">\(f\alpha\)</span> is an infinitesimal by the product law, and <span class="math display">\[\frac{f(x)\alpha(x)}{k\alpha(x)}=\frac{f(x)}k\longrightarrow1.
+ \qquad\text{Thus } f(x)\alpha(x)\sim k\alpha(x).\]</span></p>
+<div class="math-box theorem"><div class="box-label">Theorem 13.5</div><h3>Keeping the Dominant Term in a Sum</h3>
+<p> If <span class="math inline">\(\alpha\)</span> is an eventually nonzero infinitesimal and <span class="math inline">\(\beta=o(\alpha)\)</span>, then <span class="math inline">\(\alpha+\beta\sim\alpha\)</span>. The same statement holds when <span class="math inline">\(\beta\)</span> is a finite sum of terms that are each <span class="math inline">\(o(\alpha)\)</span>.</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> Since <span class="math inline">\(\beta/\alpha\to0\)</span>, the product <span class="math inline">\(\beta=\alpha(\beta/\alpha)\)</span> tends to zero. Now <span class="math display">\[\frac{\alpha+\beta}{\alpha}=1+\frac{\beta}{\alpha}
+ \longrightarrow1.\]</span> For a finite sum, divide every term by <span class="math inline">\(\alpha\)</span> and use the sum law: each ratio tends to zero, so their sum does too. ◻</p>
+</div></details>
+<div class="note-box"><div class="box-label">Warning 13.4</div>
+<p>Since <span class="math inline">\(x+x^2\sim x\)</span>, it is safe to use <span class="math inline">\(x\)</span> in place of <span class="math inline">\(x+x^2\)</span> as a factor in a product or quotient limit. But in <span class="math inline">\((x+x^2)-x\)</span>, the two copies of <span class="math inline">\(x\)</span> cancel, and the entire answer is <span class="math inline">\(x^2\)</span>. For example, <span class="math inline">\(((x+x^2)-x)/x^2=1\)</span>; replacing the first term by <span class="math inline">\(x\)</span> would give <span class="math inline">\(0\)</span>. If terms of the same size can cancel, simplify the whole difference before choosing an equivalent. Writing <span class="math inline">\(\alpha\sim0\)</span> is never a way out: the ratio to zero is undefined.</p>
+</div>
+<h2 class="section-title" id="section-7-a-short-list-of-equivalents">A Short List of Equivalents</h2>
+<p>The standard limits from Lecture 11 and the limit laws give the following comparisons, with angles in radians.</p>
+<div class="math-box"><div class="box-label">Formula 13.1</div><h3>Equivalents as \(u\to0\)</h3>
+<p> <span class="math display">\[\begin{array}{@{}r@{\;\sim\;}l@{\qquad}r@{\;\sim\;}l@{}}
+ \sin u &amp; u &amp; \tan u &amp; u\\[2pt]
+ 1-\cos u &amp; \tfrac12u^2 &amp; \arcsin u &amp; u\\[2pt]
+ \arctan u &amp; u &amp; \ln(1+u) &amp; u\\[2pt]
+ e^u-1 &amp; u &amp; a^u-1 &amp; u\ln a\\[2pt]
+ (1+u)^p-1 &amp; pu &amp; \sqrt[n]{1+u}-1 &amp; u/n
+\end{array}\]</span> Here <span class="math inline">\(a&gt;0\)</span>, <span class="math inline">\(a\ne1\)</span>, <span class="math inline">\(p\in\mathbb{R}\setminus\{0\}\)</span> and <span class="math inline">\(n\)</span> is a positive integer. Take <span class="math inline">\(u\ne0\)</span> near zero, on the natural real domain of the expression. In particular <span class="math inline">\(1+u&gt;0\)</span> for the logarithm and the real power.</p>
+</div>
+<p>For <span class="math inline">\(\sin u\)</span>, <span class="math inline">\(\ln(1+u)\)</span>, and <span class="math inline">\(e^u-1\)</span>, dividing by <span class="math inline">\(u\)</span> gives exactly the standard limits. For the tangent and cosine rows, write <span class="math display">\[\frac{\tan u}{u}=\frac{\sin u}{u}\frac1{\cos u}
+ \longrightarrow1,
+ \qquad
+ \frac{1-\cos u}{u^2/2}
+ =\left(\frac{\sin(u/2)}{u/2}\right)^2
+ \longrightarrow1.\]</span> In the first limit <span class="math inline">\(\cos u\to1\)</span>, so its reciprocal is defined near zero.</p>
+<p>For the inverse sine, let <span class="math inline">\(t=\arcsin u\)</span> on the usual branch <span class="math inline">\([-\pi/2,\pi/2]\)</span>. For <span class="math inline">\(0&lt;\eta&lt;\pi/2\)</span>, the condition <span class="math inline">\(|u|&lt;\sin\eta\)</span> implies <span class="math inline">\(-\eta&lt;t&lt;\eta\)</span> by strict increase of sine on that branch. Thus <span class="math inline">\(t\to0\)</span> as <span class="math inline">\(u\to0\)</span>. Since <span class="math inline">\(u=\sin t\)</span>, for <span class="math inline">\(u\ne0\)</span> we have <span class="math display">\[\frac{\arcsin u}{u}=\frac{t}{\sin t}\longrightarrow1.\]</span> For <span class="math inline">\(t=\arctan u\)</span>, use the increasing branch of tangent on <span class="math inline">\((-\pi/2,\pi/2)\)</span>. If <span class="math inline">\(|u|&lt;\tan\eta\)</span>, then <span class="math inline">\(|t|&lt;\eta\)</span>, so again <span class="math inline">\(t\to0\)</span>, and <span class="math inline">\((\arctan u)/u=t/\tan t\to1\)</span>.</p>
+<p>For <span class="math inline">\(a&gt;0\)</span>, <span class="math inline">\(a\ne1\)</span>, use <span class="math inline">\(a^u=e^{u\ln a}\)</span>. The ratio <span class="math inline">\((a^u-1)/(u\ln a)\)</span> is the exponential standard ratio at input <span class="math inline">\(u\ln a\)</span>, which is nonzero for <span class="math inline">\(u\ne0\)</span> and tends to zero. For a real <span class="math inline">\(p\ne0\)</span>, put <span class="math inline">\(v=p\ln(1+u)\)</span>. Then <span class="math inline">\(v\to0\)</span>, <span class="math inline">\(v\ne0\)</span> for <span class="math inline">\(u\ne0\)</span>, and <span class="math display">\[\frac{(1+u)^p-1}{pu}
+ =\frac{e^v-1}{v}\frac{\ln(1+u)}{u}
+ \longrightarrow1\cdot1=1.\]</span> Taking <span class="math inline">\(p=1/n\)</span> gives the root formula. If <span class="math inline">\(a=1\)</span> or <span class="math inline">\(p=0\)</span>, the corresponding difference is identically zero; there is no equivalence to a zero comparison function.</p>
+<p>In the examples below we use the list with inputs such as <span class="math inline">\(u=5x\)</span> or <span class="math inline">\(u=\cos x-1\)</span>. In each use, the input approaches zero, stays in the required domain, and is nonzero sufficiently near the point of approach.</p>
+<h2 class="section-title" id="section-8-worked-comparisons-and-limit-calculations">Worked Comparisons and Limit Calculations</h2>
+<div class="inset-example"><div class="box-label">Example 13.8</div><h3>Proving equivalence by simplifying the ratio</h3>
+<p> Show that <span class="math display">\[1-\frac1{\sqrt{1+x}}\sim\frac x2,\qquad
+ 1-\frac1{1+x}\sim x
+ \qquad (x\to0),\]</span> and that <span class="math display">\[\sin\!\sqrt{x\sqrt{x}}\sim\sqrt{x^2+\sqrt{x^3}}
+ \qquad (x\to0^+).\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 13.8</div>
+<p>For the first pair, combine the terms and rationalise: <span class="math display">\[1-\frac1{\sqrt{1+x}}
+ =\frac{\sqrt{1+x}-1}{\sqrt{1+x}}
+ =\frac{x}{\sqrt{1+x}\,(\sqrt{1+x}+1)}.\]</span> For <span class="math inline">\(x\ne0\)</span>, the ratio to <span class="math inline">\(x/2\)</span> tends to <span class="math inline">\(2/(1\cdot2)=1\)</span>. For the second pair, <span class="math inline">\(1-1/(1+x)=x/(1+x)\)</span>, so the ratio to <span class="math inline">\(x\)</span> tends to <span class="math inline">\(1\)</span>.</p>
+<p>For the last pair, the square roots restrict us to <span class="math inline">\(x&gt;0\)</span> in the approach. The argument of the sine is <span class="math inline">\(\sqrt{x\sqrt{x}}=x^{3/4}\)</span>, hence <span class="math inline">\(\sin\sqrt{x\sqrt{x}}\sim x^{3/4}\)</span>. In the other expression, factor <span class="math inline">\(x^{3/2}\)</span> inside the outer root: <span class="math display">\[\sqrt{x^2+\sqrt{x^3}}=x^{3/4}\sqrt{1+\sqrt{x}}
+ \sim x^{3/4}.\]</span> Since both are equivalent to <span class="math inline">\(x^{3/4}\)</span>, they are equivalent to each other.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 13.9</div><h3>Finding the dominant term</h3>
+<p> Find a simpler equivalent for each expression as <span class="math inline">\(t\to0\)</span>: <span class="math display">\[3\sin t-5t^3,
+ \qquad
+ (1-\cos t)^2+16t^3+5t^4+6t^5.\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 13.9</div>
+<p>Divide the first expression by <span class="math inline">\(3t\)</span>: <span class="math display">\[\frac{3\sin t-5t^3}{3t}
+ =\frac{\sin t}{t}-\frac53t^2\longrightarrow1.\]</span> So the first expression is equivalent to <span class="math inline">\(3t\)</span>.</p>
+<p>In the second expression, <span class="math inline">\((1-\cos t)^2\sim t^4/4\)</span>. The first term written is therefore smaller in size than the cubic term <span class="math inline">\(16t^3\)</span>. Indeed, <span class="math display">\[\frac{(1-\cos t)^2}{16t^3}
+ =\frac{t}{64}\left(\frac{1-\cos t}{t^2/2}\right)^2
+ \longrightarrow0.\]</span> The other two ratios, <span class="math inline">\(5t^4/(16t^3)=5t/16\)</span> and <span class="math inline">\(6t^5/(16t^3)=3t^2/8\)</span>, also tend to zero. Thus the second expression is equivalent to <span class="math inline">\(16t^3\)</span>.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 13.10</div><h3>A sine divided by a logarithm</h3>
+<p> Find <span class="math inline">\(\displaystyle\lim_{x\to0}\frac{\sin(5x)}{\ln(1+4x)}\)</span>.</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 13.10</div>
+<p>Near zero the logarithm is defined, and it is zero only at <span class="math inline">\(x=0\)</span>. We have <span class="math inline">\(\sin(5x)\sim5x\)</span> and <span class="math inline">\(\ln(1+4x)\sim4x\)</span>. Both are separate factors of the quotient. The replacement theorem now gives <span class="math display">\[\lim_{x\to0}\frac{\sin(5x)}{\ln(1+4x)}
+ =\lim_{x\to0}\frac{5x}{4x}=\frac54.\]</span></p>
+</div>
+<div class="inset-example"><div class="box-label">Example 13.11</div><h3>Nested small inputs</h3>
+<p> Evaluate <span class="math display">\[\lim_{x\to0}\frac{\ln(\cos x)}{\sqrt[4]{1+x^2}-1},
+ \qquad
+ \lim_{x\to0}\frac{\sqrt{1+x+x^2}-1}{\sin(4x)}.\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 13.11</div>
+<p>For the first limit, <span class="math inline">\(\cos x&gt;0\)</span> near zero. Use the logarithm with input <span class="math inline">\(u=\cos x-1\)</span>, then the cosine equivalent: <span class="math display">\[\ln(\cos x)=\ln(1+(\cos x-1))\sim\cos x-1\sim-\frac{x^2}{2}.\]</span> The fourth-root formula, with input <span class="math inline">\(x^2\)</span>, gives <span class="math inline">\(\sqrt[4]{1+x^2}-1\sim x^2/4\)</span>. Hence the quotient tends to <span class="math inline">\((-1/2)/(1/4)=-2\)</span>. The sign matters: for small nonzero <span class="math inline">\(x\)</span>, the logarithm is negative and the denominator positive.</p>
+<p>For the second limit, the square-root input is <span class="math inline">\(u=x+x^2\)</span>. Since <span class="math inline">\(u\sim x\)</span>, we get <span class="math display">\[\sqrt{1+x+x^2}-1\sim\frac{x+x^2}{2}\sim\frac{x}{2}.\]</span> Also <span class="math inline">\(\sin(4x)\sim4x\)</span>. The quotient tends to <span class="math inline">\((1/2)/4=1/8\)</span>.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 13.12</div><h3>A sum in the numerator</h3>
+<p> Evaluate <span class="math display">\[\lim_{x\to0}\frac{\sin(2x)+(\arcsin x)^2-(\arctan x)^2}{3x}.\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 13.12</div>
+<p>The denominator is a constant times <span class="math inline">\(x\)</span>, so compare each squared term to <span class="math inline">\(x\)</span>. For example, <span class="math display">\[\frac{(\arcsin x)^2}{x}
+ =x\left(\frac{\arcsin x}{x}\right)^2\longrightarrow0.\]</span> The same computation with <span class="math inline">\(\arctan x\)</span> gives zero. We do not need an equivalent for the difference of the squares: after division by <span class="math inline">\(x\)</span>, both terms tend to zero separately. The sine term satisfies <span class="math inline">\(\sin(2x)/(3x)=(2/3)\sin(2x)/(2x)\to2/3\)</span>. By the sum law the required limit is <span class="math inline">\(2/3\)</span>.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 13.13</div><h3>A quotient of several factors</h3>
+<p> Evaluate <span class="math display">\[\lim_{x\to0^+}
+ \frac{\sin(\sqrt[3]{x})\,\ln(1+3x)}
+ {(\arctan\sqrt{x})^2\bigl(e^{5\sqrt[3]{x}}-1\bigr)}.\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 13.13</div>
+<p>The <span class="math inline">\(\sqrt{x}\)</span> in the denominator makes this a right-hand limit at zero on the real domain. Compare the factors: <span class="math display">\[\sin(\sqrt[3]{x})\sim\sqrt[3]{x},\quad
+ \ln(1+3x)\sim3x,\quad
+ (\arctan\sqrt{x})^2\sim x,\quad
+ e^{5\sqrt[3]{x}}-1\sim5\sqrt[3]{x}.\]</span> The square comparison follows by multiplying <span class="math inline">\(\arctan\sqrt{x}\sim\sqrt{x}\)</span> by itself. Thus the numerator is equivalent to <span class="math inline">\(3x\sqrt[3]{x}\)</span> and the denominator to <span class="math inline">\(5x\sqrt[3]{x}\)</span>. Both comparisons are nonzero for <span class="math inline">\(x&gt;0\)</span>. The limit is <span class="math inline">\(3/5\)</span>.</p>
+</div>
+<h2 class="section-title" id="section-9-approximations-with-an-error-bound">Approximations with an Error Bound</h2>
+<div class="note-box"><div class="box-label">Motivation 13.4</div>
+<p>The equivalence <span class="math inline">\(\sqrt{1+h}-1\sim h/2\)</span> suggests an approximation you can do in your head: <span class="math inline">\(\sqrt{1+h}\approx 1+h/2\)</span>. A limit tells us why it works as <span class="math inline">\(h\to0\)</span>. To use it at a particular number, we can go one step further and calculate how far off it is.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 13.14</div><h3>Estimating two square roots</h3>
+<p> Approximate <span class="math inline">\(\sqrt{1.02}\)</span> and <span class="math inline">\(\sqrt{0.994}\)</span> using <span class="math inline">\(\sqrt{1+h}\approx1+h/2\)</span>, and bound the absolute errors.</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 13.14</div>
+<p>Use <span class="math inline">\(h=0.02\)</span> and <span class="math inline">\(h=-0.006\)</span> to get <span class="math inline">\(1.01\)</span> and <span class="math inline">\(0.997\)</span>, respectively. To get a bound, first note that <span class="math inline">\(\sqrt{1+h}-1=h/(\sqrt{1+h}+1)\)</span> for <span class="math inline">\(h&gt;-1\)</span>. It follows that <span class="math display">\[\begin{aligned}
+ 1+\frac h2-\sqrt{1+h}
+ &amp;=\frac h2-\frac{h}{\sqrt{1+h}+1}\\
+ &amp;=\frac{h(\sqrt{1+h}-1)}{2(\sqrt{1+h}+1)}
+ =\frac{h^2}{2(\sqrt{1+h}+1)^2}.
+\end{aligned}\]</span> This quantity is nonnegative even for <span class="math inline">\(h&lt;0\)</span>. Thus the estimate lies above the true root, and the displayed quantity is its absolute error.</p>
+<p>For <span class="math inline">\(h=0.02\)</span>, the denominator is greater than <span class="math inline">\(8\)</span>, so <span class="math display">\[0&lt;1.01-\sqrt{1.02}&lt;\frac{(0.02)^2}{8}=0.00005.\]</span> In particular <span class="math inline">\(1.00995&lt;\sqrt{1.02}&lt;1.01\)</span>.</p>
+<p>For <span class="math inline">\(h=-0.006\)</span>, the denominator is <em>less</em> than <span class="math inline">\(8\)</span>. However, <span class="math inline">\((0.996)^2=0.992016&lt;0.994\)</span>, so <span class="math inline">\(\sqrt{0.994}&gt;0.996\)</span>. This gives the upper bound <span class="math display">\[0&lt;0.997-\sqrt{0.994}
+ &lt;\frac{(0.006)^2}{2(1.996)^2}
+ &lt;0.00000452.\]</span> The last inequality follows by multiplying by <span class="math inline">\(2(1.996)^2\)</span>: <span class="math inline">\(0.00000452\cdot2(1.996)^2&gt;0.000036=(0.006)^2\)</span>. In particular <span class="math inline">\(0.99699548&lt;\sqrt{0.994}&lt;0.997\)</span>.</p>
+<p>The actual errors are about <span class="math inline">\(4.9506\cdot10^{-5}\)</span> and <span class="math inline">\(4.5136\cdot10^{-6}\)</span>, respectively. As <span class="math inline">\(h\to0\)</span> from either side, the exact error divided by <span class="math inline">\(h^2/8\)</span> tends to <span class="math inline">\(1\)</span>. The value <span class="math inline">\(h^2/8\)</span> gives the leading size of the error; it is an upper bound for <span class="math inline">\(h\ge0\)</span>.</p>
+</div>
+<div class="note-box"><div class="box-label">Method 13.1</div>
+<p>For a product or quotient, look for an equivalent for each factor. In a sum, compare the terms to a candidate dominant term: if their ratios to it tend to zero, they can be dropped for the purpose of equivalence. If the leading terms cancel, use an identity, a factorisation, or a rationalisation to expose the smaller quantity. When a numerical estimate needs a guaranteed accuracy, bound the error at the specific input.</p>
+</div>
+</div>
+<div class="edition-note"><strong>About this web edition.</strong> This page is converted from the LaTeX lecture manuscript. Some original TikZ illustrations are marked for conversion. End-of-lecture homework and separate answer keys are not included here. Please consult the author before redistributing.</div>
+<nav class="reader-end" aria-label="Next and previous lecture"><a href="lecture-12.html">← Lecture 12</a><a href="lecture-14.html">Lecture 14 →</a></nav><div class="copyright">© 2026 Aritra Dey. All rights reserved. Reuse, reproduction or redistribution requires the author’s prior written permission.</div></div></main>
+<aside class="on-this-page"><h2>On this page</h2><a href="#section-1-what-is-an-infinitesimal">What is an infinitesimal?</a><a href="#section-2-arithmetic-with-infinitesimals">Arithmetic with infinitesimals</a><a href="#section-3-comparing-the-rates-of-approach-to-zero">Comparing the rates of approach to zero</a><a href="#section-4-comparing-functions-that-grow-without-bound">Comparing functions that grow without bound</a><a href="#section-5-equivalent-infinitesimals">Equivalent Infinitesimals</a><a href="#section-6-when-we-can-replace-an-infinitesimal">When We Can Replace an Infinitesimal</a><a href="#section-7-a-short-list-of-equivalents">A Short List of Equivalents</a><a href="#section-8-worked-comparisons-and-limit-calculations">Worked Comparisons and Limit Calculations</a><a href="#section-9-approximations-with-an-error-bound">Approximations with an Error Bound</a></aside></div></body></html>

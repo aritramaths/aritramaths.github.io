@@ -1,0 +1,239 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Lecture 14: Continuity and Density — Aritra Dey's online real analysis lecture notes."><title>Lecture 14: Continuity and Density | Aritra Dey</title><link rel="stylesheet" href="../assets/book.css"><script src="../assets/mathjax.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><script defer src="../assets/book.js"></script></head><body><a class="skip" href="#reader-main">Skip to lecture</a><header class="topbar"><a class="brand" href="../../"><span class="brand-mark">A</span><span>Aritra Dey <span style="opacity:.42;padding:0 7px">/</span> Mathematics</span></a><nav class="top-links"><a href="../">All books</a><a href="./">Contents</a><button class="circle-button" data-theme-toggle aria-label="Toggle light and dark mode"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></nav></header><div class="reader-shell"><aside class="sidebar" id="toc-sidebar" aria-label="Book table of contents"><div class="toc-label">Book one · Real Analysis</div><a class="side-book" href="./">Contents</a><a class="side-item" href="lecture-01.html"><span>01</span>Real numbers &amp; completeness</a><a class="side-item" href="lecture-02.html"><span>02</span>Countability</a><a class="side-item" href="lecture-03.html"><span>03</span>Sequences &amp; limits</a><a class="side-item" href="lecture-04.html"><span>04</span>Direct epsilon proofs</a><a class="side-item" href="lecture-05.html"><span>05</span>Limit laws</a><a class="side-item" href="lecture-06.html"><span>06</span>Monotone convergence</a><a class="side-item" href="lecture-07.html"><span>07</span>Cauchy sequences</a><a class="side-item" href="lecture-08.html"><span>08</span>Density &amp; cluster points</a><a class="side-item" href="lecture-09.html"><span>09</span>Function limits</a><a class="side-item" href="lecture-10.html"><span>10</span>Limits at infinity</a><a class="side-item" href="lecture-11.html"><span>11</span>Standard limits</a><a class="side-item" href="lecture-12.html"><span>12</span>One-sided limits</a><a class="side-item" href="lecture-13.html"><span>13</span>Infinitesimals</a><a class="side-item active" href="lecture-14.html" aria-current="page"><span>14</span>Continuity</a><a class="side-item" href="lecture-15.html"><span>15</span>Discontinuities</a><a class="side-item" href="lecture-16.html"><span>16</span>Intermediate Value Theorem</a></aside>
+<main class="reader-main" id="reader-main"><div class="reading-width"><button id="toc-toggle" class="sidebar-toggle" aria-expanded="false" aria-controls="toc-sidebar">☰ All lectures</button>
+<nav class="book-breadcrumb" aria-label="Breadcrumb"><a href="../">Books</a><span>›</span><a href="./">Real Analysis</a><span>›</span><span>Lecture 14</span></nav>
+<header class="chapter-head"><div class="chapter-label">Lecture 14 · Online reading edition</div><h1>Continuity and Density</h1><p>Read this lecture online, then continue to the next chapter. Figures and exercises are being adapted separately for the web edition.</p><div class="reading-tools"><button type="button" id="type-toggle" aria-pressed="false">Larger text</button><button type="button" id="proof-toggle">Expand all proofs &amp; worked solutions</button></div></header>
+<div class="lecture-content">
+<h2 class="section-title" id="section-1-the-nearby-height-and-the-actual-height">The Nearby Height and the Actual Height</h2>
+<div class="note-box"><div class="box-label">Motivation 14.1</div>
+<p>In a limit problem we stand near an input <span class="math inline">\(c\)</span> and ask where the outputs are heading. The value at <span class="math inline">\(c\)</span> itself does not enter that question. Continuity asks us to compare the answer with one more piece of information: the actual height <span class="math inline">\(f(c)\)</span>. Do the nearby outputs approach the height already assigned at the point?</p>
+<p>For example, <span class="math inline">\((x^2-9)/(x-3)\)</span> approaches <span class="math inline">\(6\)</span> as <span class="math inline">\(x\to3\)</span>, but its formula does not assign any value at <span class="math inline">\(3\)</span>. Assign the value <span class="math inline">\(6\)</span> and the nearby behaviour fits the point. Assign the value <span class="math inline">\(10\)</span> and the nearby behaviour is unchanged, but it no longer fits the assigned height.</p>
+</div>
+<p>The familiar picture of a curve with no break is useful for a first impression. The definition below tells us exactly what to check, including for functions whose graphs cannot be represented by a single smooth curve.</p>
+<div class="math-box"><div class="box-label">Definition 14.1</div><h3>Continuity at a point</h3>
+<p> Let <span class="math inline">\(A\subseteq\mathbb{R}\)</span>, let <span class="math inline">\(f:A\to\mathbb{R}\)</span>, and let <span class="math inline">\(c\in A\)</span>. We say that <span class="math inline">\(f\)</span> is <strong>continuous at <span class="math inline">\(c\)</span></strong> if <span class="math display">\[\forall\varepsilon&gt;0\quad\exists\delta&gt;0\quad
+ \forall x\in A:\qquad
+ |x-c|&lt;\delta\ \Longrightarrow\ |f(x)-f(c)|&lt;\varepsilon.\]</span> The function is <strong>continuous on <span class="math inline">\(A\)</span></strong> if it is continuous at every point of <span class="math inline">\(A\)</span>.</p>
+</div>
+<p>Choose an output window around the <em>actual value</em> <span class="math inline">\(f(c)\)</span>. We must find an input window around <span class="math inline">\(c\)</span> whose domain points all map into that output window. Unlike the limit definition, the continuity definition allows <span class="math inline">\(x=c\)</span>. This causes no difficulty: at that input the error is <span class="math inline">\(|f(c)-f(c)|=0\)</span>. The radius may depend on <span class="math inline">\(c\)</span>. What if one radius had to work at every point? That is the question of Appendix C.</p>
+<div class="figure-or-centered">
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+<p>At <span class="math inline">\(c=1\)</span>, the chosen point is <span class="math inline">\((1,1)\)</span>. For <span class="math inline">\(\varepsilon=1/2\)</span>, the choice <span class="math inline">\(\delta=1/6\)</span> works: every point of the blue curve above the orange input window stays inside the blue output window. The point at <span class="math inline">\(x=1\)</span> is included.</p>
+</div>
+<div class="note-box"><div class="box-label">Remark 14.1</div>
+<p>Only inputs in <span class="math inline">\(A\)</span> are tested. If <span class="math inline">\(c\)</span> is an isolated point of <span class="math inline">\(A\)</span>, choose <span class="math inline">\(\delta&gt;0\)</span> so that the only domain point in <span class="math inline">\((c-\delta,c+\delta)\)</span> is <span class="math inline">\(c\)</span> itself. Every function <span class="math inline">\(f:A\to\mathbb{R}\)</span> is continuous at that isolated point. We therefore define continuity directly, without requiring that <span class="math inline">\(c\)</span> be an accumulation point of the domain.</p>
+</div>
+<h2 class="section-title" id="section-2-continuity-written-as-a-limit">Continuity Written as a Limit</h2>
+<div class="math-box theorem"><div class="box-label">Theorem 14.1</div><h3>The limit must equal the assigned value</h3>
+<p> Let <span class="math inline">\(c\in A\)</span> be an accumulation point of <span class="math inline">\(A\)</span>, and let <span class="math inline">\(f:A\to\mathbb{R}\)</span>. Then <span class="math display">\[f\text{ is continuous at }c
+ \quad\Longleftrightarrow\quad
+ \lim_{\substack{x\to c\\x\in A}}f(x)=f(c).\]</span> Equivalently, writing <span class="math inline">\(h=x-c\)</span>, we have <span class="math display">\[\lim_{\substack{h\to0\\c+h\in A}}
+       \bigl(f(c+h)-f(c)\bigr)=0.\]</span></p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> If <span class="math inline">\(f\)</span> is continuous, its radius for <span class="math inline">\(\varepsilon\)</span> also works for the deleted condition <span class="math inline">\(0&lt;|x-c|&lt;\delta\)</span>. This gives the displayed limit. Conversely, suppose the limit equals <span class="math inline">\(f(c)\)</span>. The limit definition provides a radius controlling every admissible <span class="math inline">\(x\ne c\)</span>. At <span class="math inline">\(x=c\)</span>, the output error is zero, so the same radius proves continuity.</p>
+<p>Finally, <span class="math inline">\(|h|=|x-c|\)</span>, and the output error in the last display is exactly <span class="math inline">\(|f(x)-f(c)|\)</span>. Changing the input from <span class="math inline">\(x\)</span> to <span class="math inline">\(h=x-c\)</span> does not change the condition we are testing. ◻</p>
+</div></details>
+<p>Thus a small change in input must produce a small change in output, <em>at the point under discussion</em>. We do not require the two changes to have the same size. The radius <span class="math inline">\(\delta\)</span> may depend on the chosen tolerance <span class="math inline">\(\varepsilon\)</span> and on the point <span class="math inline">\(c\)</span>.</p>
+<div class="inset-example"><div class="box-label">Example 14.1</div><h3>A direct proof for a linear function</h3>
+<p> Prove that <span class="math inline">\(f(x)=mx+b\)</span> is continuous at every real <span class="math inline">\(c\)</span>, for fixed real numbers <span class="math inline">\(m,b\)</span>.</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 14.1</div>
+<p>For any input <span class="math inline">\(x\)</span>, <span class="math display">\[|f(x)-f(c)|
+ =|mx+b-(mc+b)|=|m|\,|x-c|.\]</span> If <span class="math inline">\(m\ne0\)</span>, choose <span class="math inline">\(\delta=\varepsilon/|m|\)</span>. Then <span class="math inline">\(|x-c|&lt;\delta\)</span> makes the output error less than <span class="math inline">\(\varepsilon\)</span>. If <span class="math inline">\(m=0\)</span>, the function is constant and its output error is always zero; any positive radius works. The point <span class="math inline">\(c\)</span> was arbitrary.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 14.2</div><h3>A direct proof for the square function</h3>
+<p> Prove directly that <span class="math inline">\(f(x)=x^2\)</span> is continuous at every real <span class="math inline">\(c\)</span>.</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 14.2</div>
+<p>Factor the output error: <span class="math display">\[|x^2-c^2|=|x-c|\,|x+c|.\]</span> We control the moving second factor by first requiring <span class="math inline">\(|x-c|&lt;1\)</span>. Then the triangle inequality gives <span class="math display">\[|x+c|=|(x-c)+2c|\le |x-c|+2|c|&lt;1+2|c|.\]</span> For a prescribed <span class="math inline">\(\varepsilon&gt;0\)</span>, choose <span class="math display">\[\delta=\min\left\{1,\frac{\varepsilon}{\,2|c|+1\,}\right\}.\]</span> If <span class="math inline">\(|x-c|&lt;\delta\)</span>, both restrictions hold and <span class="math display">\[|x^2-c^2|
+ \le |x-c|\,(2|c|+1)&lt;\varepsilon.\]</span> The same choice also works at <span class="math inline">\(x=c\)</span>, where the error is zero. This proves continuity at the arbitrary point <span class="math inline">\(c\)</span>.</p>
+</div>
+<h2 class="section-title" id="section-3-connecting-continuity-with-the-two-sides">Connecting Continuity with the Two Sides</h2>
+<div class="math-box theorem"><div class="box-label">Theorem 14.2</div><h3>The left height, the right height, and the point</h3>
+<p> Suppose that <span class="math inline">\(c\in A\)</span> and that <span class="math inline">\(A\)</span> has points arbitrarily close to <span class="math inline">\(c\)</span> on both sides. Then <span class="math inline">\(f:A\to\mathbb{R}\)</span> is continuous at <span class="math inline">\(c\)</span> exactly when <span class="math display">\[\lim_{x\to c^-}f(x)=f(c)=\lim_{x\to c^+}f(x),\]</span> where the limits use inputs from <span class="math inline">\(A\)</span>.</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> By the two-sided limit criterion, the full limit equals <span class="math inline">\(f(c)\)</span> if and only if both one-sided limits equal <span class="math inline">\(f(c)\)</span>. The preceding theorem says that this is exactly continuity. ◻</p>
+</div></details>
+<p>Three numbers must fit together: the height approached from the left, the height approached from the right, and the actual height at the point. Agreement of the two side limits alone is not sufficient if the assigned value is different.</p>
+<p>At the left endpoint <span class="math inline">\(a\)</span> of an interval <span class="math inline">\([a,b]\)</span>, with <span class="math inline">\(a&lt;b\)</span>, there are no interval inputs to the left. Continuity relative to this domain means <span class="math inline">\(\lim_{x\to a^+}f(x)=f(a)\)</span>. At the right endpoint it means <span class="math inline">\(\lim_{x\to b^-}f(x)=f(b)\)</span>. We do not ask the function to have values outside its domain.</p>
+<div class="inset-example"><div class="box-label">Example 14.3</div><h3>An endpoint has only the available side</h3>
+<p> Is <span class="math inline">\(f(x)=\sqrt{x}\)</span> continuous at <span class="math inline">\(0\)</span> on its domain <span class="math inline">\([0,\infty)\)</span>?</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 14.3</div>
+<p>Yes. Given <span class="math inline">\(\varepsilon&gt;0\)</span>, take <span class="math inline">\(\delta=\varepsilon^2\)</span>. For every domain input with <span class="math inline">\(|x-0|&lt;\delta\)</span>, we have <span class="math inline">\(0\le x&lt;\varepsilon^2\)</span>, so <span class="math display">\[|f(x)-f(0)|=\sqrt{x}&lt;\varepsilon.\]</span> This proves continuity at the endpoint. It is also a direct proof of the right-hand limit <span class="math inline">\(\sqrt{x}\to0\)</span> as <span class="math inline">\(x\to0^+\)</span>.</p>
+</div>
+<h2 class="section-title" id="section-4-passing-a-sequence-limit-through-the-function">Passing a Sequence Limit through the Function</h2>
+<div class="note-box"><div class="box-label">Motivation 14.2</div>
+<p>Suppose inputs <span class="math inline">\(x_1,x_2,\ldots\)</span> approach <span class="math inline">\(c\)</span>. If the function is continuous there, eventually those inputs enter any sufficiently small input window, and their outputs enter the requested window around <span class="math inline">\(f(c)\)</span>. In this sense continuity lets us take the limit inside: <span class="math display">\[\lim_{n\to\infty}f(x_n)
+ =f\!\left(\lim_{n\to\infty}x_n\right).\]</span> The right side means <span class="math inline">\(f(c)\)</span>, so the function must be defined and continuous at <span class="math inline">\(c\)</span>. Merely having a limit somewhere else is not enough.</p>
+</div>
+<div class="math-box theorem"><div class="box-label">Theorem 14.3</div><h3>The sequential criterion for continuity</h3>
+<p> Let <span class="math inline">\(f:A\to\mathbb{R}\)</span> and <span class="math inline">\(c\in A\)</span>. The following are equivalent:</p>
+<ol>
+<li><p><span class="math inline">\(f\)</span> is continuous at <span class="math inline">\(c\)</span>.</p></li>
+<li><p>For every sequence <span class="math inline">\((x_n)\)</span> in <span class="math inline">\(A\)</span> with <span class="math inline">\(x_n\to c\)</span>, we have <span class="math inline">\(f(x_n)\to f(c)\)</span>.</p></li>
+</ol>
+<p>The input sequence is allowed to contain <span class="math inline">\(c\)</span>, or even to be constantly equal to <span class="math inline">\(c\)</span>.</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> Assume (i), and choose any sequence in <span class="math inline">\(A\)</span> tending to <span class="math inline">\(c\)</span>. Given <span class="math inline">\(\varepsilon&gt;0\)</span>, continuity provides <span class="math inline">\(\delta&gt;0\)</span> such that <span class="math inline">\(|x-c|&lt;\delta\)</span> implies <span class="math inline">\(|f(x)-f(c)|&lt;\varepsilon\)</span> for <span class="math inline">\(x\in A\)</span>. Since <span class="math inline">\(x_n\to c\)</span>, there is <span class="math inline">\(N\)</span> such that <span class="math inline">\(n\ge N\)</span> implies <span class="math inline">\(|x_n-c|&lt;\delta\)</span>. Thus <span class="math inline">\(n\ge N\)</span> also implies <span class="math inline">\(|f(x_n)-f(c)|&lt;\varepsilon\)</span>. This is (ii).</p>
+<p>For the converse, suppose that <span class="math inline">\(f\)</span> is not continuous at <span class="math inline">\(c\)</span>. Negating the definition gives a fixed <span class="math inline">\(\varepsilon_0&gt;0\)</span> such that, for every <span class="math inline">\(\delta&gt;0\)</span>, there is a point <span class="math inline">\(x\in A\)</span> with <span class="math display">\[|x-c|&lt;\delta,\qquad |f(x)-f(c)|\ge\varepsilon_0.\]</span> For each <span class="math inline">\(n\)</span>, use <span class="math inline">\(\delta=1/n\)</span> and choose such a point <span class="math inline">\(x_n\)</span>. Then <span class="math inline">\(|x_n-c|&lt;1/n\)</span>, so <span class="math inline">\(x_n\to c\)</span>, but every output remains at least <span class="math inline">\(\varepsilon_0\)</span> from <span class="math inline">\(f(c)\)</span>. Hence <span class="math inline">\(f(x_n)\)</span> does not tend to <span class="math inline">\(f(c)\)</span>, contrary to (ii). Therefore <span class="math inline">\(f\)</span> is continuous. ◻</p>
+</div></details>
+<div class="note-box"><div class="box-label">Warning 14.1</div>
+<p>One successful input sequence cannot prove continuity. The criterion requires the conclusion for <em>every</em> domain sequence tending to the point. To disprove continuity, one sequence for which the conclusion fails is enough. Density will soon give us particularly useful sequences to test.</p>
+</div>
+<h2 class="section-title" id="section-5-assigning-the-value-at-a-missing-point">Assigning the Value at a Missing Point</h2>
+<div class="inset-example"><div class="box-label">Example 14.4</div><h3>The sine quotient can be completed continuously</h3>
+<p> For a real number <span class="math inline">\(A\)</span>, define <span class="math display">\[S_A(x)=
+ \begin{cases}
+  \dfrac{\sin x}{x},&amp;x\ne0,\\[3pt]
+  A,&amp;x=0.
+ \end{cases}\]</span> For which <span class="math inline">\(A\)</span> is <span class="math inline">\(S_A\)</span> continuous at zero?</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 14.4</div>
+<p>The standard sine limit gives <span class="math display">\[\lim_{x\to0}S_A(x)=1\]</span> for every <span class="math inline">\(A\)</span>: changing one value does not change that deleted limit. Continuity requires the limit to equal <span class="math inline">\(S_A(0)=A\)</span>. It therefore holds exactly when <span class="math inline">\(A=1\)</span>.</p>
+<p>We can also see the failure for <span class="math inline">\(A\ne1\)</span> with the sequential criterion: choose <span class="math inline">\(x_n=1/n\)</span>. Then <span class="math inline">\(x_n\to0\)</span> and <span class="math inline">\(S_A(x_n)\to1\ne A=S_A(0)\)</span>.</p>
+</div>
+<div class="figure-or-centered">
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+</div>
+<div class="inset-example"><div class="box-label">Example 14.5</div><h3>Oscillation can coexist with continuity</h3>
+<p> Compare the behaviour at zero of <span class="math display">\[U(x)=\sin(1/x)\quad(x\ne0)\]</span> and the function <span class="math display">\[V(x)=
+ \begin{cases}
+  x\sin(1/x),&amp;x\ne0,\\
+  0,&amp;x=0.
+ \end{cases}\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 14.5</div>
+<p>For <span class="math inline">\(U\)</span>, the inputs <span class="math display">\[x_n=\frac1{2\pi n+\pi/2},\qquad
+ y_n=\frac1{2\pi n+3\pi/2}\]</span> both approach zero, but <span class="math inline">\(U(x_n)=1\)</span> and <span class="math inline">\(U(y_n)=-1\)</span>. Thus the deleted limit does not exist. No assigned value at zero can make this function continuous there.</p>
+<p>For <span class="math inline">\(V\)</span>, every nonzero input satisfies <span class="math display">\[|V(x)-V(0)|=|x\sin(1/x)|\le |x|.\]</span> Given <span class="math inline">\(\varepsilon&gt;0\)</span>, the choice <span class="math inline">\(\delta=\varepsilon\)</span> proves continuity at zero directly, including the input <span class="math inline">\(x=0\)</span>. The sine still oscillates, but the factor <span class="math inline">\(x\)</span> makes the entire output fit into every window around zero. The size of the oscillation matters as much as the oscillation itself.</p>
+</div>
+<h2 class="section-title" id="section-6-density-meets-continuity">Density Meets Continuity</h2>
+<div class="note-box"><div class="box-label">Motivation 14.3</div>
+<p>In the density lecture we promised to return to a question: if rational numbers can approach every real number, can information at rational inputs tell us what happens at all real inputs?</p>
+<p>Density supplies the approaching inputs. Continuity makes their outputs approach the output at the destination. We now put these two ideas together. The same method will appear again in functional equations in the next level.</p>
+</div>
+<p>By the density of the rationals and the density of the irrationals, for every <span class="math inline">\(c\in\mathbb{R}\)</span> we can choose <span class="math display">\[r_n\in\mathbb{Q},\qquad s_n\in\mathbb{R}\setminus\mathbb{Q},\qquad
+ r_n\longrightarrow c,\quad s_n\longrightarrow c.\]</span> For example, choose one rational and one irrational in <span class="math inline">\((c+1/(2n),c+1/n)\)</span> for each <span class="math inline">\(n\)</span>. This also ensures that neither input equals <span class="math inline">\(c\)</span>. Every neighbourhood of <span class="math inline">\(c\)</span> therefore contains inputs of both types, however small we make that neighbourhood.</p>
+<h3 id="the-dirichlet-function-no-point-of-continuity">The Dirichlet Function: No Point of Continuity</h3>
+<div class="inset-example"><div class="box-label">Example 14.6</div><h3>Two Dense Sets, Two Different Output Values</h3>
+<p> Consider the Dirichlet function <span class="math display">\[D(x)=
+ \begin{cases}
+  1,&amp;x\in\mathbb{Q},\\
+  0,&amp;x\notin\mathbb{Q}.
+ \end{cases}\]</span> Prove that <span class="math inline">\(D\)</span> is discontinuous at every real number.</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 14.6</div>
+<p>Fix any <span class="math inline">\(c\in\mathbb{R}\)</span>, and choose the two sequences above. Then <span class="math display">\[D(r_n)=1\longrightarrow1,\qquad
+ D(s_n)=0\longrightarrow0.\]</span> If <span class="math inline">\(D\)</span> were continuous at <span class="math inline">\(c\)</span>, the sequential criterion for continuity would force both output sequences to converge to <span class="math inline">\(D(c)\)</span>. They cannot: one would require <span class="math inline">\(D(c)=1\)</span> and the other <span class="math inline">\(D(c)=0\)</span>.</p>
+<p>The same obstruction is visible directly in the definition. Take <span class="math inline">\(\varepsilon_0=1/2\)</span>. Given any <span class="math inline">\(\delta&gt;0\)</span>, choose an input <span class="math inline">\(x\)</span> of the opposite rationality type from <span class="math inline">\(c\)</span> with <span class="math inline">\(|x-c|&lt;\delta\)</span>. Density makes this possible, and then <span class="math display">\[|D(x)-D(c)|=1\ge\varepsilon_0.\]</span> Thus no radius works for this tolerance. Since <span class="math inline">\(c\)</span> was arbitrary, <span class="math inline">\(D\)</span> is nowhere continuous.</p>
+</div>
+<div class="note-box"><div class="box-label">Remark 14.2</div>
+<p>The graph lies on the two horizontal lines <span class="math inline">\(y=0\)</span> and <span class="math inline">\(y=1\)</span>. On the upper line it has precisely the points with rational input; on the lower line it has precisely the points with irrational input. Neither horizontal line is filled in completely. A finite picture cannot show all these points, but density explains why both output heights occur arbitrarily close to every input.</p>
+</div>
+<h3 id="changing-the-formula-on-rational-and-irrational-inputs">Changing the Formula on Rational and Irrational Inputs</h3>
+<div class="inset-example"><div class="box-label">Example 14.7</div><h3>An Oscillating Choice of Formula Can Still Be Continuous</h3>
+<p> Determine the points of continuity of <span class="math display">\[P(x)=
+ \begin{cases}
+  x^2,&amp;x\in\mathbb{Q},\\
+  -x^2,&amp;x\notin\mathbb{Q}.
+ \end{cases}\]</span></p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 14.7</div>
+<p>At <span class="math inline">\(0\)</span>, the choice of sign makes no difference to the size of the error: <span class="math display">\[P(0)=0,\qquad |P(x)-P(0)|=x^2.\]</span> Given <span class="math inline">\(\varepsilon&gt;0\)</span>, the choice <span class="math inline">\(\delta=\sqrt{\varepsilon}\)</span> gives <span class="math inline">\(|P(x)-P(0)|&lt;\varepsilon\)</span> whenever <span class="math inline">\(|x|&lt;\delta\)</span>. Hence <span class="math inline">\(P\)</span> is continuous at <span class="math inline">\(0\)</span>.</p>
+<p>At <span class="math inline">\(c\ne0\)</span>, choose rational <span class="math inline">\(r_n\to c\)</span> and irrational <span class="math inline">\(s_n\to c\)</span>. The sequence limit laws give <span class="math display">\[P(r_n)=r_n^2\longrightarrow c^2,\qquad
+ P(s_n)=-s_n^2\longrightarrow-c^2.\]</span> Since <span class="math inline">\(c^2\ne-c^2\)</span>, these outputs cannot both approach <span class="math inline">\(P(c)\)</span>. Thus <span class="math inline">\(P\)</span> is discontinuous at every nonzero point, and its only point of continuity is <span class="math inline">\(0\)</span>.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 14.8</div><h3>Two Formulas That Agree at Two Inputs</h3>
+<p> Now consider <span class="math display">\[H(x)=
+ \begin{cases}
+  x,&amp;x\in\mathbb{Q},\\
+  x^2,&amp;x\notin\mathbb{Q}.
+ \end{cases}\]</span> Find all its points of continuity.</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 14.8</div>
+<p>The two formulas have the same value precisely when <span class="math inline">\(c=c^2\)</span>, that is, when <span class="math inline">\(c=0\)</span> or <span class="math inline">\(c=1\)</span>. Both points really work.</p>
+<p>At <span class="math inline">\(0\)</span>, <span class="math inline">\(H(0)=0\)</span>. For <span class="math inline">\(|x|&lt;1\)</span>, each possible formula satisfies <span class="math inline">\(|H(x)|\le|x|\)</span>. Thus <span class="math inline">\(\delta=\min\{1,\varepsilon\}\)</span> proves continuity.</p>
+<p>At <span class="math inline">\(1\)</span>, <span class="math inline">\(H(1)=1\)</span>. If <span class="math inline">\(|x-1|&lt;1\)</span>, then <span class="math inline">\(|x+1|&lt;3\)</span>. For a rational input the error is <span class="math inline">\(|x-1|\)</span>, while for an irrational input it is <span class="math display">\[|x^2-1|=|x-1|\,|x+1|&lt;3|x-1|.\]</span> Consequently <span class="math inline">\(\delta=\min\{1,\varepsilon/3\}\)</span> works for both types of input at once.</p>
+<p>At any other <span class="math inline">\(c\)</span>, rational and irrational input sequences give limits <span class="math inline">\(c\)</span> and <span class="math inline">\(c^2\)</span>, which differ. The sequential criterion rules out continuity there. The exact answer is therefore <span class="math display">\[\boxed{\text{$H$ is continuous exactly at $0$ and $1$.}}\]</span> The choice between <span class="math inline">\(x\)</span> and <span class="math inline">\(x^2\)</span> has two meeting points; the choice between <span class="math inline">\(x^2\)</span> and <span class="math inline">\(-x^2\)</span> has only one. We must check where the formulas agree rather than assume that zero is the only possibility.</p>
+</div>
+<div class="figure-or-centered">
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+<p>The dashed guides are <span class="math inline">\(y=x\)</span> and <span class="math inline">\(y=x^2\)</span>; the coloured markers show only finitely many values of <span class="math inline">\(H\)</span>. The guides meet at <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>. Near either meeting point, values from both formulas approach the same output. Away from them, density keeps both different limiting heights present.</p>
+</div>
+<div class="math-box theorem"><div class="box-label">Theorem 14.4</div><h3>A General Test for Two Dense Branches</h3>
+<p> Let <span class="math inline">\(f,g:\mathbb{R}\to\mathbb{R}\)</span> both be continuous at <span class="math inline">\(c\)</span>, and define <span class="math display">\[h(x)=
+ \begin{cases}
+  f(x),&amp;x\in\mathbb{Q},\\
+  g(x),&amp;x\notin\mathbb{Q}.
+ \end{cases}\]</span> Then <span class="math inline">\(h\)</span> is continuous at <span class="math inline">\(c\)</span> if and only if <span class="math inline">\(f(c)=g(c)\)</span>.</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> First suppose <span class="math inline">\(h\)</span> is continuous at <span class="math inline">\(c\)</span>. Choose rational <span class="math inline">\(r_n\to c\)</span> and irrational <span class="math inline">\(s_n\to c\)</span>. Continuity of the three functions at <span class="math inline">\(c\)</span> gives <span class="math display">\[h(r_n)=f(r_n)\longrightarrow f(c),\qquad
+ h(s_n)=g(s_n)\longrightarrow g(c),\]</span> while both sequences on the left must converge to <span class="math inline">\(h(c)\)</span>. Uniqueness of a sequence limit therefore gives <span class="math inline">\(f(c)=h(c)=g(c)\)</span>.</p>
+<p>Conversely, suppose <span class="math inline">\(f(c)=g(c)=L\)</span>. Then <span class="math inline">\(h(c)=L\)</span>, whichever branch defines it. Given <span class="math inline">\(\varepsilon&gt;0\)</span>, continuity of <span class="math inline">\(f\)</span> supplies <span class="math inline">\(\delta_f&gt;0\)</span> such that <span class="math inline">\(|x-c|&lt;\delta_f\)</span> implies <span class="math inline">\(|f(x)-L|&lt;\varepsilon\)</span>. Continuity of <span class="math inline">\(g\)</span> supplies <span class="math inline">\(\delta_g&gt;0\)</span> with the corresponding property. Set <span class="math inline">\(\delta=\min\{\delta_f,\delta_g\}\)</span>. If <span class="math inline">\(|x-c|&lt;\delta\)</span>, then the appropriate estimate applies whether <span class="math inline">\(x\)</span> is rational or irrational. Thus <span class="math inline">\(|h(x)-h(c)|&lt;\varepsilon\)</span>, proving continuity. ◻</p>
+</div></details>
+<p>The assumptions that both branch functions are continuous at <span class="math inline">\(c\)</span> matter. Agreement of their values at just one input does not control their nearby values. The result works because density tests both branches, and continuity tells us the limit of each branch.</p>
+<h2 class="section-title" id="section-7-an-application-to-cauchy-s-functional-equation">An Application to Cauchy’s Functional Equation</h2>
+<div class="note-box"><div class="box-label">Motivation 14.4</div>
+<p>Suppose a quantity adds in the same way as its input: <span class="math display">\[F(x+y)=F(x)+F(y).\]</span> We expect a straight-line rule <span class="math inline">\(F(x)=kx\)</span>: two equal steps should contribute twice as much, and three equal steps three times as much. Addition immediately confirms this for integer and rational steps. Continuity is the bridge that lets us pass from rational steps to any real step.</p>
+<p>This is the promised functional-equation application of density.</p>
+</div>
+<div class="math-box theorem"><div class="box-label">Theorem 14.5</div><h3>Continuous Solutions of the Additive Cauchy Equation</h3>
+<p> Suppose <span class="math inline">\(F:\mathbb{R}\to\mathbb{R}\)</span> satisfies <span class="math display">\[F(x+y)=F(x)+F(y)\qquad\text{for every }x,y\in\mathbb{R}.\]</span> If <span class="math inline">\(F\)</span> is continuous at even one point, then <span class="math display">\[F(x)=kx\qquad(x\in\mathbb{R}),\qquad\text{where }k=F(1).\]</span> Conversely, every function of this form is continuous and satisfies the equation.</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> We separate what follows from the equation alone from the step that uses continuity.</p>
+<p><strong>First, find the values at integers.</strong> Taking <span class="math inline">\(x=y=0\)</span> gives <span class="math inline">\(F(0)=2F(0)\)</span>, so <span class="math inline">\(F(0)=0\)</span>. Next <span class="math inline">\(0=F(x+(-x))=F(x)+F(-x)\)</span>, hence <span class="math inline">\(F(-x)=-F(x)\)</span>. Repeated addition gives <span class="math display">\[F(nx)=nF(x)\qquad(n\in\mathbb{N}).\]</span> Putting <span class="math inline">\(x=1\)</span> and then using the negative-input identity shows <span class="math inline">\(F(m)=mk\)</span> for every <span class="math inline">\(m\in\mathbb{Z}\)</span>.</p>
+<p><strong>Next, find the values at rationals.</strong> Let <span class="math inline">\(q=m/n\)</span>, with <span class="math inline">\(m\in\mathbb{Z}\)</span> and <span class="math inline">\(n\in\mathbb{N}\)</span>. Since <span class="math inline">\(nq=m\)</span>, <span class="math display">\[nF(q)=F(nq)=F(m)=mk.\]</span> Dividing by <span class="math inline">\(n\)</span> gives <span class="math inline">\(F(q)=kq\)</span>. No continuity has been used yet.</p>
+<p><strong>Now bring the given continuity to zero.</strong> Let <span class="math inline">\(a\)</span> be a point where <span class="math inline">\(F\)</span> is continuous. Given <span class="math inline">\(\varepsilon&gt;0\)</span>, take <span class="math inline">\(\delta&gt;0\)</span> so that <span class="math inline">\(|u-a|&lt;\delta\)</span> implies <span class="math inline">\(|F(u)-F(a)|&lt;\varepsilon\)</span>. For <span class="math inline">\(|t|&lt;\delta\)</span>, put <span class="math inline">\(u=a+t\)</span>. Additivity gives <span class="math display">\[|F(t)-F(0)|=|F(a+t)-F(a)|&lt;\varepsilon.\]</span> Thus <span class="math inline">\(F\)</span> is continuous at <span class="math inline">\(0\)</span>.</p>
+<p>The same radius works at any fixed <span class="math inline">\(x\)</span>: if <span class="math inline">\(|u-x|&lt;\delta\)</span>, then <span class="math display">\[|F(u)-F(x)|=|F(u-x)|&lt;\varepsilon.\]</span> So <span class="math inline">\(F\)</span> is continuous everywhere.</p>
+<p><strong>Finally, use density.</strong> Fix any real number <span class="math inline">\(x\)</span>. Choose rational numbers <span class="math inline">\(q_n\to x\)</span>. By continuity and the sequential criterion, <span class="math display">\[F(x)=\lim_{n\to\infty}F(q_n)
+     =\lim_{n\to\infty}kq_n=kx.\]</span> This proves the stated form at every real input.</p>
+<p>For the converse, <span class="math inline">\(F(x)=kx\)</span> gives <span class="math inline">\(F(x+y)=k(x+y)=F(x)+F(y)\)</span>. If <span class="math inline">\(k\ne0\)</span>, the estimate <span class="math inline">\(|F(u)-F(x)|=|k|\,|u-x|\)</span> proves continuity with <span class="math inline">\(\delta=\varepsilon/|k|\)</span>. If <span class="math inline">\(k=0\)</span>, the function is constant and every positive radius works. ◻</p>
+</div></details>
+<div class="inset-example"><div class="box-label">Example 14.9</div><h3>One Value Determines the Whole Function</h3>
+<p> An additive function <span class="math inline">\(F:\mathbb{R}\to\mathbb{R}\)</span> is continuous at <span class="math inline">\(2\)</span> and satisfies <span class="math inline">\(F(3)=12\)</span>. Find <span class="math inline">\(F(\sqrt2)\)</span>.</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 14.9</div>
+<p>Continuity at <span class="math inline">\(2\)</span> is enough for the theorem. Therefore <span class="math inline">\(F(x)=kx\)</span>. The condition <span class="math inline">\(F(3)=12\)</span> gives <span class="math inline">\(3k=12\)</span>, hence <span class="math inline">\(k=4\)</span> and <span class="math display">\[F(\sqrt2)=4\sqrt2.\]</span> The rational values are forced by addition. Continuity and density are the reason that the same formula holds at the irrational input <span class="math inline">\(\sqrt2\)</span>.</p>
+</div>
+<div class="note-box"><div class="box-label">Warning 14.2</div>
+<p>Additivity first gives <span class="math inline">\(F(q)=qF(1)\)</span> for rational <span class="math inline">\(q\)</span>. Merely saying that the rationals are dense does not yet prove the formula at irrational inputs. The step <span class="math inline">\(F(q_n)\to F(x)\)</span> is precisely where continuity is used. In our next-level functional-equation course we will meet more problems where information on a dense set becomes useful only after this step has been justified.</p>
+</div>
+<h2 class="section-title" id="section-8-agreement-on-a-dense-set-determines-a-continuous-function">Agreement on a Dense Set Determines a Continuous Function</h2>
+<div class="note-box"><div class="box-label">Motivation 14.5</div>
+<p>Recall a result from our polynomial classes. If two polynomials of degree at most <span class="math inline">\(n\)</span> agree at <span class="math inline">\(n+1\)</span> distinct inputs, then they are identical. Indeed, their difference has degree at most <span class="math inline">\(n\)</span> and has <span class="math inline">\(n+1\)</span> distinct roots. The root bound forces that difference to be the zero polynomial. The degree restriction is what makes this finite amount of information enough.</p>
+<p>For continuous functions there is no degree restriction. Here a dense set supplies the information we need: we can approach any real input through inputs where the two functions already agree. Continuity will carry that equality to the limiting input. This gives a general form of the density argument we just used for Cauchy’s equation.</p>
+</div>
+<div class="math-box theorem"><div class="box-label">Theorem 14.6</div><h3>Agreement on a dense set</h3>
+<p> Let <span class="math inline">\(D\subseteq\mathbb{R}\)</span> be dense in <span class="math inline">\(\mathbb{R}\)</span>, and let <span class="math inline">\(f,g:\mathbb{R}\to\mathbb{R}\)</span> be continuous. If <span class="math display">\[f(d)=g(d)\qquad\text{for every }d\in D,\]</span> then <span class="math inline">\(f(x)=g(x)\)</span> for every <span class="math inline">\(x\in\mathbb{R}\)</span>.</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> Fix an arbitrary real number <span class="math inline">\(c\)</span>. For each <span class="math inline">\(n\in\mathbb{N}\)</span>, density provides an input <span class="math display">\[d_n\in D\cap\left(c-\frac1n,c+\frac1n\right).\]</span> Since <span class="math inline">\(|d_n-c|&lt;1/n\)</span>, the sequence <span class="math inline">\((d_n)\)</span> converges to <span class="math inline">\(c\)</span>. Continuity of both functions and the sequential criterion for continuity give <span class="math display">\[f(d_n)\longrightarrow f(c),\qquad
+ g(d_n)\longrightarrow g(c).\]</span> But <span class="math inline">\(f(d_n)=g(d_n)\)</span> for every <span class="math inline">\(n\)</span>, because every <span class="math inline">\(d_n\)</span> belongs to <span class="math inline">\(D\)</span>. Thus these are the same output sequence. Uniqueness of a sequence limit forces <span class="math inline">\(f(c)=g(c)\)</span>. As <span class="math inline">\(c\)</span> was arbitrary, the functions agree everywhere. ◻</p>
+</div></details>
+<p>Notice the two jobs in this proof. Density supplies inputs from <span class="math inline">\(D\)</span> converging to <span class="math inline">\(c\)</span>; continuity identifies the limits of their outputs. The inputs <span class="math inline">\(d_n\)</span> are allowed to equal <span class="math inline">\(c\)</span> when <span class="math inline">\(c\in D\)</span>: the sequential criterion for continuity permits this. In fact, the same argument proves <span class="math inline">\(f(c)=g(c)\)</span> at any point <span class="math inline">\(c\)</span> where both functions are continuous, provided <span class="math inline">\(c\)</span> can be approached by a sequence of points of agreement.</p>
+<div class="inset-example"><div class="box-label">Example 14.10</div><h3>Knowing the values at all rational inputs</h3>
+<p> A continuous function <span class="math inline">\(F:\mathbb{R}\to\mathbb{R}\)</span> satisfies <span class="math inline">\(F(q)=q^2\)</span> for every rational number <span class="math inline">\(q\)</span>. Determine <span class="math inline">\(F(x)\)</span> for real <span class="math inline">\(x\)</span>.</p>
+</div>
+<div class="note-box"><div class="box-label">Explanation 14.10</div>
+<p>The function <span class="math inline">\(G(x)=x^2\)</span> is continuous, as proved directly earlier in this lecture. The functions <span class="math inline">\(F\)</span> and <span class="math inline">\(G\)</span> agree on the dense set <span class="math inline">\(\mathbb{Q}\)</span>. The theorem therefore gives <span class="math display">\[F(x)=x^2\qquad\text{for every real }x.\]</span> For example, choose rational <span class="math inline">\(q_n\to\sqrt2\)</span>. Then continuity gives <span class="math inline">\(F(\sqrt2)=\lim F(q_n)=\lim q_n^2=2\)</span>. The same reasoning works at every real input.</p>
+</div>
+<div class="note-box"><div class="box-label">Warning 14.3</div>
+<p>Agreement on a dense set alone does not suffice. The Dirichlet function <span class="math inline">\(D(x)\)</span> from this lecture agrees with the constant function <span class="math inline">\(1\)</span> at every rational input, yet it is <span class="math inline">\(0\)</span> at every irrational input. The missing hypothesis is continuity of <span class="math inline">\(D\)</span>.</p>
+<p>An infinite agreement set need not be dense either. The continuous functions <span class="math inline">\(0\)</span> and <span class="math inline">\(\sin(\pi x)\)</span> agree at every integer, but at <span class="math inline">\(x=1/2\)</span> their values are <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>. Density allows an approximation to <em>every</em> real input; simply having infinitely many agreement points does not guarantee that.</p>
+</div>
+<p>We will use this principle again in the next-level functional-equation course: first identify a formula on a convenient dense set, then use continuity to extend the identity to all real inputs.</p>
+</div>
+<div class="edition-note"><strong>About this web edition.</strong> This page is converted from the LaTeX lecture manuscript. Some original TikZ illustrations are marked for conversion. End-of-lecture homework and separate answer keys are not included here. Please consult the author before redistributing.</div>
+<nav class="reader-end" aria-label="Next and previous lecture"><a href="lecture-13.html">← Lecture 13</a><a href="lecture-15.html">Lecture 15 →</a></nav><div class="copyright">© 2026 Aritra Dey. All rights reserved. Reuse, reproduction or redistribution requires the author’s prior written permission.</div></div></main>
+<aside class="on-this-page"><h2>On this page</h2><a href="#section-1-the-nearby-height-and-the-actual-height">The Nearby Height and the Actual Height</a><a href="#section-2-continuity-written-as-a-limit">Continuity Written as a Limit</a><a href="#section-3-connecting-continuity-with-the-two-sides">Connecting Continuity with the Two Sides</a><a href="#section-4-passing-a-sequence-limit-through-the-function">Passing a Sequence Limit through the Function</a><a href="#section-5-assigning-the-value-at-a-missing-point">Assigning the Value at a Missing Point</a><a href="#section-6-density-meets-continuity">Density Meets Continuity</a><a href="#section-7-an-application-to-cauchy-s-functional-equation">An Application to Cauchy’s Functional Equation</a><a href="#section-8-agreement-on-a-dense-set-determines-a-continuous-function">Agreement on a Dense Set Determines a Continuous Function</a></aside></div></body></html>

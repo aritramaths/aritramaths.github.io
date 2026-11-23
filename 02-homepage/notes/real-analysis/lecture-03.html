@@ -1,0 +1,392 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Lecture 3: Sequences, Epsilon Windows, and Negation — Aritra Dey's online real analysis lecture notes."><title>Lecture 3: Sequences, Epsilon Windows, and Negation | Aritra Dey</title><link rel="stylesheet" href="../assets/book.css"><script src="../assets/mathjax.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><script defer src="../assets/book.js"></script></head><body><a class="skip" href="#reader-main">Skip to lecture</a><header class="topbar"><a class="brand" href="../../"><span class="brand-mark">A</span><span>Aritra Dey <span style="opacity:.42;padding:0 7px">/</span> Mathematics</span></a><nav class="top-links"><a href="../">All books</a><a href="./">Contents</a><button class="circle-button" data-theme-toggle aria-label="Toggle light and dark mode"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></nav></header><div class="reader-shell"><aside class="sidebar" id="toc-sidebar" aria-label="Book table of contents"><div class="toc-label">Book one · Real Analysis</div><a class="side-book" href="./">Contents</a><a class="side-item" href="lecture-01.html"><span>01</span>Real numbers &amp; completeness</a><a class="side-item" href="lecture-02.html"><span>02</span>Countability</a><a class="side-item active" href="lecture-03.html" aria-current="page"><span>03</span>Sequences &amp; limits</a><a class="side-item" href="lecture-04.html"><span>04</span>Direct epsilon proofs</a><a class="side-item" href="lecture-05.html"><span>05</span>Limit laws</a><a class="side-item" href="lecture-06.html"><span>06</span>Monotone convergence</a><a class="side-item" href="lecture-07.html"><span>07</span>Cauchy sequences</a><a class="side-item" href="lecture-08.html"><span>08</span>Density &amp; cluster points</a><a class="side-item" href="lecture-09.html"><span>09</span>Function limits</a><a class="side-item" href="lecture-10.html"><span>10</span>Limits at infinity</a><a class="side-item" href="lecture-11.html"><span>11</span>Standard limits</a><a class="side-item" href="lecture-12.html"><span>12</span>One-sided limits</a><a class="side-item" href="lecture-13.html"><span>13</span>Infinitesimals</a><a class="side-item" href="lecture-14.html"><span>14</span>Continuity</a><a class="side-item" href="lecture-15.html"><span>15</span>Discontinuities</a><a class="side-item" href="lecture-16.html"><span>16</span>Intermediate Value Theorem</a></aside>
+<main class="reader-main" id="reader-main"><div class="reading-width"><button id="toc-toggle" class="sidebar-toggle" aria-expanded="false" aria-controls="toc-sidebar">☰ All lectures</button>
+<nav class="book-breadcrumb" aria-label="Breadcrumb"><a href="../">Books</a><span>›</span><a href="./">Real Analysis</a><span>›</span><span>Lecture 03</span></nav>
+<header class="chapter-head"><div class="chapter-label">Lecture 03 · Online reading edition</div><h1>Sequences, Epsilon Windows, and Negation</h1><p>Read this lecture online, then continue to the next chapter. Figures and exercises are being adapted separately for the web edition.</p><div class="reading-tools"><button type="button" id="type-toggle" aria-pressed="false">Larger text</button><button type="button" id="proof-toggle">Expand all proofs &amp; worked solutions</button></div></header>
+<div class="lecture-content">
+<p><span id="chap:sequences"></span></p>
+<h2 class="section-title" id="section-1-why-study-sequences-a-train-towards-a-real-number">Why Study Sequences? A Train towards a Real Number</h2>
+<p>Let us begin as we did in class. I write <span class="math inline">\(\sqrt2\)</span> on the board and ask: “What number have I written?” You may answer, “The positive number whose square is <span class="math inline">\(2\)</span>.” That names the number exactly. But if I ask you to locate it on the number line, or calculate its value to a specified accuracy, repeating the symbol does not yet do the work. We need a way of getting closer to it using numbers we can actually calculate with.</p>
+<p>Fractions give us a starting point. We can add them, multiply them, compare them, and square them exactly. Now imagine a train whose successive recorded positions are <span class="math display">\[1,\qquad 1.4,\qquad 1.41,\qquad 1.414,\qquad 1.4142,\qquad\ldots.\]</span> Every displayed position is rational: for example, <span class="math inline">\(1.414=1414/1000\)</span>. The train is making a journey through rational approximations. Where is it going? The place these approximations identify is the real number we call <span class="math inline">\(\sqrt2\)</span>.</p>
+<div class="note-box"><div class="box-label">Intuition 3.1</div>
+<p>No rational number has square <span class="math inline">\(2\)</span>, as we proved in <a href="lecture-01.html">Lecture <span data-reference="lec:1" data-reference-type="ref">[lec:1]</span></a>. Nevertheless, rational numbers can locate that point as accurately as we ask. An infinite sequence lets us describe one systematic journey of improving approximations, instead of stopping at a single decimal answer.</p>
+</div>
+<p><span>A journey of rational approximations. The sketch lists successive values; it is not a number line to scale. The destination is not an extra, final term.</span></p>
+<h3 class="unnumbered" id="how-do-we-know-where-the-train-is-going">How do we know where the train is going?</h3>
+<p>The first few terms alone are not enough. We must specify how to continue and explain how accurately each term locates the target. Here is a rule that uses only integer arithmetic.</p>
+<p>At the <span class="math inline">\(n\)</span>th stage, set <span class="math inline">\(q_n=10^{n-1}\)</span>. Among the nonnegative integers <span class="math inline">\(m\)</span> with <span class="math inline">\(m^2\le2q_n^2\)</span>, choose the largest, called <span class="math inline">\(m_n\)</span>, and put <span class="math inline">\(r_n=m_n/q_n\)</span>. This largest integer exists: <span class="math inline">\(0\)</span> is allowed, and any <span class="math inline">\(m&gt;2q_n\)</span> is too large, so only finitely many candidates need to be checked. The next integer is not allowed. Hence <span class="math display">\[m_n^2\le2q_n^2&lt;(m_n+1)^2,
+ \qquad
+ r_n^2\le2&lt;\left(r_n+\frac1{q_n}\right)^2.\]</span> For nonnegative numbers, their squares have the same order as the numbers themselves. Thus <span class="math display">\[r_n\le\sqrt2&lt;r_n+10^{1-n}.\]</span> We are using the existence of the positive square root, already established from completeness in Lecture <a data-reference="lec:1" data-reference-type="ref" href="lecture-01.html">[lec:1]</a>. We have not used a theorem about limits.</p>
+<div class="figure-or-centered">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Stage <span class="math inline">\(n\)</span></th>
+<th style="text-align: center;">Rational position <span class="math inline">\(r_n\)</span></th>
+<th style="text-align: left;">Certified location of the target</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(1\le\sqrt2&lt;2\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><span class="math inline">\(1.4\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(1.4\le\sqrt2&lt;1.5\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><span class="math inline">\(1.41\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(1.41\le\sqrt2&lt;1.42\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><span class="math inline">\(1.414\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(1.414\le\sqrt2&lt;1.415\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;"><span class="math inline">\(1.4142\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(1.4142\le\sqrt2&lt;1.4143\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For example, <span class="math inline">\(1.414^2=1.999396&lt;2\)</span>, whereas <span class="math inline">\(1.415^2=2.002225&gt;2\)</span>. The fourth position is therefore accompanied by an error of less than <span class="math inline">\(0.001\)</span>. The error guarantee, not merely the appearance of the decimal digits, tells us what we know.</p>
+<p>This is the motivation for our next definition. We want to give a precise meaning to “the train is going to this point”. We shall then be able to prove that the rational positions identify <span class="math inline">\(\sqrt2\)</span> and that they cannot identify two different destinations.</p>
+<div class="note-box"><div class="box-label">Remark 3.1</div>
+<p>The symbol <span class="math inline">\(\sqrt2\)</span> is meaningful: it specifies an exact positive solution of <span class="math inline">\(x^2=2\)</span>. The sequence makes that number accessible through rational calculations and arbitrarily small error bounds. More generally, suitable sequences of rational approximations can be used to construct the real numbers themselves. In this book we have already adopted completeness, so we are now learning how such approximations locate real numbers within that system. We do not assume that every sequence has a destination: <span class="math inline">\(1,2,3,\ldots\)</span> and <span class="math inline">\(-1,1,-1,1,\ldots\)</span> will teach us why a definition is needed.</p>
+</div>
+<h2 class="section-title" id="section-2-what-is-a-sequence">What Is a Sequence?</h2>
+<p>Informally, a sequence is a list with a first term, a second term, a third term, and so on. Formally, the position number is part of the data.</p>
+<p>Recall the definition at the end of Lecture <a data-reference="lec:2" data-reference-type="ref" href="lecture-02.html">[lec:2]</a>: a sequence of real numbers is a function <span class="math inline">\(x:\mathbb{N}\to\mathbb{R}\)</span>, and we write <span class="math inline">\(x(n)=x_n\)</span>. The input <span class="math inline">\(n\)</span> records the position in the list.</p>
+<p>A sequence is not merely a set. The sequences <span class="math display">\[1,0,1,0,1,0,\ldots
+  \qquad\text{and}\qquad
+  0,1,0,1,0,1,\ldots\]</span> have the same set of values <span class="math inline">\(\{0,1\}\)</span> but different orders.</p>
+<p>Start by comparing these six examples: <span class="math display">\[\begin{array}{c|c|c}
+\text{formula}&amp;\text{first terms}&amp;\text{informal behaviour}\\ \hline
+x_n=n&amp;1,2,3,4,\ldots&amp;\text{grows without bound}\\
+x_n=1/n&amp;1,1/2,1/3,\ldots&amp;\text{approaches }0\\
+x_n=(-1)^n/n&amp;-1,1/2,-1/3,\ldots&amp;\text{oscillates toward }0\\
+x_n=1-1/n&amp;0,1/2,2/3,\ldots&amp;\text{approaches }1\\
+x_n=1+10^{-n}&amp;1.1,1.01,1.001,\ldots&amp;\text{approaches }1\\
+x_n=(-1)^n&amp;-1,1,-1,1,\ldots&amp;\text{keeps oscillating}
+\end{array}\]</span></p>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<div class="inset-example"><div class="box-label">Example 3.1</div><h3>Periodic signs, geometric signs, and an exponential-looking formula</h3>
+<p> Write the first five terms of each sequence:</p>
+<div class="parts">
+<p><span class="math inline">\(a_n=\sin(n\pi/3)\)</span>;</p>
+<p><span class="math inline">\(b_n=2^{-n}\cos(n\pi)\)</span>;</p>
+<p><span class="math inline">\(c_n=(1+1/n)^n\)</span>.</p>
+</div>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>Substitute <span class="math inline">\(n=1,2,3,4,5\)</span> carefully. The answers are <span class="math display">\[\begin{aligned}
+ (a_1,\ldots,a_5)&amp;=\left(\frac{\sqrt3}{2},\frac{\sqrt3}{2},0,
+                  -\frac{\sqrt3}{2},-\frac{\sqrt3}{2}\right),\\
+ (b_1,\ldots,b_5)&amp;=\left(-\frac12,\frac14,-\frac18,\frac1{16},-\frac1{32}\right),\\
+ (c_1,\ldots,c_5)&amp;=\left(2,\frac94,\frac{64}{27},\frac{625}{256},
+                        \frac{7776}{3125}\right).
+\end{aligned}\]</span> The sine values repeat with period <span class="math inline">\(6\)</span> in their numerator. In the second sequence, <span class="math inline">\(\cos(n\pi)=(-1)^n\)</span>: the sign alternates and the magnitudes halve. The five values of <span class="math inline">\(c_n\)</span> identify its first terms; a finite table alone does not establish its limit.</p>
+</div></details>
+<p>Finding a formula from initial terms is a pattern-guessing task, not a proof that the formula is unique. For example, if a proposed formula <span class="math inline">\(f(n)\)</span> matches the first five terms, then so does <span class="math inline">\(f(n)+c(n-1)(n-2)(n-3)(n-4)(n-5)\)</span>, for every real constant <span class="math inline">\(c\)</span>; the two rules generally differ from the sixth term onward.</p>
+<h2 class="section-title" id="section-3-distance-on-the-real-line">Distance on the Real Line</h2>
+<p>We are going to make the phrase “getting close” precise. Before discussing convergence, let us agree on how we will measure that closeness.</p>
+<div class="math-box"><div class="box-label">Definition 3.1</div><h3>Absolute Value and Distance</h3>
+<p> For <span class="math inline">\(t\in\mathbb{R}\)</span>, define <span class="math inline">\(|t|=\max\{t,-t\}\)</span>. The distance between real numbers <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> is <span class="math inline">\(|x-y|\)</span>.</p>
+</div>
+<p>This distance is nonnegative, is zero exactly when <span class="math inline">\(x=y\)</span>, and is unchanged when the points are exchanged. Its most useful property is the triangle inequality <span class="math display">\[|x-z|\le |x-y|+|y-z|.\]</span> Travelling from <span class="math inline">\(x\)</span> to <span class="math inline">\(z\)</span> through <span class="math inline">\(y\)</span> cannot make the straight-line distance larger than the total distance travelled.</p>
+<div class="math-box theorem"><div class="box-label">Theorem 3.1</div><h3>Triangle and Reverse Triangle Inequalities</h3>
+<p> For all <span class="math inline">\(u,v\in\mathbb{R}\)</span>, <span class="math display">\[|u+v|\le |u|+|v|,\qquad \bigl||u|-|v|\bigr|\le |u-v|.\]</span></p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> The inequalities <span class="math inline">\(-|u|\le u\le|u|\)</span> and <span class="math inline">\(-|v|\le v\le|v|\)</span> add to <span class="math inline">\(-(|u|+|v|)\le u+v\le |u|+|v|\)</span>. This is precisely the first claim. Next, write <span class="math inline">\(u=(u-v)+v\)</span> to obtain <span class="math inline">\(|u|-|v|\le |u-v|\)</span>. Interchanging <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> gives <span class="math inline">\(|v|-|u|\le |u-v|\)</span>. Combining these gives the second claim. ◻</p>
+</div></details>
+<div class="inset-example"><div class="box-label">Example 3.2</div><h3>Controlling a Quantity through an Intermediate Point</h3>
+<p> Suppose <span class="math inline">\(|x-a|&lt;0.02\)</span> and <span class="math inline">\(|y-a|&lt;0.03\)</span>. How far apart can <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> be?</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>The triangle inequality gives <span class="math inline">\(|x-y|\le |x-a|+|a-y|&lt;0.05\)</span>. Knowing that both points lie near <span class="math inline">\(a\)</span> controls their mutual distance. In a uniqueness proof we shall use the same inequality in the reverse direction: if two proposed limits stay a positive distance apart, one term cannot be sufficiently close to both.</p>
+</div></details>
+<p>For a nonempty bounded set <span class="math inline">\(A\)</span>, its diameter is <span class="math inline">\(\diam A=\sup\{|x-y|:x,y\in A\}\)</span>. Thus <span class="math inline">\((0,1)\)</span> and <span class="math inline">\([0,1]\)</span> both have diameter <span class="math inline">\(1\)</span>, even though one contains its endpoints and the other does not. A bounded interval has diameter equal to its length.</p>
+<h2 class="section-title" id="section-4-a-sequence-is-more-than-its-range">A Sequence Is More than Its Range</h2>
+<p>The sequence <span class="math inline">\(a_n=(-1)^n\)</span> has range <span class="math inline">\(\{-1,1\}\)</span>. The constant sequence <span class="math inline">\(b_n=1\)</span> has range <span class="math inline">\(\{1\}\)</span>. Sequences record the order in which their values occur, including repeated visits. Their index set is <span class="math inline">\(\mathbb{N}\)</span>; a formula, a recurrence, or a selection rule specifies the function.</p>
+<p>For example, the Fibonacci sequence is defined by <span class="math inline">\(F_1=F_2=1\)</span> and <span class="math inline">\(F_{n+2}=F_{n+1}+F_n\)</span>. A recurrence gives the next term from earlier terms, whereas a closed formula gives the <span class="math inline">\(n\)</span>th term directly. The two descriptions can encode the same sequence.</p>
+<div class="inset-example"><div class="box-label">Example 3.3</div><h3>Deriving the Fibonacci Formula</h3>
+<p> Let <span class="math inline">\(\alpha=(1+\sqrt5)/2\)</span> and <span class="math inline">\(\beta=(1-\sqrt5)/2\)</span>. Show that <span class="math display">\[F_n=\frac{\alpha^n-\beta^n}{\sqrt5}.\]</span></p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>Both <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> satisfy <span class="math inline">\(r^2=r+1\)</span>. Multiplying by <span class="math inline">\(r^n\)</span> shows that <span class="math inline">\(r^{n+2}=r^{n+1}+r^n\)</span>, so the displayed expression obeys the Fibonacci recurrence. Its first term is <span class="math inline">\((\alpha-\beta)/\sqrt5=1\)</span>; its second is <span class="math inline">\((\alpha-\beta)(\alpha+\beta)/\sqrt5=1\)</span>. Induction then shows it agrees with the recurrence at every index.</p>
+<p>This also explains where the formula comes from: try a geometric sequence <span class="math inline">\(r^n\)</span> in the recurrence, solve the resulting quadratic <span class="math inline">\(r^2=r+1\)</span>, and combine the two solutions to meet the initial values.</p>
+</div></details>
+<h2 class="section-title" id="section-5-a-tiny-problem-with-a-big-message">A Tiny Problem with a Big Message</h2>
+<p>Before we go further, recall the guessing game we discussed in class. Suppose you have scored zero in a test, but you have not told your parents the mark. They try to discover it by asking questions.</p>
+<div class="note-box"><div class="box-label">Intuition 3.2</div>
+<div class="tabularx">
+<p>@&gt;</p>
+<p>X p<span>25mm</span>@</p>
+<p><strong>Your parents ask</strong> &amp; <strong>You reply</strong><br/>
+“Is your mark less than <span class="math inline">\(10\)</span>?” &amp; “Yes.”<br/>
+“Less than <span class="math inline">\(1\)</span>?” &amp; “Yes.”<br/>
+“Even less than <span class="math inline">\(0.1\)</span>?” &amp; “Yes.”<br/>
+“What about <span class="math inline">\(0.001\)</span>?” &amp; “Yes.”</p>
+</div>
+</div>
+<p>If your mark is zero, you can keep saying yes to <em>every positive real number</em> they name. For this mathematical game we allow fractional guesses, however small; we are not relying on any rule that marks must be whole numbers. The mark itself remains fixed throughout the conversation.</p>
+<p>Now I want to reverse the question. Suppose I do not know your mark, but I know that it is nonnegative and that your answer is yes for <em>every</em> positive real guess. Can your mark be positive?</p>
+<p>Do not conclude too quickly from the four questions above. A mark of <span class="math inline">\(0.0001\)</span> would also survive all four questions. What matters is that your parents are allowed to make <em>any</em> positive guess. If the hidden mark were some <span class="math inline">\(x_0&gt;0\)</span>, they could name <span class="math inline">\(x_0/2\)</span>. You could no longer truthfully say that your mark is smaller. For the proof, we are allowed to name this guess even though the actual mark is hidden: “every positive number” includes half of any proposed positive mark. This is the whole idea of the proof.</p>
+<div class="inset-example" id="ex:smaller-than-eps"><div class="box-label">Example 3.4</div><h3>A Number Smaller Than Every Positive Error</h3>
+<p> Let <span class="math inline">\(x_0\ge0\)</span>. Suppose that <span class="math inline">\(x_0&lt;\varepsilon\)</span> for every <span class="math inline">\(\varepsilon&gt;0\)</span>. Prove that <span class="math inline">\(x_0=0\)</span>.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>Suppose <span class="math inline">\(x_0\ne0\)</span>. Since <span class="math inline">\(x_0\ge0\)</span>, we would have <span class="math inline">\(x_0&gt;0\)</span>. We are then allowed to choose <span class="math display">\[\varepsilon_0=\frac{x_0}{2}&gt;0.\]</span> But <span class="math inline">\(x_0&lt;\varepsilon_0\)</span> would say <span class="math inline">\(x_0&lt;x_0/2\)</span>, which is impossible. Therefore <span class="math inline">\(x_0=0\)</span>.</p>
+</div></details>
+<p>There is no need to search for a “smallest positive number”; there is none. We simply choose a positive number smaller than the proposed positive mark. Also notice where nonnegativity was used: a negative number is smaller than every positive number too. The conclusion <span class="math inline">\(x_0=0\)</span> follows from <em>both</em> assumptions.</p>
+<p>Keep this conversation in mind. Later, <span class="math inline">\(x_0\)</span> will often represent an absolute value or a distance. Such quantities are nonnegative, so the same argument will let us turn an estimate valid for every positive error into an exact equality. Would the conclusion still follow if the parents were allowed to guess only positive integers? Try the fixed mark <span class="math inline">\(x_0=1/2\)</span>.</p>
+<h2 class="section-title" id="section-6-the-pendulum-experiment">The Pendulum Experiment</h2>
+<p>Let us begin with the pendulum experiment we discussed in class. Picture a bob hanging from a fixed support by a string. Pull it slightly to one side and release it. It swings to the other side, comes back, and continues moving to and fro. With resistance, the swings become smaller around the resting position.</p>
+<p>I now place an imaginary window around that resting position. Think of two vertical curtains, one a little to the left and one a little to the right. I am watching the <em>centre of the bob</em>: this is the point whose position we measure. The drawn size of the bob does not restrict how narrow our mathematical window can be. Let <span class="math inline">\(\varepsilon&gt;0\)</span> denote the half-width of the window: each curtain is <span class="math inline">\(\varepsilon\)</span> units from the resting position, so the full width is <span class="math inline">\(2\varepsilon\)</span>.</p>
+<p>At first the bob may swing outside the window on both sides. It also passes through the window many times. But I am asking a stronger question:</p>
+<blockquote>
+<p>Can we wait long enough that, from then onward, the centre of the bob stays inside the window for the whole remaining motion?</p>
+</blockquote>
+<p>For the settling motion we are picturing, the answer is yes. Now move the curtains closer together. The earlier waiting time may no longer work; we may have to wait longer. Move them closer again, and the same question returns. However narrow a positive window I choose, you must eventually be able to keep the whole remaining motion inside it.</p>
+<h3 class="unnumbered" id="the-same-pendulum-with-three-different-windows">The same pendulum, with three different windows</h3>
+<p>Read each row of the following picture from left to right. The early snapshot shows why we may still need to wait. The later snapshot shows several successive positions of the same bob once its remaining swings fit within the chosen window. All rows use the same spatial scale. In the pictures, <span class="math inline">\(t\)</span> denotes elapsed time. For the window with half-width <span class="math inline">\(\varepsilon_i\)</span>, the symbol <span class="math inline">\(T_i\)</span> denotes a time after which every remaining position stays inside that window.</p>
+<p>In the picture, <span class="math inline">\(\varepsilon_1&gt;\varepsilon_2&gt;\varepsilon_3&gt;0\)</span>. We choose valid waiting times <span class="math inline">\(T_1&lt;T_2&lt;T_3\)</span> to show the effect of asking for greater accuracy. They need not be the <em>first</em> possible waiting times. If one starting time works, every later starting time works as well.</p>
+<div class="note-box"><div class="box-label">Checkpoint 3.1</div>
+<p>The window is chosen <em>first</em>. The waiting time is chosen in response to that window. After the waiting time, the promise concerns <em>every later position</em>. A single visit to the window does not fulfil that promise.</p>
+</div>
+<p>There is another useful distinction. We are not demanding that the bob come to rest exactly at some finite time. It may keep crossing from one side to the other with smaller and smaller swings. Even the distance from the resting position may grow between one observation and the next while a small swing is taking place. We do not require each new distance to be smaller than the preceding one. The question is whether every positive window eventually contains all of its later positions. The bob can therefore keep moving from side to side while settling towards one position. We shall soon give this behaviour a precise mathematical description.</p>
+<h2 class="section-title" id="section-7-varepsilon-neighbourhoods-open-windows-on-the-number-line"><span class="math inline">\(\varepsilon\)</span>-Neighbourhoods: Open Windows on the Number Line</h2>
+<p>In the <a href="#section-6-the-pendulum-experiment">pendulum experiment</a>, we placed a window about the resting position. Let us now give that window a mathematical name. The same idea makes sense about any real number <span class="math inline">\(a\)</span>, whether or not a physical pendulum is present. I choose a positive number <span class="math inline">\(\varepsilon\)</span> and place one edge <span class="math inline">\(\varepsilon\)</span> units to the left of <span class="math inline">\(a\)</span> and the other <span class="math inline">\(\varepsilon\)</span> units to the right. The whole window has width <span class="math inline">\(2\varepsilon\)</span>; <span class="math inline">\(\varepsilon\)</span> is its half-width.</p>
+<p>The distance between <span class="math inline">\(x\)</span> and <span class="math inline">\(a\)</span> is <span class="math inline">\(\abs{x-a}\)</span>. Thus <span class="math display">\[\abs{x-a}&lt;\varepsilon
+ \quad\Longleftrightarrow\quad
+ a-\varepsilon&lt;x&lt;a+\varepsilon.\]</span> The interval consists exactly of the positions inside our window.</p>
+<div class="math-box"><div class="box-label">Definition 3.2</div><h3>An Epsilon-Neighbourhood Is an Open Window</h3>
+<p> For <span class="math inline">\(a\in\mathbb{R}\)</span> and <span class="math inline">\(\varepsilon&gt;0\)</span>, the <span class="math inline">\(\varepsilon\)</span>-neighbourhood of <span class="math inline">\(a\)</span> is <span class="math display">\[B_\varepsilon(a)=(a-\varepsilon,a+\varepsilon)=\{x\in\mathbb{R}:|x-a|&lt;\varepsilon\}.\]</span> Its centre is <span class="math inline">\(a\)</span>, its radius is <span class="math inline">\(\varepsilon\)</span>, and its endpoints are excluded.</p>
+</div>
+<p>For example, the <span class="math inline">\(0.1\)</span>-neighbourhood of <span class="math inline">\(2\)</span> is <span class="math inline">\((1.9,2.1)\)</span>. The number <span class="math inline">\(2.04\)</span> is inside; <span class="math inline">\(2.1\)</span> is on the edge and therefore outside. A smaller positive <span class="math inline">\(\varepsilon\)</span> means a narrower window about the same centre.</p>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<p>There is also a useful broader use of the same word: a set can be a neighbourhood if it contains a whole open window about the point.</p>
+<div class="math-box"><div class="box-label">Definition 3.3</div><h3>Neighbourhood</h3>
+<p> A set <span class="math inline">\(U\subseteq\mathbb{R}\)</span> is a neighbourhood of <span class="math inline">\(a\in\mathbb{R}\)</span> if there exists <span class="math inline">\(\varepsilon&gt;0\)</span> such that <span class="math display">\[(a-\varepsilon,a+\varepsilon)\subseteq U.\]</span></p>
+</div>
+<p>Every <span class="math inline">\(\varepsilon\)</span>-neighbourhood is a neighbourhood in this sense. The wider definition does not require <span class="math inline">\(U\)</span> itself to be an interval: it requires room on both sides of <span class="math inline">\(a\)</span>. In our pendulum discussion we use the actual open windows <span class="math inline">\(B_\varepsilon(a)\)</span>, so the geometric picture stays the same.</p>
+<h2 class="section-title" id="section-8-from-the-experiment-to-the-definition-of-a-limit">From the Experiment to the Definition of a Limit</h2>
+<p>We now know what an epsilon-neighbourhood means. Let us record the pendulum’s positions as a sequence and translate our promise about the window into a statement about its terms.</p>
+<h3 class="unnumbered" id="from-the-moving-bob-to-a-sequence">From the moving bob to a sequence</h3>
+<p>Let us take one observation every second. Call the horizontal coordinate of the bob’s centre at the <span class="math inline">\(n\)</span>th observation <span class="math inline">\(x_n\)</span>, choosing the resting position as the origin. Positions to the left are negative and positions to the right are positive. Our observations form the sequence <span class="math display">\[x_1,\ x_2,\ x_3,\ldots.\]</span> A window of radius <span class="math inline">\(\varepsilon\)</span> is the interval <span class="math inline">\((-\varepsilon,\varepsilon)\)</span>, so the centre lies inside it exactly when <span class="math inline">\(|x_n|&lt;\varepsilon\)</span>. The pendulum story therefore asks for a natural number <span class="math inline">\(N\)</span> such that <span class="math display">\[|x_n|&lt;\varepsilon\qquad\text{for every }n\ge N.\]</span> Here <span class="math inline">\(N\)</span> is an observation number. The formal statement concerns these sampled positions. The physical picture motivates the statement; our proofs about sequences will use the statement itself.</p>
+<p>In the graph, the curve follows the bob between observations; the dots mark the positions we actually record. For the window <span class="math inline">\(\varepsilon=0.2\)</span>, <span class="math inline">\(N=7\)</span> works: from that observation onward, every dot lies strictly between the two dashed lines.</p>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<p>If the proposed final position has coordinate <span class="math inline">\(L\)</span> instead of <span class="math inline">\(0\)</span>, the window becomes <span class="math inline">\((L-\varepsilon,L+\varepsilon)\)</span> and the distance from its centre is <span class="math inline">\(|x_n-L|\)</span>. Nothing else changes. We can now write the definition as the precise version of our classroom conversation.</p>
+<div class="math-box"><div class="box-label">Definition 3.4</div><h3>Convergence of a Sequence</h3>
+<p> A sequence <span class="math inline">\((x_n)\)</span> converges to <span class="math inline">\(L\in\mathbb{R}\)</span> if, for every <span class="math inline">\(\varepsilon&gt;0\)</span>, there exists <span class="math inline">\(N\in\mathbb{N}\)</span> such that <span class="math display">\[n\ge N\quad\Longrightarrow\quad\abs{x_n-L}&lt;\varepsilon.\]</span> We write <span class="math display">\[x_n\to L\qquad\text{or}\qquad\lim_{n\to\infty}x_n=L.\]</span></p>
+</div>
+<div class="inset-example"><div class="box-label">Example 3.5</div><h3>Certifying the Destination of Our Train</h3>
+<p> For the rational approximations <span class="math inline">\(r_n\)</span> constructed at the start of this lecture, prove <span class="math inline">\(r_n\to\sqrt2\)</span> directly from the definition.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>We already know <span class="math inline">\(0\le\sqrt2-r_n&lt;10^{1-n}\)</span>. Induction gives <span class="math inline">\(10^{n-1}\ge n\)</span>: it holds at <span class="math inline">\(n=1\)</span>, and multiplication by <span class="math inline">\(10\)</span> gives <span class="math inline">\(10^n\ge10n\ge n+1\)</span> at the next step. Thus <span class="math display">\[|r_n-\sqrt2|&lt;10^{1-n}\le\frac1n.\]</span> Given any <span class="math inline">\(\varepsilon&gt;0\)</span>, the Archimedean property lets us choose <span class="math inline">\(N\in\mathbb{N}\)</span> with <span class="math inline">\(N&gt;1/\varepsilon\)</span>. For every <span class="math inline">\(n\ge N\)</span>, <span class="math display">\[|r_n-\sqrt2|&lt;\frac1n\le\frac1N&lt;\varepsilon.\]</span> This is exactly the definition of convergence. Every rational position remains different from <span class="math inline">\(\sqrt2\)</span>, but every chosen window about <span class="math inline">\(\sqrt2\)</span> contains all sufficiently late positions. The train does not need a final carriage numbered “infinity” to identify its destination.</p>
+</div></details>
+<div class="note-box"><div class="box-label">Intuition 3.3</div>
+<p>I choose the error tolerance <span class="math inline">\(\varepsilon\)</span>; you respond with a waiting index <span class="math inline">\(N\)</span>. Once you have chosen that <span class="math inline">\(N\)</span>, your answer must work for <em>every</em> <span class="math inline">\(n\ge N\)</span>. You may change <span class="math inline">\(N\)</span> when I change <span class="math inline">\(\varepsilon\)</span>, but you cannot choose a new <span class="math inline">\(N\)</span> separately for each later observation.</p>
+</div>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<p>The order of quantifiers and nonconvergence</p>
+<h2 class="section-title" id="section-9-negating-definitions-and-the-order-of-quantifiers">Negating Definitions and the Order of Quantifiers</h2>
+<p>Keep the pendulum conversation in mind while reading the symbols. I choose the window; you choose when to start waiting for the promise to hold; then every later observation must remain inside. The convergence statement <span class="math inline">\(x_n\to L\)</span> has the logical form <span class="math display">\[\forall\varepsilon&gt;0\;\exists N\in\mathbb{N}\;\forall n\ge N:
+ \abs{x_n-L}&lt;\varepsilon.\]</span> To negate it, reverse each quantifier and negate the final inequality: <span class="math display">\[\exists\varepsilon_0&gt;0\;\forall N\in\mathbb{N}\;\exists n\ge N:
+ \abs{x_n-L}\ge\varepsilon_0.\]</span> So how would I show that your proposed limit is wrong? I would find one fixed window around <span class="math inline">\(L\)</span> for which you can never keep your promise. Whatever starting index you suggest, I can point to a later term outside that window. Thus <span class="math inline">\(x_n\)</span> does not converge to <span class="math inline">\(L\)</span> when there is one fixed window around <span class="math inline">\(L\)</span> that the sequence leaves infinitely often.</p>
+<div class="note-box"><div class="box-label">Warning 3.1</div>
+<p>Do not merely replace “<span class="math inline">\(&lt;\)</span>” by “<span class="math inline">\(&gt;\)</span>”. The order of <span class="math inline">\(\forall\)</span> and <span class="math inline">\(\exists\)</span> is part of the meaning.</p>
+</div>
+<p>For example, let <span class="math inline">\(C\)</span> be the set of cities in India. <span class="math display">\[\begin{aligned}
+ &amp;\forall c\in C\;\exists n\in\mathbb{N}:
+   n\text{ is a postal code associated with }c,\\
+ &amp;\exists n\in\mathbb{N}\;\forall c\in C:
+   n\text{ is a postal code associated with }c.
+\end{aligned}\]</span> The first statement can be true; the second says that one postal code serves every city.</p>
+<p>Similarly, <span class="math display">\[\exists M&gt;0\;\forall n:\abs{x_n}&lt;M\]</span> says that one fixed positive number controls every term, while <span class="math display">\[\forall n\;\exists M&gt;0:\abs{x_n}&lt;M\]</span> is true for every real sequence: after seeing <span class="math inline">\(x_n\)</span>, choose <span class="math inline">\(M=|x_n|+1\)</span>. The first assertion is stronger because its bound must be chosen before the index. We will give this property its own name in Lecture <a data-reference="lec:4" data-reference-type="ref" href="lecture-04.html">[lec:4]</a>.</p>
+<h2 class="section-title" id="section-10-a-limit-is-unique">A Limit Is Unique</h2>
+<p>Let us go back to the same pendulum. Suppose one person says, “Its final position is <span class="math inline">\(L\)</span>,” while another says, “No, its final position is <span class="math inline">\(M\)</span>,” where <span class="math inline">\(L&lt;M\)</span>. What would their claims mean in the language of windows?</p>
+<p>The first person is promising that, for every positive window radius, however small, the bob will eventually stay in the window around <span class="math inline">\(L\)</span>. The second person is making the same promise about a window around <span class="math inline">\(M\)</span>. Because the proposed positions are different, I can choose the windows narrow enough that they do not overlap.</p>
+<p>At this point you may say, “But a pendulum can visit both windows.” Certainly it can, at different times. That is not what either promise says. One says that after some time the bob stays in the first window; the other says that after some time it stays in the second. Wait until <em>both</em> times have passed. At any one of these later observations, where is the centre of the bob supposed to be? It would have to lie in both disjoint windows at once. That is impossible.</p>
+<p>The two waiting times need not be equal. If they are <span class="math inline">\(N_L\)</span> and <span class="math inline">\(N_M\)</span>, we simply wait until <span class="math inline">\(\max\{N_L,N_M\}\)</span>. This small choice is the step that turns the picture into a proof.</p>
+<div class="math-box theorem"><div class="box-label">Theorem 3.2</div><h3>Uniqueness of Sequence Limits</h3>
+<p> A sequence of real numbers has at most one limit.</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof using the two windows.</em> Suppose <span class="math inline">\(x_n\to L\)</span> and <span class="math inline">\(x_n\to M\)</span>, with <span class="math inline">\(L\ne M\)</span>. After interchanging the names if necessary, assume <span class="math inline">\(L&lt;M\)</span>. Put <span class="math display">\[d=M-L&gt;0,\qquad\varepsilon=\frac d3.\]</span> The two windows are disjoint because <span class="math display">\[L+\varepsilon=L+\frac d3
+ &lt; L+\frac{2d}{3}=M-\varepsilon.\]</span> By the definition of convergence, there are <span class="math inline">\(N_L,N_M\in\mathbb{N}\)</span> such that <span class="math display">\[\begin{aligned}
+ n\ge N_L&amp;\implies L-\varepsilon&lt;x_n&lt;L+\varepsilon,\\
+ n\ge N_M&amp;\implies M-\varepsilon&lt;x_n&lt;M+\varepsilon.
+ \end{aligned}\]</span> Take <span class="math inline">\(N=\max\{N_L,N_M\}\)</span>. For any <span class="math inline">\(n\ge N\)</span>, both promises must hold, so <span class="math display">\[x_n&lt;L+\varepsilon&lt;M-\varepsilon&lt;x_n,\]</span> which is impossible. Hence the assumption <span class="math inline">\(L\ne M\)</span> was false, and <span class="math inline">\(L=M\)</span>. ◻</p>
+</div></details>
+<h3 class="unnumbered" id="the-same-conclusion-through-the-marks-story">The same conclusion through the marks story</h3>
+<p>There is a second way to write the argument. This time we show that the distance between the proposed limits is smaller than every positive number. The <a href="#ex:smaller-than-eps">marks-and-parents argument</a> then tells us that this distance must be zero.</p>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>A second proof using the triangle inequality.</em> Suppose <span class="math inline">\(x_n\to L\)</span> and <span class="math inline">\(x_n\to M\)</span>. Let <span class="math inline">\(\varepsilon&gt;0\)</span>. The two convergence statements give indices <span class="math inline">\(N_L\)</span> and <span class="math inline">\(N_M\)</span> such that <span class="math display">\[n\ge N_L\implies\abs{x_n-L}&lt;\frac\varepsilon 2,
+ \qquad
+ n\ge N_M\implies\abs{x_n-M}&lt;\frac\varepsilon 2.\]</span> For <span class="math inline">\(n\ge\max\{N_L,N_M\}\)</span>, both inequalities hold. Therefore, by the triangle inequality, <span class="math display">\[\abs{L-M}
+ \le\abs{L-x_n}+\abs{x_n-M}
+ &lt;\frac\varepsilon 2+\frac\varepsilon 2=\varepsilon.\]</span> The number <span class="math inline">\(\abs{L-M}\)</span> is fixed and nonnegative. We have shown that it is smaller than <em>every</em> <span class="math inline">\(\varepsilon&gt;0\)</span>. By <a href="#ex:smaller-than-eps">Example <span data-reference="ex:smaller-than-eps" data-reference-type="ref">[ex:smaller-than-eps]</span></a>, <span class="math inline">\(\abs{L-M}=0\)</span>. Thus <span class="math inline">\(L=M\)</span>. ◻</p>
+</div></details>
+<p>Notice how the two stories meet. The disjoint windows explain why two limits cannot coexist; the marks story explains why a nonnegative distance that survives every positive error bound must be exactly zero. Neither proof says that a sequence must have a limit. We have proved that <em>if</em> it has a limit, there is only one possible value. Where would the window argument fail if we assumed only that the sequence enters each window infinitely often, rather than remaining there from some index onward? Think about <span class="math inline">\((-1)^n\)</span>.</p>
+<h3 class="unnumbered" id="turning-an-error-estimate-into-an-index">Turning an error estimate into an index</h3>
+<div class="inset-example"><div class="box-label">Example 3.6</div><h3>An explicit index for two rational sequences</h3>
+<p> Prove from the definition that <span class="math display">\[\frac{2n-1}{2n+1}\longrightarrow1,
+ \qquad
+ \frac{3n^2+1}{5n^2-1}\longrightarrow\frac35.\]</span> For the second sequence, find the first index from which every term is within <span class="math inline">\(0.01\)</span> of <span class="math inline">\(3/5\)</span>.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>For the first sequence, subtraction identifies the relevant error: <span class="math display">\[\left|\frac{2n-1}{2n+1}-1\right|=\frac2{2n+1}&lt;\frac1n.\]</span> Given <span class="math inline">\(\varepsilon&gt;0\)</span>, any integer <span class="math inline">\(N&gt;1/\varepsilon\)</span> gives error <span class="math inline">\(&lt;\varepsilon\)</span> for <span class="math inline">\(n\ge N\)</span>. For the second sequence, <span class="math display">\[\left|\frac{3n^2+1}{5n^2-1}-\frac35\right|
+ =\frac8{5(5n^2-1)}
+ \le\frac2{5n^2}\qquad(n\ge1),\]</span> because <span class="math inline">\(5n^2-1\ge4n^2\)</span> when <span class="math inline">\(n\ge1\)</span>. Choose <span class="math inline">\(N&gt;\sqrt{2/(5\varepsilon)}\)</span>; then <span class="math inline">\(n\ge N\)</span> makes this error <span class="math inline">\(&lt;\varepsilon\)</span>.</p>
+<p>The convenient estimate gives a valid index, but to find the <em>first</em> index for <span class="math inline">\(\varepsilon=0.01\)</span>, solve the exact inequality: <span class="math display">\[\frac8{5(5n^2-1)}&lt;\frac1{100}
+ \quad\Longleftrightarrow\quad n^2&gt;\frac{161}{5}=32.2.\]</span> It first holds at <span class="math inline">\(n=6\)</span> and remains true thereafter; at <span class="math inline">\(n=5\)</span> it fails. Thus the answer is the sixth term. Notice the difference between an index that works and the least index that works.</p>
+</div></details>
+<div class="inset-example"><div class="box-label">Example 3.7</div><h3>How many terms lie outside a prescribed limit interval?</h3>
+<p> Let <span class="math inline">\(x_n=(3n-5)/(9n+4)\)</span>. Count the terms outside the open interval <span class="math display">\[I=\left(\frac13-\frac1{1000},\;\frac13+\frac1{1000}\right).\]</span></p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>The centre of the interval is <span class="math inline">\(1/3\)</span>. Subtracting it, we obtain <span class="math display">\[x_n-\frac13=-\frac{19}{3(9n+4)},\qquad
+ \left|x_n-\frac13\right|=\frac{19}{3(9n+4)}.\]</span> Since <span class="math inline">\(I\)</span> is open, a point on an endpoint also lies outside. The condition for being outside is therefore <span class="math inline">\(|x_n-1/3|\ge1/1000\)</span>, or <span class="math display">\[\frac{19}{3(9n+4)}\ge\frac1{1000}
+ \quad\Longleftrightarrow\quad
+ 27n\le18988
+ \quad\Longleftrightarrow\quad n\le\frac{18988}{27}
+ =703+\frac7{27}.\]</span> Precisely <span class="math inline">\(x_1,\ldots,x_{703}\)</span> are outside <span class="math inline">\(I\)</span>. From <span class="math inline">\(x_{704}\)</span> onward, every point lies inside.</p>
+<div class="figure-or-centered">
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+</div>
+<p>The positions in this picture are schematic; their order and interval membership are exact.</p>
+</div></details>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<p>At <span class="math inline">\(n=703\)</span> the error is still above <span class="math inline">\(1/1000\)</span>, while at <span class="math inline">\(n=704\)</span> it is below. The vertical axis multiplies each error by <span class="math inline">\(1000\)</span> so that the narrow crossing is visible.</p>
+<div class="inset-example"><div class="box-label">Example 3.8</div><h3>Disproving an incorrect proposed limit</h3>
+<p> Show that <span class="math inline">\(0\)</span> is not the limit of <span class="math inline">\(x_n=(n^2-2)/(2n^2-9)\)</span>. Can you identify its actual limit?</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>For <span class="math inline">\(n\ge3\)</span> the denominator is positive, and a direct calculation gives <span class="math display">\[x_n-\frac12=\frac5{4n^2-18}&gt;0.\]</span> Consequently <span class="math inline">\(x_n&gt;1/2\)</span> for every <span class="math inline">\(n\ge3\)</span>. Choose the fixed error <span class="math inline">\(\varepsilon_0=1/2\)</span>. Given <em>any</em> proposed starting index <span class="math inline">\(N\)</span>, a term with <span class="math inline">\(n\ge\max\{N,3\}\)</span> satisfies <span class="math inline">\(|x_n-0|&gt;\varepsilon_0\)</span>. This negates the definition of <span class="math inline">\(x_n\to0\)</span>.</p>
+<p>The same calculation reveals the actual limit. For <span class="math inline">\(n\ge3\)</span>, <span class="math inline">\(4n^2-18\ge2n^2\)</span>, so <span class="math display">\[\left|x_n-\frac12\right|=\frac5{4n^2-18}\le\frac5{2n^2}.\]</span> Given <span class="math inline">\(\varepsilon&gt;0\)</span>, choose <span class="math inline">\(N\ge3\)</span> with <span class="math inline">\(N&gt;\sqrt{5/(2\varepsilon)}\)</span>. For all <span class="math inline">\(n\ge N\)</span> the error is <span class="math inline">\(&lt;\varepsilon\)</span>; hence <span class="math inline">\(x_n\to1/2\)</span>.</p>
+</div></details>
+<h3 class="unnumbered" id="when-changing-values-still-have-a-limit">When changing values still have a limit</h3>
+<div class="inset-example"><div class="box-label">Example 3.9</div><h3>Odd and even terms point to different limits</h3>
+<p> Consider <span class="math inline">\(x_{2k-1}=1/(2k-1)\)</span> and <span class="math inline">\(x_{2k}=2k/(2k+2)\)</span> for <span class="math inline">\(k\ge1\)</span>. Prove directly that <span class="math inline">\((x_n)\)</span> has no limit.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>The odd terms approach <span class="math inline">\(0\)</span> because <span class="math inline">\(x_{2k-1}=1/(2k-1)\)</span>. The even terms approach <span class="math inline">\(1\)</span> because <span class="math inline">\(x_{2k}=k/(k+1)=1-1/(k+1)\)</span>. We can settle the question directly from the definition. Suppose <span class="math inline">\(x_n\to L\)</span>. Choose <span class="math inline">\(\varepsilon=1/4\)</span>; then all sufficiently late terms must satisfy <span class="math inline">\(|x_n-L|&lt;1/4\)</span>. Choose <span class="math inline">\(k\)</span> so large that both <span class="math inline">\(2k-1\)</span> and <span class="math inline">\(2k\)</span> are beyond that index and <span class="math inline">\(k\ge4\)</span>. We have <span class="math display">\[x_{2k-1}\le\frac17&lt;\frac14,
+ \qquad x_{2k}=\frac{k}{k+1}\ge\frac45&gt;\frac34.\]</span> Hence <span class="math inline">\(|x_{2k}-x_{2k-1}|&gt;1/2\)</span>. But the triangle inequality and the assumed closeness to <span class="math inline">\(L\)</span> give <span class="math display">\[|x_{2k}-x_{2k-1}|
+ \le|x_{2k}-L|+|x_{2k-1}-L|&lt;\frac12,\]</span> a contradiction. No single number can capture both tails.</p>
+</div></details>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<p><span style="color: blue!75!black"><strong>Circles:</strong> odd terms <span class="math inline">\(1/(2k-1)\to0\)</span>.</span> <span style="color: orange!85!black"><strong>Squares:</strong> even terms <span class="math inline">\(k/(k+1)\to1\)</span>.</span></p>
+<p>The two colours approach different horizontal levels. Thus there cannot be a single window around one real number that contains every late term. This picture suggests the conclusion; the proof uses the epsilon definition (and later the subsequence criterion in Lecture <a data-reference="lec:6" data-reference-type="ref" href="lecture-06.html">[lec:6]</a>).</p>
+<div class="inset-example"><div class="box-label">Example 3.10</div><h3>A geometric correction that vanishes</h3>
+<p> Prove directly that <span class="math inline">\((3^n+1)/3^n\to1\)</span>.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>Write the expression as <span class="math inline">\(1+3^{-n}\)</span>. To control <span class="math inline">\(3^{-n}\)</span> without using a sequence limit law, observe that <span class="math inline">\(3^n\ge n+1\)</span> for all <span class="math inline">\(n\ge1\)</span>; the assertion is true at <span class="math inline">\(n=1\)</span>, and multiplying by <span class="math inline">\(3\)</span> proves the next case. Thus <span class="math display">\[\left|\frac{3^n+1}{3^n}-1\right|=\frac1{3^n}\le\frac1{n+1}.\]</span> Given <span class="math inline">\(\varepsilon&gt;0\)</span>, take <span class="math inline">\(N&gt;1/\varepsilon\)</span>. Then every <span class="math inline">\(n\ge N\)</span> has error <span class="math inline">\(&lt;\varepsilon\)</span>. This is a direct application of the definition.</p>
+</div></details>
+<div class="inset-example"><div class="box-label">Example 3.11</div><h3>The first term inside each error window</h3>
+<p> For <span class="math inline">\(x_n=(2n+3)/(n+1)\)</span>, prove <span class="math inline">\(x_n\to2\)</span>. For each of <span class="math inline">\(\varepsilon=0.1,0.01,0.001\)</span>, find the first term from which <span class="math inline">\(|x_n-2|&lt;\varepsilon\)</span> always holds.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>We have <span class="math inline">\(x_n=2+1/(n+1)\)</span>, so the error is exactly <span class="math inline">\(1/(n+1)\)</span>. For any <span class="math inline">\(\varepsilon&gt;0\)</span>, choose an integer <span class="math inline">\(N&gt;1/\varepsilon\)</span>; then <span class="math inline">\(n\ge N\)</span> implies <span class="math inline">\(1/(n+1)&lt;\varepsilon\)</span>, proving the limit. The sharp condition for the first acceptable index is <span class="math inline">\(n+1&gt;1/\varepsilon\)</span>. At the three specified tolerances the first indices are, respectively, <span class="math display">\[\begin{array}{c|ccc}
+ \varepsilon&amp;0.1&amp;0.01&amp;0.001\\\hline
+ \text{first }n&amp;10&amp;100&amp;1000
+ \end{array}\]</span> For example, at <span class="math inline">\(n=9\)</span> the error is <span class="math inline">\(1/10\)</span>, which is <em>equal</em> to <span class="math inline">\(0.1\)</span> and hence does not satisfy the strict inequality.</p>
+</div></details>
+<div class="inset-example"><div class="box-label">Example 3.12</div><h3>Two interlaced geometric tails</h3>
+<p> The terms of a sequence begin <span class="math inline">\(\frac12,\frac12,\frac34,\frac14,\frac78,\frac18,\ldots\)</span>. Its rule is <span class="math inline">\(x_{2k-1}=1-2^{-k}\)</span> and <span class="math inline">\(x_{2k}=2^{-k}\)</span>. Prove that it does not converge.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>The odd terms move toward <span class="math inline">\(1\)</span>, while the even terms move toward <span class="math inline">\(0\)</span>. Indeed <span class="math inline">\(2^k\ge k+1\)</span> by induction, so <span class="math inline">\(2^{-k}\le1/(k+1)\)</span>. If we supposed <span class="math inline">\(x_n\to L\)</span>, then for some <span class="math inline">\(N\)</span> all <span class="math inline">\(n\ge N\)</span> would obey <span class="math inline">\(|x_n-L|&lt;1/4\)</span>. Choose <span class="math inline">\(k\ge3\)</span> with both <span class="math inline">\(2k-1,2k\ge N\)</span>. For this <span class="math inline">\(k\)</span>, <span class="math inline">\(x_{2k-1}=1-2^{-k}\ge7/8\)</span> and <span class="math inline">\(x_{2k}=2^{-k}\le1/8\)</span>. Their distance is at least <span class="math inline">\(3/4\)</span>, whereas closeness of both to <span class="math inline">\(L\)</span> would force their distance below <span class="math inline">\(1/2\)</span> by the triangle inequality. This is impossible.</p>
+<div class="figure-or-centered">
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+</div>
+<p>At <span class="math inline">\(k=1\)</span>, the two terms coincide at <span class="math inline">\(1/2\)</span>; their later behaviour decides convergence.</p>
+</div></details>
+<div class="inset-example"><div class="box-label">Example 3.13</div><h3>Why factorial growth beats a fixed exponential</h3>
+<p> For every fixed <span class="math inline">\(a&gt;0\)</span>, prove directly that <span class="math inline">\(a^n/n!\to0\)</span>.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>The ratio between consecutive factors <span class="math inline">\(a/j\)</span> becomes smaller than <span class="math inline">\(1/2\)</span> once <span class="math inline">\(j&gt;2a\)</span>. Choose a fixed integer <span class="math inline">\(k&gt;2a\)</span>. If <span class="math inline">\(n&gt;k\)</span>, split the product: <span class="math display">\[\frac{a^n}{n!}
+ =\underbrace{\frac{a^k}{k!}}_{C&gt;0}
+ \prod_{j=k+1}^{n}\frac aj
+ \le C\left(\frac12\right)^{n-k}.\]</span> This is an explicit bound, so we can finish from the definition rather than invoke a limit theorem. Induction gives <span class="math inline">\(2^m\ge m+1\)</span> for <span class="math inline">\(m\ge0\)</span>; hence <span class="math display">\[0&lt;\frac{a^n}{n!}\le\frac{C}{n-k+1}.\]</span> For a given <span class="math inline">\(\varepsilon&gt;0\)</span>, choose <span class="math inline">\(N&gt;\max\{k,k-1+C/\varepsilon\}\)</span>. Whenever <span class="math inline">\(n\ge N\)</span>, the error <span class="math inline">\(|a^n/n!-0|\)</span> is smaller than <span class="math inline">\(\varepsilon\)</span>. The early factors may be large, but only finitely many of them appear in the fixed constant <span class="math inline">\(C\)</span>.</p>
+</div></details>
+<div class="inset-example"><div class="box-label">Example 3.14</div><h3>Four quick tests of convergence and divergence</h3>
+<p> Determine the limit behaviour of each sequence:</p>
+<div class="parts">
+<p><span class="math inline">\(a_n=1/(2\pi)\)</span>;</p>
+<p><span class="math inline">\(b_n=1\)</span> for even <span class="math inline">\(n\)</span>, while <span class="math inline">\(b_n=1/n\)</span> for odd <span class="math inline">\(n\)</span>;</p>
+<p><span class="math inline">\(c_n=\cos(n\pi/2)/n\)</span>;</p>
+<p><span class="math inline">\(d_n=n\bigl(1-(-1)^n\bigr)\)</span>.</p>
+</div>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<div class="parts">
+<p>The sequence is constant and has limit <span class="math inline">\(1/(2\pi)\)</span>: its error relative to that number is <span class="math inline">\(0\)</span> for every <span class="math inline">\(n\)</span>.</p>
+<p>The even terms remain <span class="math inline">\(1\)</span>, while the odd terms <span class="math inline">\(1/n\)</span> become arbitrarily small. If a limit <span class="math inline">\(L\)</span> existed, choose <span class="math inline">\(\varepsilon=1/5\)</span> and a sufficiently late odd index <span class="math inline">\(j\)</span> with <span class="math inline">\(b_j&lt;1/5\)</span>, together with a later even index <span class="math inline">\(m\)</span> with <span class="math inline">\(b_m=1\)</span>. Then <span class="math inline">\(|b_m-b_j|&gt;4/5\)</span>, although <span class="math inline">\(|b_m-L|+|b_j-L|&lt;2/5\)</span>: contradiction.</p>
+<p><span class="math inline">\(|c_n|\le1/n\)</span>. For <span class="math inline">\(N&gt;1/\varepsilon\)</span> and <span class="math inline">\(n\ge N\)</span>, <span class="math inline">\(|c_n-0|&lt;\varepsilon\)</span>, so <span class="math inline">\(c_n\to0\)</span>.</p>
+<p>At even indices <span class="math inline">\(d_{2k}=0\)</span>; at odd indices <span class="math inline">\(d_{2k-1}=2(2k-1)\)</span>, which grows without bound. There is no finite limit: if <span class="math inline">\(d_n\to L\)</span>, the error tolerance <span class="math inline">\(1\)</span> would put all sufficiently late terms within distance <span class="math inline">\(1\)</span> of <span class="math inline">\(L\)</span>. Take a late even index and a late odd index whose term exceeds <span class="math inline">\(2\)</span>. Their values differ by more than <span class="math inline">\(2\)</span>, whereas the triangle inequality would make their difference less than <span class="math inline">\(1+1=2\)</span>. This is impossible. Nor do all late terms exceed every prescribed bound: however far we go, another even term is <span class="math inline">\(0\)</span>.</p>
+</div>
+</div></details>
+<h2 class="section-title" id="section-11-homework-for-lecture-3">Homework for Lecture 3</h2>
+<p>Establish each limit directly from the definition. Write an explicit condition on <span class="math inline">\(N\)</span> in terms of <span class="math inline">\(\varepsilon\)</span>; algebraic guesses alone do not complete a proof. The exercises form a bank to work through over several sittings.</p>
+<div class="enumerate">
+</div>
+</div>
+<div class="edition-note"><strong>About this web edition.</strong> This page is converted from the LaTeX lecture manuscript. Some original TikZ illustrations are marked for conversion. End-of-lecture homework and separate answer keys are not included here. Please consult the author before redistributing.</div>
+<nav class="reader-end" aria-label="Next and previous lecture"><a href="lecture-02.html">← Lecture 02</a><a href="lecture-04.html">Lecture 04 →</a></nav><div class="copyright">© 2026 Aritra Dey. All rights reserved. Reuse, reproduction or redistribution requires the author’s prior written permission.</div></div></main>
+<aside class="on-this-page"><h2>On this page</h2><a href="#section-1-why-study-sequences-a-train-towards-a-real-number">Why Study Sequences? A Train towards a Real Number</a><a href="#section-2-what-is-a-sequence">What Is a Sequence?</a><a href="#section-3-distance-on-the-real-line">Distance on the Real Line</a><a href="#section-4-a-sequence-is-more-than-its-range">A Sequence Is More than Its Range</a><a href="#section-5-a-tiny-problem-with-a-big-message">A Tiny Problem with a Big Message</a><a href="#section-6-the-pendulum-experiment">The Pendulum Experiment</a><a href="#section-7-varepsilon-neighbourhoods-open-windows-on-the-number-line">\(\varepsilon\) -Neighbourhoods: Open Windows on the Number Line</a><a href="#section-8-from-the-experiment-to-the-definition-of-a-limit">From the Experiment to the Definition of a Limit</a><a href="#section-9-negating-definitions-and-the-order-of-quantifiers">Negating Definitions and the Order of Quantifiers</a><a href="#section-10-a-limit-is-unique">A Limit Is Unique</a><a href="#section-11-homework-for-lecture-3">Homework for Lecture 3</a></aside></div></body></html>

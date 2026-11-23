@@ -1,0 +1,366 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Lecture 1: Real Numbers, Sets, and Completeness — Aritra Dey's online real analysis lecture notes."><title>Lecture 1: Real Numbers, Sets, and Completeness | Aritra Dey</title><link rel="stylesheet" href="../assets/book.css"><script src="../assets/mathjax.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><script defer src="../assets/book.js"></script></head><body><a class="skip" href="#reader-main">Skip to lecture</a><header class="topbar"><a class="brand" href="../../"><span class="brand-mark">A</span><span>Aritra Dey <span style="opacity:.42;padding:0 7px">/</span> Mathematics</span></a><nav class="top-links"><a href="../">All books</a><a href="./">Contents</a><button class="circle-button" data-theme-toggle aria-label="Toggle light and dark mode"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></nav></header><div class="reader-shell"><aside class="sidebar" id="toc-sidebar" aria-label="Book table of contents"><div class="toc-label">Book one · Real Analysis</div><a class="side-book" href="./">Contents</a><a class="side-item active" href="lecture-01.html" aria-current="page"><span>01</span>Real numbers &amp; completeness</a><a class="side-item" href="lecture-02.html"><span>02</span>Countability</a><a class="side-item" href="lecture-03.html"><span>03</span>Sequences &amp; limits</a><a class="side-item" href="lecture-04.html"><span>04</span>Direct epsilon proofs</a><a class="side-item" href="lecture-05.html"><span>05</span>Limit laws</a><a class="side-item" href="lecture-06.html"><span>06</span>Monotone convergence</a><a class="side-item" href="lecture-07.html"><span>07</span>Cauchy sequences</a><a class="side-item" href="lecture-08.html"><span>08</span>Density &amp; cluster points</a><a class="side-item" href="lecture-09.html"><span>09</span>Function limits</a><a class="side-item" href="lecture-10.html"><span>10</span>Limits at infinity</a><a class="side-item" href="lecture-11.html"><span>11</span>Standard limits</a><a class="side-item" href="lecture-12.html"><span>12</span>One-sided limits</a><a class="side-item" href="lecture-13.html"><span>13</span>Infinitesimals</a><a class="side-item" href="lecture-14.html"><span>14</span>Continuity</a><a class="side-item" href="lecture-15.html"><span>15</span>Discontinuities</a><a class="side-item" href="lecture-16.html"><span>16</span>Intermediate Value Theorem</a></aside>
+<main class="reader-main" id="reader-main"><div class="reading-width"><button id="toc-toggle" class="sidebar-toggle" aria-expanded="false" aria-controls="toc-sidebar">☰ All lectures</button>
+<nav class="book-breadcrumb" aria-label="Breadcrumb"><a href="../">Books</a><span>›</span><a href="./">Real Analysis</a><span>›</span><span>Lecture 01</span></nav>
+<header class="chapter-head"><div class="chapter-label">Lecture 01 · Online reading edition</div><h1>Real Numbers, Sets, and Completeness</h1><p>Read this lecture online, then continue to the next chapter. Figures and exercises are being adapted separately for the web edition.</p><div class="reading-tools"><button type="button" id="type-toggle" aria-pressed="false">Larger text</button><button type="button" id="proof-toggle">Expand all proofs &amp; worked solutions</button></div></header>
+<div class="lecture-content">
+<p><span id="app:real-background"></span> <span id="chap:real-numbers"></span> <span id="app:notation-proof-language"></span></p>
+<h2 class="section-title" id="section-1-why-study-real-numbers">Why Study Real Numbers?</h2>
+<div class="note-box"><div class="box-label">Motivation 1.1</div>
+<p>Human beings first needed numbers for counting. Later, measurement forced us to use fractions. Geometry then produced lengths that cannot be written as fractions at all. The real number system is the number system large enough to contain all these quantities and complete enough to support limits and calculus.</p>
+</div>
+<p>The most familiar number systems appear because different questions require different kinds of answers.</p>
+<ul>
+<li><p>The natural numbers <span class="math inline">\(\mathbb{N}=\{1,2,3,\ldots\}\)</span> answer questions such as “How many objects are there?”</p></li>
+<li><p>The integers <span class="math inline">\(\mathbb{Z}=\{\ldots,-2,-1,0,1,2,\ldots\}\)</span> allow subtraction even when the result is negative.</p></li>
+<li><p>The rational numbers <span class="math display">\[\mathbb{Q}=\left\{\frac pq:p,q\in\mathbb{Z},\ q\ne0\right\}\]</span> allow exact division, such as sharing three loaves equally among four people.</p></li>
+<li><p>The irrational numbers are the real numbers that are not rational. They include numbers such as <span class="math inline">\(\sqrt2\)</span>, <span class="math inline">\(\pi\)</span>, and <span class="math inline">\(e\)</span>.</p></li>
+</ul>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<div class="note-box"><div class="box-label">Checkpoint 1.1</div>
+<p>Every integer is rational because <span class="math inline">\(m=m/1\)</span>. Every rational number is real. However, not every real number is rational. In symbols, <span class="math display">\[\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}.\]</span></p>
+</div>
+<h2 class="section-title" id="section-2-common-number-sets">Common Number Sets</h2>
+<div class="math-box"><div class="box-label">Definition 1.1</div><h3>The Standard Number Sets</h3>
+<p> <span class="math display">\[\mathbb{N}=\{1,2,3,\ldots\},\qquad
+ \mathbb{Z}=\{\ldots,-2,-1,0,1,2,\ldots\},\]</span> <span class="math display">\[\mathbb{Q}=\left\{\frac pq:p,q\in\mathbb{Z},\ q\ne0\right\},
+ \qquad
+ \mathbb{R}=\text{the real number system}.\]</span> A real number outside <span class="math inline">\(\mathbb{Q}\)</span> is called <em>irrational</em>.</p>
+</div>
+<h2 class="section-title" id="section-3-the-diagonal-of-a-unit-square">The Diagonal of a Unit Square</h2>
+<p>Consider a square of side length <span class="math inline">\(1\)</span>. By the Pythagorean theorem, its diagonal <span class="math inline">\(d\)</span> satisfies <span class="math display">\[d^2=1^2+1^2=2,\]</span> so <span class="math inline">\(d=\sqrt2\)</span>.</p>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<p>The line segment is visibly present. Therefore, the length <span class="math inline">\(\sqrt2\)</span> is not an imaginary invention. The important question is whether this length can be expressed as a fraction <span class="math inline">\(p/q\)</span>.</p>
+<div class="note-box"><div class="box-label">Historical note 1.1</div>
+<p>A traditional account associates the discovery of irrational magnitudes with the Pythagorean school in ancient Greece. The exact historical details are uncertain, but the mathematical shock is easy to understand: geometry produced a perfectly valid length that arithmetic with fractions could not represent.</p>
+</div>
+<h2 class="section-title" id="section-4-quantifiers">Quantifiers</h2>
+<p>Before we use symbols, let us say exactly what we mean. “Every student has a book” and “There is a book which every student has” make different promises. In the first sentence, different students may have different books. In the second, one particular book must work for everybody. Mathematics needs the same care about who is chosen first and what is allowed to depend on that choice.</p>
+<p><span class="math display">\[\forall\quad\text{means ``for every,''}
+ \qquad
+ \exists\quad\text{means ``there exists.''}\]</span> In <span class="math inline">\(\forall x\in A\;P(x)\)</span>, the set <span class="math inline">\(A\)</span> is the <em>domain</em>: it tells us which values of <span class="math inline">\(x\)</span> we must consider. The assertion <span class="math inline">\(P(x)\)</span> must hold for every one of those values. To disprove it, one value in <span class="math inline">\(A\)</span> for which <span class="math inline">\(P(x)\)</span> fails is enough; we call this a <em>counterexample</em>. By contrast, <span class="math inline">\(\exists x\in A\;P(x)\)</span> asks for at least one suitable value, often called a <em>witness</em>. It does not say that there is only one.</p>
+<h3 class="unnumbered" id="read-from-left-to-right-the-order-of-the-choices">Read from left to right: the order of the choices</h3>
+<div class="inset-example"><div class="box-label">Example 1.1</div><h3>One response for each choice, or one response for everybody?</h3>
+<p> Compare the following two statements: <span class="math display">\[\text{(A)}\quad \forall n\in\mathbb Z\;\exists m\in\mathbb Z:\ n&lt;m,
+\qquad
+\text{(B)}\quad \exists m\in\mathbb Z\;\forall n\in\mathbb Z:\ n&lt;m.\]</span> Write each in words and decide whether it is true.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>Statement (A) says: “For every integer <span class="math inline">\(n\)</span>, there is an integer <span class="math inline">\(m\)</span> greater than <span class="math inline">\(n\)</span>.” You give me <span class="math inline">\(n\)</span> first; I then choose <span class="math inline">\(m=n+1\)</span>. My choice may depend on yours. Since <span class="math inline">\(n&lt;n+1\)</span>, (A) is true.</p>
+<p>Statement (B) says: “There is an integer <span class="math inline">\(m\)</span> greater than every integer <span class="math inline">\(n\)</span>.” Here I must announce one <span class="math inline">\(m\)</span> before you choose <span class="math inline">\(n\)</span>, and it must survive every choice you make. Whatever <span class="math inline">\(m\)</span> I announce, you may choose <span class="math inline">\(n=m\)</span>. The required inequality becomes <span class="math inline">\(m&lt;m\)</span>, which is false. Thus (B) is false.</p>
+<p>The difference is not in the inequality. It is in the order of the choices: (A) allows <span class="math inline">\(m=m(n)\)</span>, whereas (B) demands one fixed <span class="math inline">\(m\)</span> for all <span class="math inline">\(n\)</span>.</p>
+</div></details>
+<p>Now consider the closely related statements from our discussion, with the ranges of both variables written explicitly: <span class="math display">\[\text{(C)}\quad
+ \forall n\in\mathbb{N}\;\exists M\in(0,\infty): n&lt;M,
+\qquad
+\text{(D)}\quad
+ \exists M\in(0,\infty)\;\forall n\in\mathbb{N}: n&lt;M.\]</span> Here <span class="math inline">\(M\)</span> is a <em>positive real number</em>, not necessarily an integer. Statement (C) says that each natural number has some positive real number above it; <span class="math inline">\(M=n+1\)</span> proves this immediately. Statement (D) asks for a single positive real number above all the natural numbers. This statement is false, but the integer argument above does not prove that: setting <span class="math inline">\(n=M\)</span> may not give a natural number. We shall justify its falsity later in this lecture, when we prove the Archimedean property from completeness. For now, the point is to distinguish the two promises, without borrowing a result we have not yet proved.</p>
+<h3 class="unnumbered" id="what-does-it-mean-to-negate-a-statement">What does it mean to negate a statement?</h3>
+<p>To negate a statement is to describe <em>exactly when it fails</em>. “Not every student passed” means that at least one student did not pass. It does not mean that every student failed. Conversely, “There is no student who passed” means that every student failed.</p>
+<div class="math-box"><div class="box-label">Formula 1.1</div><h3>Negating Quantified Statements</h3>
+<p> For a fixed domain <span class="math inline">\(A\)</span>, <span class="math display">\[\neg\bigl(\forall x\in A\;P(x)\bigr)
+ \equiv \exists x\in A\;\neg P(x),\]</span> <span class="math display">\[\neg\bigl(\exists x\in A\;P(x)\bigr)
+ \equiv \forall x\in A\;\neg P(x).\]</span> The symbol <span class="math inline">\(\neg\)</span> means “not”, and <span class="math inline">\(\equiv\)</span> means that the two statements have the same truth value. The domain stays the same; each quantifier changes, and the assertion inside is negated.</p>
+<p>An implication fails precisely when its hypothesis is true and its conclusion is false: <span class="math display">\[\neg(P\Rightarrow Q)\equiv P\ \text{and}\ \neg Q.\]</span> For real numbers, the boundary cases matter: <span class="math display">\[\neg(a&lt;b)\equiv a\ge b,
+ \qquad \neg(a\le b)\equiv a&gt;b.\]</span> Equality belongs to “not less than”. It does not belong to “greater than”.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 1.2</div><h3>Negate the whole claim, keeping the domain</h3>
+<p> Negate the statement “Every positive real number is greater than <span class="math inline">\(1\)</span>.” Decide which of the original statement and its negation is true.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>First write the complete statement: <span class="math display">\[\forall x\in(0,\infty): x&gt;1.\]</span> For it to fail, we need <em>one positive real number</em> for which <span class="math inline">\(x&gt;1\)</span> fails. Thus its negation is <span class="math display">\[\exists x\in(0,\infty): x\le1.\]</span> In words: “There is a positive real number which is at most <span class="math inline">\(1\)</span>.” The choice <span class="math inline">\(x=\tfrac12\)</span> proves the negation, so the original statement is false. The choice <span class="math inline">\(x=1\)</span> would also work. The proposed negation “Every positive real number is less than <span class="math inline">\(1\)</span>” would change both the quantifier and the inequality incorrectly.</p>
+</div></details>
+<p>With more than one quantifier, work from the outside inward. For example, the negation of (C) is obtained as follows: <span class="math display">\[\begin{aligned}
+ &amp;\neg\bigl[\forall n\in\mathbb{N}\;\exists M\in(0,\infty): n&lt;M\bigr]\\
+ &amp;\quad\equiv \exists n\in\mathbb{N}\;
+       \neg\bigl[\exists M\in(0,\infty): n&lt;M\bigr]\\
+ &amp;\quad\equiv \exists n\in\mathbb{N}\;\forall M\in(0,\infty): n\ge M.
+\end{aligned}\]</span> Read the last line: “There is a natural number which is at least every positive real number.” This is false, as expected: for any proposed <span class="math inline">\(n\)</span>, the positive real number <span class="math inline">\(M=n+1\)</span> defeats it.</p>
+<p>Notice that this is <em>not</em> statement (D). Merely interchanging two quantifiers does not produce a negation. To negate, we keep the variables in their original order, change <em>each</em> quantifier, and negate the assertion. For comparison, the negation of (D) is <span class="math display">\[\forall M\in(0,\infty)\;\exists n\in\mathbb{N}: n\ge M.\]</span> It says: “Whatever positive real bound you propose, some natural number reaches or exceeds it.” Its proof is part of the later Archimedean discussion.</p>
+<div class="inset-example"><div class="box-label">Example 1.3</div><h3>Negating a statement with an “if”</h3>
+<p> Negate: “For every real number <span class="math inline">\(x\)</span>, if <span class="math inline">\(x&gt;2\)</span>, then <span class="math inline">\(x^2&gt;4\)</span>.” Explain what a counterexample would have to satisfy.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>The statement is <span class="math display">\[\forall x\in\mathbb{R}:\ (x&gt;2\Rightarrow x^2&gt;4).\]</span> First change “for every” to “there exists”. Then ask when the implication fails: its hypothesis must hold, and its conclusion must fail. Therefore the negation is <span class="math display">\[\exists x\in\mathbb{R}:\ (x&gt;2\ \text{and}\ x^2\le4).\]</span> In words: “There is a real number greater than <span class="math inline">\(2\)</span> whose square is at most <span class="math inline">\(4\)</span>.” A number such as <span class="math inline">\(x=0\)</span> is not a counterexample, although its square is at most <span class="math inline">\(4\)</span>, because it does not satisfy the hypothesis <span class="math inline">\(x&gt;2\)</span>.</p>
+<p>In fact no counterexample exists. If <span class="math inline">\(x&gt;2\)</span>, then both <span class="math inline">\(x-2\)</span> and <span class="math inline">\(x+2\)</span> are positive, so <span class="math inline">\(x^2-4=(x-2)(x+2)&gt;0\)</span>. Thus the original statement is true and its negation is false. We have written the negation first and checked its truth second; these are separate tasks.</p>
+</div></details>
+<div class="note-box"><div class="box-label">Method 1.1</div>
+<p>Write the domains. Read the statement aloud, respecting the order of the choices. Change each quantifier, one at a time. Negate the final assertion, including any implication, and check whether equality is allowed. Finally, read your new statement aloud: does it describe precisely a failure of the original promise?</p>
+</div>
+<h2 class="section-title" id="section-5-standard-proof-patterns">Standard Proof Patterns</h2>
+<p><strong>Direct Proof.</strong> Begin with the hypotheses and use definitions or known results until the desired conclusion is reached.</p>
+<p><strong>Contradiction.</strong> Assume the desired conclusion is false. Derive a statement that contradicts a hypothesis or a known fact. The irrationality of <span class="math inline">\(\sqrt2\)</span> is a model example.</p>
+<p><strong>Induction.</strong> Prove a base case. Assume the statement for <span class="math inline">\(n\)</span> and use that assumption to prove it for <span class="math inline">\(n+1\)</span>. We will write out an induction argument in Section <a data-reference="sec:induction" data-reference-type="ref" href="#section-10-induction-least-elements-and-a-reading-check">1.10</a>.</p>
+<p><strong>A counterexample.</strong> To disprove a statement about every object in a specified domain, give one object in that domain for which it fails. For instance, <span class="math inline">\(2\)</span> disproves the claim that every even integer is divisible by <span class="math inline">\(4\)</span>.</p>
+<h2 class="section-title" id="section-6-proof-that-sqrt2-is-irrational">Proof That <span class="math inline">\(\sqrt2\)</span> Is Irrational</h2>
+<p>We now prove carefully that no fraction can equal <span class="math inline">\(\sqrt2\)</span>.</p>
+<div class="math-box theorem"><div class="box-label">Theorem 1.1</div><h3>Irrationality of \(\sqrt2\)</h3>
+<p> The number <span class="math inline">\(\sqrt2\)</span> is irrational.</p>
+</div>
+<div class="note-box"><div class="box-label">Proof strategy 1.1</div>
+<p>Assume the opposite: write <span class="math inline">\(\sqrt2=p/q\)</span> in lowest terms. We shall show that both <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> must be even. That contradicts the phrase “in lowest terms.”</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> Suppose, for contradiction, that <span class="math inline">\(\sqrt2\)</span> is rational. Then <span class="math display">\[\sqrt2=\frac pq\]</span> for some coprime integers <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> with <span class="math inline">\(q\ne0\)</span>.</p>
+<p>Squaring both sides gives <span class="math display">\[2=\frac{p^2}{q^2},
+  \qquad\text{hence}\qquad
+  p^2=2q^2.\]</span> Thus <span class="math inline">\(p^2\)</span> is even. An odd integer has odd square, so <span class="math inline">\(p\)</span> itself must be even. Write <span class="math inline">\(p=2k\)</span> for some <span class="math inline">\(k\in\mathbb{Z}\)</span>. Substitution gives <span class="math display">\[(2k)^2=2q^2
+  \quad\Longrightarrow\quad
+  4k^2=2q^2
+  \quad\Longrightarrow\quad
+  q^2=2k^2.\]</span> Therefore <span class="math inline">\(q^2\)</span> is even, and hence <span class="math inline">\(q\)</span> is even as well.</p>
+<p>We have proved that <span class="math inline">\(2\)</span> divides both <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span>. This contradicts the assumption that <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> are coprime. Therefore <span class="math inline">\(\sqrt2\)</span> cannot be rational. ◻</p>
+</div></details>
+<div class="note-box"><div class="box-label">Connection 1.1</div>
+<p>Every integer is either even or odd. If <span class="math inline">\(p\)</span> were odd, we could write <span class="math inline">\(p=2m+1\)</span>, and then <span class="math display">\[p^2=(2m+1)^2=4m^2+4m+1=2(2m^2+2m)+1,\]</span> which is odd. Thus an even square cannot come from an odd integer.</p>
+</div>
+<div class="note-box"><div class="box-label">Warning 1.1</div>
+<p>It is not enough to write <span class="math inline">\(\sqrt2=p/q\)</span> with arbitrary integers <span class="math inline">\(p,q\)</span>. The fraction must first be reduced to lowest terms. Otherwise, concluding that both <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> are even would not yet be a contradiction.</p>
+</div>
+<h2 class="section-title" id="section-7-other-irrational-numbers">Other Irrational Numbers</h2>
+<p>The number <span class="math inline">\(\sqrt2\)</span> is only the first example. Many other real numbers are irrational.</p>
+<ul>
+<li><p><span class="math inline">\(\sqrt3,\sqrt5,\ldots\)</span> are irrational whenever the integer under the square root is not a perfect square.</p></li>
+<li><p><span class="math inline">\(\pi\)</span> is the ratio of a circle’s circumference to its diameter.</p></li>
+<li><p><span class="math inline">\(e\)</span> arises naturally in continuous growth, logarithms, and differential equations.</p></li>
+</ul>
+<p>An elementary proof that <span class="math inline">\(e\)</span> is irrational can be given using infinite series in the next level; proving the irrationality of <span class="math inline">\(\pi\)</span> requires further tools. These examples show that irrational numbers are not rare exceptions; they are woven throughout mathematics.</p>
+<h2 class="section-title" id="section-8-rational-approximations-and-the-gaps">Rational Approximations and the “Gaps”</h2>
+<p>The decimal expansion of <span class="math inline">\(\sqrt2\)</span> begins <span class="math display">\[\sqrt2=1.41421356237\ldots.\]</span> We can trap it between rational numbers: <span class="math display">\[1.414&lt;\sqrt2&lt;1.415,\]</span> and more accurately, <span class="math display">\[1.4142&lt;\sqrt2&lt;1.4143.\]</span> Each endpoint is rational, but the number being trapped is not.</p>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+<div class="note-box"><div class="box-label">Intuition 1.1</div>
+<p>The rational numbers are dense: between any two different real numbers there is a rational number. Yet <span class="math inline">\(\mathbb{Q}\)</span> is not complete. A sequence of rational approximations can settle toward a number that is not rational. The real numbers are obtained by adding all such missing limits.</p>
+</div>
+<h2 class="section-title" id="section-9-the-real-number-system">The Real Number System</h2>
+<p>The real numbers form an ordered field. Informally, this means that we can add, subtract, multiply, divide by nonzero numbers, and compare numbers using <span class="math inline">\(&lt;\)</span> in the usual consistent way. The crucial additional property is completeness.</p>
+<div class="math-box"><div class="box-label">Definition 1.2</div><h3>Completeness, Informal Form</h3>
+<p> The real number system is complete: whenever a collection of real numbers determines a finite boundary that should exist, that boundary is itself a real number.</p>
+</div>
+<p>One precise formulation is the least-upper-bound property.</p>
+<div class="math-box theorem"><div class="box-label">Theorem 1.2</div><h3>Least-Upper-Bound Property of \(\mathbb{R}\)</h3>
+<p> Every nonempty subset of <span class="math inline">\(\mathbb{R}\)</span> that is bounded above has a least upper bound in <span class="math inline">\(\mathbb{R}\)</span>.</p>
+</div>
+<p>For now, the main message is this:</p>
+
+<p>Completeness is what makes the main theorems of calculus possible. The Bolzano–Weierstrass theorem, the intermediate value theorem, the extreme value theorem, and the mean value theorem all ultimately depend on it.</p>
+<h2 class="section-title" id="section-10-induction-least-elements-and-a-reading-check">Induction, Least Elements, and a Reading Check</h2>
+<p>Mathematical induction says that if a property holds for <span class="math inline">\(1\)</span>, and its truth for <span class="math inline">\(n\)</span> implies its truth for <span class="math inline">\(n+1\)</span>, then it holds for every <span class="math inline">\(n\in\mathbb{N}\)</span>. The hypothesis at the inductive step is not an assumption that the theorem is already true for all <span class="math inline">\(n\)</span>: it is a conditional argument showing that truth passes from one stage to the next.</p>
+<p>An equivalent form is the well-ordering principle: every nonempty subset of <span class="math inline">\(\mathbb{N}\)</span> has a least element. To see how induction gives this, suppose a nonempty set <span class="math inline">\(S\subseteq\mathbb{N}\)</span> had no least element. Then <span class="math inline">\(1\notin S\)</span>. If <span class="math inline">\(1,\ldots,n\)</span> were absent, <span class="math inline">\(n+1\)</span> could not belong to <span class="math inline">\(S\)</span>, since it would be least. Induction would make <span class="math inline">\(S\)</span> empty. Conversely, if an inductive statement failed, the least index of failure would contradict either the base case or the induction step.</p>
+<div class="inset-example"><div class="box-label">Example 1.4</div><h3>A First Inductive Estimate</h3>
+<p> For <span class="math inline">\(t\ge-1\)</span> and <span class="math inline">\(n\in\mathbb{N}\)</span>, prove <span class="math inline">\((1+t)^n\ge1+nt\)</span>.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>The assertion is equality for <span class="math inline">\(n=1\)</span>. If it holds for <span class="math inline">\(n\)</span>, multiply by <span class="math inline">\(1+t\ge0\)</span> to obtain <span class="math display">\[(1+t)^{n+1}\ge(1+nt)(1+t)
+ =1+(n+1)t+nt^2\ge1+(n+1)t.\]</span> The nonnegative multiplier explains the restriction <span class="math inline">\(t\ge-1\)</span>.</p>
+</div></details>
+<h2 class="section-title" id="section-11-sets-and-the-language-of-membership">Sets and the Language of Membership</h2>
+<p>A set is determined by its elements. Thus <span class="math inline">\(\{1,2,2,3\}=\{3,2,1\}\)</span>: repetition and order do not change a set. A sequence, by contrast, records order and repetition. This distinction will matter when we enumerate a set or study a sequence of real numbers.</p>
+<p>The notation <span class="math inline">\(A\subseteq B\)</span> means that every member of <span class="math inline">\(A\)</span> is a member of <span class="math inline">\(B\)</span>. To prove <span class="math inline">\(A=B\)</span>, one often proves both inclusions. The empty set <span class="math inline">\(\varnothing\)</span> is a subset of every set: there is no element of <span class="math inline">\(\varnothing\)</span> that could violate the required implication. The statements <span class="math inline">\(\varnothing\subseteq A\)</span> and <span class="math inline">\(\varnothing\in A\)</span> are different. The first is always true; the second says that the empty set is one of the objects listed in <span class="math inline">\(A\)</span>.</p>
+<div class="inset-example"><div class="box-label">Example 1.5</div><h3>Membership Is Not Inclusion</h3>
+<p> Let <span class="math inline">\(A=\{1,\{1\},\varnothing\}\)</span>. Explain which of the following are true: <span class="math inline">\(1\in A\)</span>, <span class="math inline">\(\{1\}\in A\)</span>, <span class="math inline">\(\{1\}\subseteq A\)</span>, <span class="math inline">\(\varnothing\in A\)</span>, and <span class="math inline">\(\{\varnothing\}\subseteq A\)</span>.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>All five are true, for different reasons. The objects <span class="math inline">\(1\)</span>, <span class="math inline">\(\{1\}\)</span>, and <span class="math inline">\(\varnothing\)</span> are explicitly members of <span class="math inline">\(A\)</span>. The only member of <span class="math inline">\(\{1\}\)</span> is <span class="math inline">\(1\)</span>, which belongs to <span class="math inline">\(A\)</span>. The only member of <span class="math inline">\(\{\varnothing\}\)</span> is <span class="math inline">\(\varnothing\)</span>, which also belongs to <span class="math inline">\(A\)</span>. A useful discipline is to read a membership statement aloud as a statement about one object, and an inclusion statement as a statement about every element of a set.</p>
+</div></details>
+<h2 class="section-title" id="section-12-unions-intersections-and-indexed-families">Unions, Intersections, and Indexed Families</h2>
+<p>For subsets of a fixed set <span class="math inline">\(X\)</span>, <span class="math display">\[A\cup B=\{x:x\in A\text{ or }x\in B\},\qquad
+ A\cap B=\{x:x\in A\text{ and }x\in B\}.\]</span> The complement <span class="math inline">\(X\setminus A\)</span> consists of the points of <span class="math inline">\(X\)</span> outside <span class="math inline">\(A\)</span>. A family <span class="math inline">\((A_i)_{i\in I}\)</span> is a collection of sets indexed by another set <span class="math inline">\(I\)</span>. Its union and intersection mean <span class="math display">\[x\in\bigcup_{i\in I}A_i\iff\exists i\in I,\ x\in A_i,
+ \qquad
+ x\in\bigcap_{i\in I}A_i\iff\forall i\in I,\ x\in A_i.\]</span> Thus union is related to an existential quantifier and intersection to a universal quantifier.</p>
+<div class="inset-example"><div class="box-label">Example 1.6</div><h3>Shrinking and Expanding Intervals</h3>
+<p> Find <span class="math inline">\(\bigcap_{n\ge1}(-1/n,1/n)\)</span> and <span class="math inline">\(\bigcup_{n\ge1}(-n,n)\)</span>.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>The first intersection is <span class="math inline">\(\{0\}\)</span>. Certainly <span class="math inline">\(0\)</span> belongs to every interval. If <span class="math inline">\(x\ne0\)</span>, choose <span class="math inline">\(n&gt;1/|x|\)</span>; then <span class="math inline">\(|x|&gt;1/n\)</span>, so <span class="math inline">\(x\)</span> is absent from that particular interval. The union is <span class="math inline">\(\mathbb{R}\)</span>: given <span class="math inline">\(x\in\mathbb{R}\)</span>, choose <span class="math inline">\(n&gt;|x|\)</span>, and then <span class="math inline">\(x\in(-n,n)\)</span>. The index chosen depends on the point <span class="math inline">\(x\)</span>.</p>
+</div></details>
+<div class="math-box theorem"><div class="box-label">Theorem 1.3</div><h3>De Morgan’s Laws</h3>
+<p> For a family of subsets <span class="math inline">\(A_i\subseteq X\)</span>, <span class="math display">\[X\setminus\bigcup_iA_i=\bigcap_i(X\setminus A_i),\qquad
+ X\setminus\bigcap_iA_i=\bigcup_i(X\setminus A_i).\]</span></p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> A point lies outside the union exactly when it lies in none of its members, which means that it lies in every complement. A point lies outside the intersection exactly when it fails to belong to at least one member, which means that it lies in at least one complement. These statements establish equality by checking membership. ◻</p>
+</div></details>
+<h2 class="section-title" id="section-13-functions-images-and-preimages">Functions, Images, and Preimages</h2>
+<div class="math-box"><div class="box-label">Definition 1.3</div><h3>Function, Domain, Codomain, and Range</h3>
+<p> A function <span class="math inline">\(f:X\to Y\)</span> assigns exactly one element <span class="math inline">\(f(x)\in Y\)</span> to each <span class="math inline">\(x\in X\)</span>. Its domain is <span class="math inline">\(X\)</span>, its codomain is <span class="math inline">\(Y\)</span>, and its range is <span class="math inline">\(f(X)=\{f(x):x\in X\}\subseteq Y\)</span>.</p>
+</div>
+<p>The range may be smaller than the codomain. In particular, whether a function is onto depends on its codomain.</p>
+<div class="math-box"><div class="box-label">Definition 1.4</div><h3>Injective, Surjective, and Bijective Maps</h3>
+<p> A map <span class="math inline">\(f:X\to Y\)</span> is <em>injective</em> if <span class="math inline">\(f(x_1)=f(x_2)\)</span> implies <span class="math inline">\(x_1=x_2\)</span>. It is <em>surjective</em> if every <span class="math inline">\(y\in Y\)</span> equals <span class="math inline">\(f(x)\)</span> for some <span class="math inline">\(x\in X\)</span>. It is <em>bijective</em> if it is both injective and surjective.</p>
+</div>
+<p>The Cartesian product <span class="math inline">\(X\times Y\)</span> is the set of ordered pairs <span class="math inline">\((x,y)\)</span>. The graph of <span class="math inline">\(f\)</span> is the subset <span class="math inline">\(\{(x,f(x)):x\in X\}\)</span> of this product. The graph of a function has exactly one pair above each input.</p>
+<div class="math-box"><div class="box-label">Definition 1.5</div><h3>Image and Preimage</h3>
+<p> If <span class="math inline">\(A\subseteq X\)</span> and <span class="math inline">\(B\subseteq Y\)</span>, set <span class="math display">\[f(A)=\{f(x):x\in A\},\qquad
+ f^{-1}(B)=\{x\in X:f(x)\in B\}.\]</span> The second notation denotes a set, and does not require an inverse function to exist.</p>
+</div>
+<div class="inset-example"><div class="box-label">Example 1.7</div><h3>A Preimage without an Inverse Function</h3>
+<p> For <span class="math inline">\(f:\mathbb{R}\to\mathbb{R}\)</span>, <span class="math inline">\(f(x)=x^2\)</span>, calculate <span class="math inline">\(f((-2,1))\)</span>, <span class="math inline">\(f^{-1}((1,4))\)</span>, and <span class="math inline">\(f^{-1}(\{-1\})\)</span>.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>The image is <span class="math inline">\([0,4)\)</span>: the value <span class="math inline">\(0\)</span> occurs, and values arbitrarily close to <span class="math inline">\(4\)</span> occur through inputs near <span class="math inline">\(-2\)</span>, but <span class="math inline">\(4\)</span> does not occur. The inequality <span class="math inline">\(1&lt;x^2&lt;4\)</span> gives <span class="math inline">\(f^{-1}((1,4))=(-2,-1)\cup(1,2)\)</span>. No real square is negative, so <span class="math inline">\(f^{-1}(\{-1\})=\varnothing\)</span>. None of these computations requires <span class="math inline">\(f\)</span> to be one-to-one.</p>
+</div></details>
+<div class="math-box theorem"><div class="box-label">Theorem 1.4</div><h3>Preimages Preserve Set Operations</h3>
+<p> For any function <span class="math inline">\(f:X\to Y\)</span> and any family <span class="math inline">\(B_i\subseteq Y\)</span>, <span class="math display">\[f^{-1}\Bigl(\bigcup_iB_i\Bigr)=\bigcup_i f^{-1}(B_i),\qquad
+ f^{-1}\Bigl(\bigcap_iB_i\Bigr)=\bigcap_i f^{-1}(B_i),\]</span> and <span class="math inline">\(f^{-1}(Y\setminus B)=X\setminus f^{-1}(B)\)</span>.</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> For the union, <span class="math display">\[x\in f^{-1}\Bigl(\bigcup_iB_i\Bigr)
+ \iff f(x)\in\bigcup_iB_i
+ \iff \exists i,\ f(x)\in B_i
+ \iff x\in\bigcup_i f^{-1}(B_i).\]</span> Replace the existential quantifier by a universal one to prove the intersection identity. For complements, the condition <span class="math inline">\(f(x)\notin B\)</span> is exactly <span class="math inline">\(x\notin f^{-1}(B)\)</span>, with <span class="math inline">\(x\)</span> restricted to <span class="math inline">\(X\)</span>. ◻</p>
+</div></details>
+<p>Images always preserve unions, but for intersections only <span class="math inline">\(f(A\cap B)\subseteq f(A)\cap f(B)\)</span> is automatic. For <span class="math inline">\(f(x)=x^2\)</span>, <span class="math inline">\(A=\{-1\}\)</span> and <span class="math inline">\(B=\{1\}\)</span> have empty intersection, while <span class="math inline">\(f(A)\cap f(B)=\{1\}\)</span>. If <span class="math inline">\(f\)</span> is injective, equality follows: two preimages producing the same output must then be the same point.</p>
+<h2 class="section-title" id="section-14-composition-and-inverse-functions">Composition and Inverse Functions</h2>
+<div class="math-box"><div class="box-label">Definition 1.6</div><h3>Composition of Functions</h3>
+<p> For <span class="math inline">\(f:X\to Y\)</span> and <span class="math inline">\(g:Y\to Z\)</span>, the composition <span class="math inline">\(g\circ f:X\to Z\)</span> is <span class="math inline">\((g\circ f)(x)=g(f(x))\)</span> for each <span class="math inline">\(x\in X\)</span>.</p>
+</div>
+<p>The order of evaluation is from the inside out. Composition is associative, but generally not commutative. For <span class="math inline">\(f(x)=x+1\)</span> and <span class="math inline">\(g(x)=x^2\)</span>, we have <span class="math inline">\(g(f(x))=x^2+2x+1\)</span> and <span class="math inline">\(f(g(x))=x^2+1\)</span>.</p>
+<div class="math-box"><div class="box-label">Definition 1.7</div><h3>Inverse Function</h3>
+<p> A bijection <span class="math inline">\(f:X\to Y\)</span> has an inverse function <span class="math inline">\(f^{-1}:Y\to X\)</span>, defined by <span class="math inline">\(f^{-1}(y)=x\)</span> exactly when <span class="math inline">\(f(x)=y\)</span>.</p>
+</div>
+<p>Surjectivity supplies existence and injectivity supplies uniqueness. Consequently <span class="math display">\[f^{-1}\circ f=\id_X,\qquad f\circ f^{-1}=\id_Y.\]</span> If <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are bijections, then <span class="math inline">\((g\circ f)^{-1}=f^{-1}\circ g^{-1}\)</span>. This order is forced by undoing the last operation first.</p>
+<p>The equation <span class="math inline">\(f(x)=x^2\)</span> gives a bijection from <span class="math inline">\([0,\infty)\)</span> to <span class="math inline">\([0,\infty)\)</span>, but not from <span class="math inline">\(\mathbb{R}\)</span> to <span class="math inline">\([0,\infty)\)</span>. Which hypothesis changes? What happens if the codomain is instead <span class="math inline">\(\mathbb{R}\)</span>?</p>
+<h2 class="section-title" id="section-15-relations-order-and-equivalence">Relations, Order, and Equivalence</h2>
+<p>A relation on <span class="math inline">\(X\)</span> is a rule determining which pairs of elements are related; formally it is a subset of <span class="math inline">\(X\times X\)</span>. An equivalence relation is reflexive, symmetric, and transitive. These three conditions express a consistent notion of being the same for a particular purpose.</p>
+<p>For integers, having the same remainder on division by <span class="math inline">\(3\)</span> is an equivalence relation. It groups the integers into three classes. For nonzero-denominator fractions, <span class="math inline">\((p,q)\)</span> and <span class="math inline">\((r,s)\)</span> represent the same rational number when <span class="math inline">\(ps=rq\)</span>.</p>
+<div class="math-box theorem"><div class="box-label">Theorem 1.5</div><h3>Equivalence Classes Form a Partition</h3>
+<p> If <span class="math inline">\(\sim\)</span> is an equivalence relation on <span class="math inline">\(X\)</span>, the classes <span class="math inline">\([x]=\{y\in X:y\sim x\}\)</span> are nonempty and two classes are either equal or disjoint.</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> Reflexivity gives <span class="math inline">\(x\in[x]\)</span>, so every class is nonempty and every element lies in a class. If <span class="math inline">\(z\in[x]\cap[y]\)</span> and <span class="math inline">\(u\in[x]\)</span>, then <span class="math inline">\(u\sim x\)</span>, <span class="math inline">\(x\sim z\)</span>, and <span class="math inline">\(z\sim y\)</span>. Transitivity gives <span class="math inline">\(u\sim y\)</span>, so <span class="math inline">\([x]\subseteq[y]\)</span>. Interchanging <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> proves the reverse inclusion. Thus intersecting classes are equal. ◻</p>
+</div></details>
+<p>A partial order is reflexive, antisymmetric, and transitive. Antisymmetry says that <span class="math inline">\(x\preceq y\)</span> and <span class="math inline">\(y\preceq x\)</span> imply <span class="math inline">\(x=y\)</span>. Set inclusion is a partial order. It is not usually a total order: <span class="math inline">\(\{1\}\)</span> and <span class="math inline">\(\{2\}\)</span> are incomparable by inclusion. The usual order on <span class="math inline">\(\mathbb{R}\)</span> is total because any two numbers can be compared.</p>
+<h2 class="section-title" id="section-16-a-function-with-an-empty-domain">A Function with an Empty Domain</h2>
+<p>There is exactly one function <span class="math inline">\(\varnothing\to Y\)</span>, for any set <span class="math inline">\(Y\)</span>: its graph is empty. The requirement of one output for every input has no input to check. This function is injective. It is onto only when <span class="math inline">\(Y=\varnothing\)</span>. In contrast, there is no function from a nonempty set to <span class="math inline">\(\varnothing\)</span>, because even one input would need an output that does not exist.</p>
+<h2 class="section-title" id="section-17-a-short-preparation-in-mathematical-language">A short preparation in mathematical language</h2>
+<p>A statement such as “every multiple of <span class="math inline">\(4\)</span> is even” has a hypothesis and a conclusion. A proof explains why the hypothesis forces the conclusion. An example illustrates the statement, but does not establish it for every integer. To disprove a universal statement, however, one counterexample is enough: <span class="math inline">\(2\)</span> disproves “every even number is a multiple of <span class="math inline">\(4\)</span>.”</p>
+<p>We use <span class="math inline">\(\mathbb{N}=\{1,2,3,\ldots\}\)</span>. The symbols <span class="math inline">\(\forall\)</span> and <span class="math inline">\(\exists\)</span> mean “for every” and “there exists.” An implication <span class="math inline">\(P\Rightarrow Q\)</span> does not usually work backwards. For example, <span class="math inline">\(x=2\Rightarrow x^2=4\)</span>, but <span class="math inline">\(x^2=4\)</span> also allows <span class="math inline">\(x=-2\)</span>.</p>
+<div class="note-box"><div class="box-label">Method 1.2</div>
+<p>Write down what is given, what must be shown, and the definition of the new word in the question. If you are stuck on “injective”, replace it by: assume <span class="math inline">\(f(x)=f(y)\)</span> and show <span class="math inline">\(x=y\)</span>. If you are stuck on “surjective”, start with an arbitrary point of the codomain and construct a preimage.</p>
+</div>
+<p>The familiar number systems satisfy <span class="math inline">\(\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}\)</span>. The geometric reason for passing from fractions to real numbers was developed in Lecture <a data-reference="app:real-background" data-reference-type="ref" href="#app:real-background">[app:real-background]</a>. We now ask a further question: can the elements of a set be put into a list?</p>
+<h2 class="section-title" id="section-18-intervals-on-the-real-line">Intervals on the Real Line</h2>
+<div class="math-box"><div class="box-label">Definition 1.8</div><h3>Intervals on the Real Line</h3>
+<p> For <span class="math inline">\(a&lt;b\)</span>, the open and closed intervals with endpoints <span class="math inline">\(a,b\)</span> are <span class="math display">\[(a,b)=\{x\in\mathbb{R}:a&lt;x&lt;b\},\qquad
+ [a,b]=\{x\in\mathbb{R}:a\le x\le b\}.\]</span> The half-open intervals <span class="math inline">\([a,b)\)</span> and <span class="math inline">\((a,b]\)</span> include exactly one endpoint.</p>
+</div>
+<p>An open interval contains all the points strictly between its endpoints, but neither endpoint itself. We shall use such intervals as windows around a point when we study sequences.</p>
+<h2 class="section-title" id="section-19-the-real-numbers-as-an-ordered-field">The Real Numbers as an Ordered Field</h2>
+<p>The statement that the real numbers fill the gaps in the rational line is an excellent motivation, but it is not yet an axiom. To use real numbers in a proof, we must specify which properties we are allowed to use. These properties have three layers: arithmetic, order, and completeness.</p>
+<p>The arithmetic rules say that <span class="math inline">\(\mathbb{R}\)</span> is a <em>field</em>. Addition and multiplication are associative and commutative; there are identities <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, with <span class="math inline">\(0\ne1\)</span>; every real number has an additive inverse; every nonzero real number has a multiplicative inverse; and multiplication distributes over addition. For example, distributivity is the assertion <span class="math display">\[x(y+z)=xy+xz.\]</span> These axioms justify familiar cancellation rules. If <span class="math inline">\(a+b=a+c\)</span>, adding <span class="math inline">\(-a\)</span> to both sides gives <span class="math inline">\(b=c\)</span>. If <span class="math inline">\(ab=ac\)</span> and <span class="math inline">\(a\ne0\)</span>, multiplication by <span class="math inline">\(a^{-1}\)</span> gives <span class="math inline">\(b=c\)</span>. The condition <span class="math inline">\(a\ne0\)</span> cannot be removed: <span class="math inline">\(0b=0c\)</span> says nothing about whether <span class="math inline">\(b=c\)</span>.</p>
+<p>The order is a total order compatible with these operations: <span class="math display">\[x\le y\Longrightarrow x+z\le y+z,\qquad
+ 0\le x,\ 0\le y\Longrightarrow 0\le xy.\]</span> Every pair of real numbers can be compared. Multiplication by a positive number preserves an inequality; multiplication by a negative number reverses it. To see the second assertion rather than merely remember it, suppose <span class="math inline">\(x&lt;y\)</span> and <span class="math inline">\(z&lt;0\)</span>. Then <span class="math inline">\(y-x&gt;0\)</span> and <span class="math inline">\(-z&gt;0\)</span>, so <span class="math inline">\((y-x)(-z)&gt;0\)</span>. Rearranging yields <span class="math inline">\(xz&gt;yz\)</span>.</p>
+<div class="inset-example"><div class="box-label">Example 1.8</div><h3>Why Squaring Requires a Sign Check</h3>
+<p> When is it legitimate to square the inequality <span class="math inline">\(x&lt;y\)</span>?</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>If <span class="math inline">\(0\le x&lt;y\)</span>, then <span class="math display">\[y^2-x^2=(y-x)(y+x)&gt;0,\]</span> so <span class="math inline">\(x^2&lt;y^2\)</span>. Without nonnegativity the assertion fails: <span class="math inline">\(-3&lt;2\)</span> but <span class="math inline">\(9&gt;4\)</span>. If both numbers are negative, their absolute values occur in the opposite order. Thus an inequality involving squares must be interpreted together with the signs of the original quantities.</p>
+</div></details>
+<p>The rational numbers satisfy all the rules above as well. Arithmetic and order therefore do not distinguish <span class="math inline">\(\mathbb{Q}\)</span> from <span class="math inline">\(\mathbb{R}\)</span>. The distinction is the existence of certain boundaries, which we now make precise.</p>
+<h2 class="section-title" id="section-20-bounds-maximum-supremum-and-infimum">Bounds, Maximum, Supremum, and Infimum</h2>
+<p>Suppose a set of real numbers lies entirely to the left of some point <span class="math inline">\(M\)</span>. There may be many choices of <span class="math inline">\(M\)</span>. We are interested in the smallest possible one, even when that point does not belong to the set.</p>
+<div class="math-box"><div class="box-label">Definition 1.9</div><h3>Upper and Lower Bounds</h3>
+<p> Let <span class="math inline">\(A\subseteq\mathbb{R}\)</span> be nonempty. A number <span class="math inline">\(M\)</span> is an upper bound of <span class="math inline">\(A\)</span> if <span class="math inline">\(a\le M\)</span> for every <span class="math inline">\(a\in A\)</span>. A number <span class="math inline">\(m\)</span> is a lower bound if <span class="math inline">\(m\le a\)</span> for every <span class="math inline">\(a\in A\)</span>. A maximum is an upper bound that belongs to <span class="math inline">\(A\)</span>; a minimum is a lower bound that belongs to <span class="math inline">\(A\)</span>.</p>
+<p>The supremum <span class="math inline">\(\sup A\)</span> is the least upper bound, when one exists in <span class="math inline">\(\mathbb{R}\)</span>. The infimum <span class="math inline">\(\inf A\)</span> is the greatest lower bound, when one exists in <span class="math inline">\(\mathbb{R}\)</span>.</p>
+</div>
+<p>For <span class="math inline">\(A=(0,1)\)</span>, the upper bounds are exactly the numbers in <span class="math inline">\([1,\infty)\)</span>. Thus <span class="math inline">\(\sup A=1\)</span>, although <span class="math inline">\(A\)</span> has no maximum. Similarly <span class="math inline">\(\inf A=0\)</span> and there is no minimum. For <span class="math inline">\(B=\{1/n:n\in\mathbb{N}\}\)</span>, the maximum and supremum are both <span class="math inline">\(1\)</span>, whereas the infimum is <span class="math inline">\(0\)</span> and there is no minimum.</p>
+<div class="math-box theorem"><div class="box-label">Theorem 1.6</div><h3>The Approximation Property of a Supremum</h3>
+<p> Let <span class="math inline">\(A\)</span> be nonempty and bounded above. A number <span class="math inline">\(s\)</span> is <span class="math inline">\(\sup A\)</span> if and only if</p>
+<ol>
+<li><p><span class="math inline">\(a\le s\)</span> for every <span class="math inline">\(a\in A\)</span>;</p></li>
+<li><p>for every <span class="math inline">\(\varepsilon&gt;0\)</span>, there exists <span class="math inline">\(a\in A\)</span> with <span class="math inline">\(s-\varepsilon&lt;a\)</span>.</p></li>
+</ol>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> Suppose <span class="math inline">\(s=\sup A\)</span>. It is an upper bound by definition. If the second property failed for some <span class="math inline">\(\varepsilon&gt;0\)</span>, every <span class="math inline">\(a\in A\)</span> would satisfy <span class="math inline">\(a\le s-\varepsilon\)</span>. Then <span class="math inline">\(s-\varepsilon\)</span> would be a smaller upper bound, a contradiction.</p>
+<p>Conversely, suppose the two properties hold. If <span class="math inline">\(u&lt;s\)</span>, choose <span class="math inline">\(\varepsilon=s-u&gt;0\)</span>. The second property gives <span class="math inline">\(a\in A\)</span> with <span class="math inline">\(u&lt;a\)</span>, so <span class="math inline">\(u\)</span> is not an upper bound. Therefore no number smaller than <span class="math inline">\(s\)</span> is an upper bound, and <span class="math inline">\(s\)</span> is the least upper bound. ◻</p>
+</div></details>
+<p>The order of the choices matters. Take <span class="math inline">\(A=(0,1)\)</span> and <span class="math inline">\(s=1\)</span>. For <span class="math inline">\(0&lt;\varepsilon&lt;1\)</span>, the point <span class="math inline">\(a=1-\varepsilon/2\)</span> lies in <span class="math inline">\(A\)</span> and satisfies <span class="math inline">\(1-\varepsilon&lt;a&lt;1\)</span>. For <span class="math inline">\(\varepsilon\ge1\)</span>, <span class="math inline">\(a=1/2\)</span> works. But if someone fixes one <span class="math inline">\(a\in A\)</span> <em>first</em>, choosing <span class="math inline">\(\varepsilon=(1-a)/2\)</span> leaves <span class="math inline">\(a\)</span> below <span class="math inline">\(1-\varepsilon\)</span>. We can get as close as requested without ever reaching the supremum.</p>
+<h2 class="section-title" id="section-21-completeness-and-the-archimedean-property">Completeness and the Archimedean Property</h2>
+<div class="math-box"><div class="box-label">Definition 1.10</div><h3>The Completeness Axiom</h3>
+<p> Every nonempty subset of <span class="math inline">\(\mathbb{R}\)</span> that is bounded above has a supremum in <span class="math inline">\(\mathbb{R}\)</span>.</p>
+</div>
+<p>This is the additional property we assume about real numbers. It is not proved from the field and order axioms: those axioms also hold in <span class="math inline">\(\mathbb{Q}\)</span>, where completeness fails. A construction using Dedekind cuts gives a system satisfying all these axioms. Once the axioms have been adopted, our later proofs do not depend on a particular construction.</p>
+<p>The corresponding statement for lower bounds follows immediately. If <span class="math inline">\(A\)</span> is nonempty and bounded below, define <span class="math inline">\(-A=\{-a:a\in A\}\)</span>. Then <span class="math inline">\(-A\)</span> is bounded above, and <span class="math display">\[\inf A=-\sup(-A).\]</span> Indeed <span class="math inline">\(m\)</span> is a lower bound for <span class="math inline">\(A\)</span> precisely when <span class="math inline">\(-m\)</span> is an upper bound for <span class="math inline">\(-A\)</span>.</p>
+<div class="math-box theorem"><div class="box-label">Theorem 1.7</div><h3>The Archimedean Property</h3>
+<p> For every <span class="math inline">\(x\in\mathbb{R}\)</span>, there exists <span class="math inline">\(n\in\mathbb{N}\)</span> with <span class="math inline">\(n&gt;x\)</span>. Consequently, for every <span class="math inline">\(\varepsilon&gt;0\)</span> there is <span class="math inline">\(n\in\mathbb{N}\)</span> such that <span class="math inline">\(0&lt;1/n&lt;\varepsilon\)</span>.</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> If <span class="math inline">\(\mathbb{N}\)</span> were bounded above, completeness would give <span class="math inline">\(s=\sup\mathbb{N}\)</span>. The number <span class="math inline">\(s-1\)</span> is not an upper bound, so some <span class="math inline">\(n\in\mathbb{N}\)</span> satisfies <span class="math inline">\(s-1&lt;n\)</span>. But then <span class="math inline">\(n+1\in\mathbb{N}\)</span> and <span class="math inline">\(n+1&gt;s\)</span>, contradicting that <span class="math inline">\(s\)</span> is an upper bound. Thus <span class="math inline">\(\mathbb{N}\)</span> is unbounded. Apply this result to <span class="math inline">\(x=1/\varepsilon\)</span> for the last assertion. ◻</p>
+</div></details>
+<div class="inset-example"><div class="box-label">Example 1.9</div><h3>A Supremum Found by Approximation</h3>
+<p> Find the supremum of <span class="math inline">\(A=\{2-3/n:n\in\mathbb{N}\}\)</span>.</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>Every element is less than <span class="math inline">\(2\)</span>, so <span class="math inline">\(2\)</span> is an upper bound. Given <span class="math inline">\(\varepsilon&gt;0\)</span>, choose a natural number <span class="math inline">\(n&gt;3/\varepsilon\)</span>. Then <span class="math display">\[2-\varepsilon&lt;2-\frac3n&lt;2.\]</span> The approximation property gives <span class="math inline">\(\sup A=2\)</span>. No term equals <span class="math inline">\(2\)</span>, so the set has no maximum. The required choice of <span class="math inline">\(n\)</span> is justified by the Archimedean property, now proved.</p>
+</div></details>
+<div class="math-box theorem"><div class="box-label">Theorem 1.8</div><h3>The Integer-Part Property</h3>
+<p> For every <span class="math inline">\(x\in\mathbb{R}\)</span> there is a unique integer <span class="math inline">\(m\)</span> such that <span class="math inline">\(m\le x&lt;m+1\)</span>. This integer is denoted by <span class="math inline">\(\lfloor x\rfloor\)</span>.</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> Choose <span class="math inline">\(N\in\mathbb{N}\)</span> with <span class="math inline">\(N&gt;|x|+1\)</span>. Among the finitely many integers <span class="math inline">\(-N,-N+1,\ldots,N\)</span> that do not exceed <span class="math inline">\(x\)</span>, choose the largest, say <span class="math inline">\(m\)</span>. There is at least one such integer because <span class="math inline">\(-N&lt;x\)</span>. Since <span class="math inline">\(N&gt;x\)</span>, maximality gives <span class="math inline">\(x&lt;m+1\)</span>. If <span class="math inline">\(k\)</span> also had this property and <span class="math inline">\(k&gt;m\)</span>, then <span class="math inline">\(k\ge m+1&gt;x\)</span>, a contradiction. The case <span class="math inline">\(m&gt;k\)</span> is the same. ◻</p>
+</div></details>
+<p>Why is <span class="math inline">\(\lfloor-1.2\rfloor=-2\)</span> rather than <span class="math inline">\(-1\)</span>? Explain why rounding and taking the integer part are different operations.</p>
+<h2 class="section-title" id="section-22-constructing-the-square-root-from-completeness">Constructing the Square Root from Completeness</h2>
+<p>The diagonal of a square motivates <span class="math inline">\(\sqrt2\)</span>. Completeness proves that a real number with the required square exists. This separates two assertions: there is a real solution of <span class="math inline">\(x^2=2\)</span>, and there is no rational solution.</p>
+<div class="math-box theorem"><div class="box-label">Theorem 1.9</div><h3>Existence and Uniqueness of a Positive Square Root</h3>
+<p> For each <span class="math inline">\(a&gt;0\)</span> there is a unique <span class="math inline">\(s&gt;0\)</span> such that <span class="math inline">\(s^2=a\)</span>.</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> Let <span class="math inline">\(A=\{x\in\mathbb{R}:x\ge0,\ x^2&lt;a\}\)</span>. The set contains <span class="math inline">\(0\)</span> and is bounded above by <span class="math inline">\(a+1\)</span>: if <span class="math inline">\(x&gt;a+1\)</span>, then <span class="math inline">\(x&gt;1\)</span> and <span class="math inline">\(x^2&gt;x&gt;a\)</span>. Let <span class="math inline">\(s=\sup A\)</span>. We first note that <span class="math inline">\(s&gt;0\)</span>; for example, <span class="math inline">\(u=\min(1,a)/2\)</span> is positive and satisfies <span class="math inline">\(u^2&lt;a\)</span>.</p>
+<p>Suppose <span class="math inline">\(s^2&lt;a\)</span>. Choose <span class="math display">\[0&lt;h&lt;\min\left(1,\frac{a-s^2}{2s+1}\right).\]</span> Then <span class="math inline">\((s+h)^2=s^2+2sh+h^2&lt;s^2+(2s+1)h&lt;a\)</span>. Thus <span class="math inline">\(s+h\in A\)</span>, contradicting the upper-bound property of <span class="math inline">\(s\)</span>.</p>
+<p>Suppose instead that <span class="math inline">\(s^2&gt;a\)</span>. Choose <span class="math display">\[0&lt;h&lt;\min\left(s,\frac{s^2-a}{2s}\right).\]</span> Then <span class="math inline">\((s-h)^2=s^2-2sh+h^2&gt;a\)</span>. If <span class="math inline">\(x\in A\)</span>, nonnegativity and the order property of squaring imply <span class="math inline">\(x&lt;s-h\)</span>. Hence <span class="math inline">\(s-h\)</span> is an upper bound for <span class="math inline">\(A\)</span>, contradicting minimality of <span class="math inline">\(s\)</span>. Therefore <span class="math inline">\(s^2=a\)</span>.</p>
+<p>Finally, if <span class="math inline">\(0&lt;s&lt;t\)</span>, then <span class="math inline">\(t^2-s^2=(t-s)(t+s)&gt;0\)</span>, so two distinct positive numbers cannot have the same square. ◻</p>
+</div></details>
+<p>Notice the mechanism in both contradictions. A strict inequality leaves some positive room. We choose a small <span class="math inline">\(h\)</span> whose effect is less than that room. This elementary technique will reappear in continuity arguments.</p>
+<h2 class="section-title" id="section-23-calculating-with-suprema">Calculating with Suprema</h2>
+<div class="math-box theorem"><div class="box-label">Theorem 1.10</div><h3>Suprema of Sums and Scalar Multiples</h3>
+<p> Let <span class="math inline">\(A,B\subseteq\mathbb{R}\)</span> be nonempty and bounded, and let <span class="math inline">\(A+B=\{a+b:a\in A,\ b\in B\}\)</span>. Then <span class="math display">\[\sup(A+B)=\sup A+\sup B,\qquad
+ \inf(A+B)=\inf A+\inf B.\]</span> For <span class="math inline">\(c&gt;0\)</span>, <span class="math inline">\(\sup(cA)=c\sup A\)</span>; for <span class="math inline">\(c&lt;0\)</span>, <span class="math inline">\(\sup(cA)=c\inf A\)</span>.</p>
+</div>
+<details class="proof"><summary>Show proof</summary><div class="proof-body">
+<p><em>Proof.</em> Write <span class="math inline">\(\alpha=\sup A\)</span> and <span class="math inline">\(\beta=\sup B\)</span>. Every <span class="math inline">\(a+b\)</span> is at most <span class="math inline">\(\alpha+\beta\)</span>. Conversely, given <span class="math inline">\(\varepsilon&gt;0\)</span>, choose <span class="math inline">\(a&gt;\alpha-\varepsilon/2\)</span> and <span class="math inline">\(b&gt;\beta-\varepsilon/2\)</span>. Then <span class="math inline">\(a+b&gt;\alpha+\beta-\varepsilon\)</span>. The supremum approximation property proves equality. Applying this to <span class="math inline">\(-A\)</span> and <span class="math inline">\(-B\)</span> gives the infimum formula.</p>
+<p>If <span class="math inline">\(c&gt;0\)</span>, the upper-bound inequality is preserved by multiplication. To approximate <span class="math inline">\(c\sup A\)</span> within <span class="math inline">\(\varepsilon\)</span>, approximate <span class="math inline">\(\sup A\)</span> within <span class="math inline">\(\varepsilon/c\)</span>. If <span class="math inline">\(c&lt;0\)</span>, write <span class="math inline">\(cA=(-c)(-A)\)</span> and use <span class="math inline">\(\sup(-A)=-\inf A\)</span>. ◻</p>
+</div></details>
+<div class="inset-example"><div class="box-label">Example 1.10</div><h3>Why the Same Variable Changes the Answer</h3>
+<p> Let <span class="math inline">\(f,g:D\to\mathbb{R}\)</span> have nonempty, bounded ranges. Write <span class="math inline">\(\sup f=\sup\{f(x):x\in D\}\)</span> and similarly for <span class="math inline">\(g\)</span> and <span class="math inline">\(f+g\)</span>, where <span class="math inline">\((f+g)(x)=f(x)+g(x)\)</span>. Does <span class="math inline">\(\sup(f+g)=\sup f+\sup g\)</span> hold?</p>
+</div>
+<details class="proof"><summary>Show worked solution</summary><div class="proof-body">
+<p>Only the inequality <span class="math inline">\(\sup(f+g)\le\sup f+\sup g\)</span> is automatic. On <span class="math inline">\([0,1]\)</span>, take <span class="math inline">\(f(x)=x\)</span> and <span class="math inline">\(g(x)=1-x\)</span>. Both suprema on the right are <span class="math inline">\(1\)</span>, but <span class="math inline">\(f(x)+g(x)=1\)</span> for every <span class="math inline">\(x\)</span>. In the set-sum theorem, the two approximating elements can be chosen independently. For functions at the same input, the points making <span class="math inline">\(f\)</span> large may make <span class="math inline">\(g\)</span> small. The distinction is a matter of quantifiers.</p>
+</div></details>
+<h2 class="section-title" id="section-24-dedekind-cuts-a-precise-way-to-fill-a-gap">Dedekind Cuts: A Precise Way to Fill a Gap</h2>
+<p>Richard Dedekind gave a rigorous construction of real numbers using partitions of <span class="math inline">\(\mathbb{Q}\)</span>. The full construction belongs to a later course, but the picture is accessible.</p>
+<p>A <em>Dedekind cut</em> separates the rational numbers into a lower part <span class="math inline">\(A\)</span> and an upper part <span class="math inline">\(B\)</span> so that every element of <span class="math inline">\(A\)</span> is smaller than every element of <span class="math inline">\(B\)</span>. The parts are nonempty, <span class="math inline">\(A\cup B=\mathbb{Q}\)</span>, <span class="math inline">\(A\cap B=\varnothing\)</span>, and <span class="math inline">\(A\)</span> has no greatest element. Equivalently, the lower set <span class="math inline">\(A\)</span> is a nonempty proper subset of <span class="math inline">\(\mathbb{Q}\)</span>, is downward closed, and has no greatest element. The location of the cut represents a real number.</p>
+<p>For <span class="math inline">\(\sqrt2\)</span>, a correct lower set is <span class="math display">\[A=\{q\in\mathbb{Q}:q&lt;0\text{ or }q^2&lt;2\},\]</span> and <span class="math inline">\(B=\mathbb{Q}\setminus A\)</span>. There is no rational number at the boundary, but the cut itself represents the missing number <span class="math inline">\(\sqrt2\)</span>.</p>
+<div class="figure-or-centered">
+
+
+<blockquote>
+<p><em>[Figure being adapted for the online edition.]</em></p>
+</blockquote>
+
+</div>
+</div>
+<div class="edition-note"><strong>About this web edition.</strong> This page is converted from the LaTeX lecture manuscript. Some original TikZ illustrations are marked for conversion. End-of-lecture homework and separate answer keys are not included here. Please consult the author before redistributing.</div>
+<nav class="reader-end" aria-label="Next and previous lecture"><a href="./">← Contents</a><a href="lecture-02.html">Lecture 02 →</a></nav><div class="copyright">© 2026 Aritra Dey. All rights reserved. Reuse, reproduction or redistribution requires the author’s prior written permission.</div></div></main>
+<aside class="on-this-page"><h2>On this page</h2><a href="#section-1-why-study-real-numbers">Why Study Real Numbers?</a><a href="#section-2-common-number-sets">Common Number Sets</a><a href="#section-3-the-diagonal-of-a-unit-square">The Diagonal of a Unit Square</a><a href="#section-4-quantifiers">Quantifiers</a><a href="#section-5-standard-proof-patterns">Standard Proof Patterns</a><a href="#section-6-proof-that-sqrt2-is-irrational">Proof That \(\sqrt2\) Is Irrational</a><a href="#section-7-other-irrational-numbers">Other Irrational Numbers</a><a href="#section-8-rational-approximations-and-the-gaps">Rational Approximations and the “Gaps”</a><a href="#section-9-the-real-number-system">The Real Number System</a><a href="#section-10-induction-least-elements-and-a-reading-check">Induction, Least Elements, and a Reading Check</a><a href="#section-11-sets-and-the-language-of-membership">Sets and the Language of Membership</a><a href="#section-12-unions-intersections-and-indexed-families">Unions, Intersections, and Indexed Families</a><a href="#section-13-functions-images-and-preimages">Functions, Images, and Preimages</a><a href="#section-14-composition-and-inverse-functions">Composition and Inverse Functions</a><a href="#section-15-relations-order-and-equivalence">Relations, Order, and Equivalence</a><a href="#section-16-a-function-with-an-empty-domain">A Function with an Empty Domain</a><a href="#section-17-a-short-preparation-in-mathematical-language">A short preparation in mathematical language</a><a href="#section-18-intervals-on-the-real-line">Intervals on the Real Line</a><a href="#section-19-the-real-numbers-as-an-ordered-field">The Real Numbers as an Ordered Field</a><a href="#section-20-bounds-maximum-supremum-and-infimum">Bounds, Maximum, Supremum, and Infimum</a><a href="#section-21-completeness-and-the-archimedean-property">Completeness and the Archimedean Property</a><a href="#section-22-constructing-the-square-root-from-completeness">Constructing the Square Root from Completeness</a><a href="#section-23-calculating-with-suprema">Calculating with Suprema</a><a href="#section-24-dedekind-cuts-a-precise-way-to-fill-a-gap">Dedekind Cuts: A Precise Way to Fill a Gap</a></aside></div></body></html>
