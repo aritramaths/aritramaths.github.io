@@ -4,7 +4,7 @@
 <header class="chapter-head"><div class="chapter-label">Lecture 04 · Online reading edition</div><h1>Direct Epsilon Proofs, Estimates, and Ratios</h1><p>Read this lecture online, then continue to the next chapter. Figures and exercises are being adapted separately for the web edition.</p><div class="reading-tools"><button type="button" id="type-toggle" aria-pressed="false">Larger text</button><button type="button" id="proof-toggle">Expand all proofs &amp; worked solutions</button></div></header>
 <div class="lecture-content">
 <h2 class="section-title" id="section-1-bernoulli-s-inequality-before-we-use-it">Bernoulli’s inequality before we use it</h2>
-<p>We shall soon compare powers and roots with simple fractions. Before doing so, let us prove the inequality that makes those comparisons possible. Its proof uses only the principle of induction from Lecture <a data-reference="lec:1" data-reference-type="ref" href="#lec:1">[lec:1]</a>.</p>
+<p>We shall soon compare powers and roots with simple fractions. Before doing so, let us prove the inequality that makes those comparisons possible. Its proof uses only the principle of induction from Lecture <a data-reference="lec:1" data-reference-type="ref" href="lecture-01.html">[lec:1]</a>.</p>
 <div class="math-box theorem"><div class="box-label">Theorem 4.1</div><h3>Bernoulli’s Inequality</h3>
 <p> For every real <span class="math inline">\(u\ge-1\)</span> and every <span class="math inline">\(n\in\mathbb{N}\)</span>, <span class="math display">\[(1+u)^n\ge1+nu.\]</span></p>
 </div>
@@ -29,7 +29,7 @@
 <p>For <span class="math inline">\(t&gt;0\)</span> and a fixed real <span class="math inline">\(p&gt;0\)</span>, we use the usual positive power <span class="math inline">\(t^p\)</span>: it increases with <span class="math inline">\(t\)</span>, obeys the exponent laws, and has inverse <span class="math inline">\(t^{1/p}\)</span>. For a fixed base <span class="math inline">\(a&gt;1\)</span>, <span class="math inline">\(a^t\)</span> is positive and increases with <span class="math inline">\(t\)</span>; <span class="math inline">\(\log_a t\)</span> denotes its inverse, so <span class="math inline">\(a^{\log_a t}=t\)</span> for <span class="math inline">\(t&gt;0\)</span>. For <span class="math inline">\(0&lt;a&lt;1\)</span>, <span class="math inline">\(a^t\)</span> decreases with <span class="math inline">\(t\)</span>. The natural logarithm <span class="math inline">\(\ln t\)</span> is the logarithm to base <span class="math inline">\(e&gt;1\)</span>. These algebraic and order properties are our previously familiar precalculus facts; no limit, continuity, or calculus rule for powers or logarithms is being assumed in our proofs. Likewise we use the elementary trigonometric bound <span class="math inline">\(|\sin t|,|\cos t|\le1\)</span>.</p>
 </div>
 <h2 class="section-title" id="section-2-direct-varepsilon-n-proofs">Direct <span class="math inline">\(\varepsilon\)</span>–<span class="math inline">\(N\)</span> Proofs</h2>
-<p>In the previous lecture, the <a href="#sec:pendulum-story">pendulum story</a> explained what our promise means. Today we will learn to calculate a waiting index that fulfils it. I give you a positive window radius <span class="math inline">\(\varepsilon\)</span>; your task is to tell me how far along the sequence I must go so that every later term lies inside.</p>
+<p>In the previous lecture, the <a href="lecture-03.html#section-6-the-pendulum-experiment">pendulum story</a> explained what our promise means. Today we will learn to calculate a waiting index that fulfils it. I give you a positive window radius <span class="math inline">\(\varepsilon\)</span>; your task is to tell me how far along the sequence I must go so that every later term lies inside.</p>
 <div class="note-box"><div class="box-label">Method 4.1</div>
 <p>Start from the desired inequality <span class="math inline">\(\abs{x_n-L}&lt;\varepsilon\)</span>. Simplify it until you obtain a condition of the form <span class="math inline">\(n&gt;F(\varepsilon)\)</span>. Then choose an integer <span class="math display">\[N&gt;F(\varepsilon),\]</span> for example <span class="math inline">\(N=\floor{F(\varepsilon)}+1\)</span>.</p>
 </div>
@@ -129,7 +129,7 @@
  {2(\sqrt{1+3/n}+1)}
  \le\frac{9}{8n}.\]</span> Given <span class="math inline">\(\varepsilon&gt;0\)</span>, choose <span class="math inline">\(N&gt;9/(8\varepsilon)\)</span>. For every <span class="math inline">\(n\ge N\)</span>, the displayed error is less than <span class="math inline">\(\varepsilon\)</span>, so the limit is <span class="math inline">\(3/2\)</span>.</p>
 <div class="note-box"><div class="box-label">Remark 4.2</div>
-<p>In Lecture <a data-reference="lec:5" data-reference-type="ref" href="#lec:5">[lec:5]</a>, the quotient law will provide a shorter route after rationalisation. Our proof here uses only the definition and the displayed algebraic estimate.</p>
+<p>In Lecture <a data-reference="lec:5" data-reference-type="ref" href="lecture-05.html">[lec:5]</a>, the quotient law will provide a shorter route after rationalisation. Our proof here uses only the definition and the displayed algebraic estimate.</p>
 </div>
 </div></details>
 <h2 class="section-title" id="section-5-comparing-a-term-with-the-next-term">Comparing a term with the next term</h2>
@@ -209,8 +209,8 @@
 <p>These problems develop the direct estimates of this lecture; for the root limit in Homework 4.2, use the definition and an elementary inequality, without invoking the squeeze theorem.</p>
 <div class="enumerate">
 </div>
-<p>In Lecture <a data-reference="lec:5" data-reference-type="ref" href="#lec:5">[lec:5]</a>, we shall begin with the definition of a bounded sequence and then study how boundedness helps us understand convergence.</p>
+<p>In Lecture <a data-reference="lec:5" data-reference-type="ref" href="lecture-05.html">[lec:5]</a>, we shall begin with the definition of a bounded sequence and then study how boundedness helps us understand convergence.</p>
 </div>
 <div class="edition-note"><strong>About this web edition.</strong> This page is converted from the LaTeX lecture manuscript. Some original TikZ illustrations are marked for conversion. End-of-lecture homework and separate answer keys are not included here. Please consult the author before redistributing.</div>
-<nav class="reader-end" aria-label="Next and previous lecture"><a href="lecture-03.html">← Lecture 03</a><a href="lecture-05.html">Lecture 05 →</a></nav><div class="copyright">© 2026 Aritra Dey. All rights reserved.</div></div></main>
+<nav class="reader-end" aria-label="Next and previous lecture"><a href="lecture-03.html">← Lecture 03</a><a href="lecture-05.html">Lecture 05 →</a></nav><div class="copyright">© 2026 Aritra Dey. All rights reserved. Reuse, reproduction or redistribution requires the author’s prior written permission.</div></div></main>
 <aside class="on-this-page"><h2>On this page</h2><a href="#section-1-bernoulli-s-inequality-before-we-use-it">Bernoulli’s inequality before we use it</a><a href="#section-2-direct-varepsilon-n-proofs">Direct \(\varepsilon\) – \(N\) Proofs</a><a href="#section-3-more-worked-epsilon-estimates">More Worked Epsilon Estimates</a><a href="#section-4-building-an-estimate-before-writing-the-proof">Building an Estimate before Writing the Proof</a><a href="#section-5-comparing-a-term-with-the-next-term">Comparing a term with the next term</a><a href="#section-6-homework-for-lecture-4">Homework for Lecture 4</a></aside></div></body></html>
