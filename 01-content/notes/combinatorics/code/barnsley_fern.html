@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Barnsley Fern: A Mathematical Ludo</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; background: #f4f5f5; color: #222; }
+  main { max-width: 1100px; margin: 24px auto; padding: 0 16px; }
+  .panel { background: white; border: 1px solid #ccc; border-radius: 10px; padding: 16px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 14px; align-items: end; margin-bottom: 14px; }
+  label { display: grid; gap: 4px; font-weight: 600; }
+  input, select, button { font: inherit; padding: 7px 9px; }
+  button { cursor: pointer; font-weight: 700; }
+  canvas { width: 100%; height: 720px; border: 1px solid #ddd; background: white; }
+  #frequency { white-space: pre-wrap; font-family: ui-monospace, monospace; }
+  small { font-weight: 400; }
+</style>
+</head>
+<body>
+<main><p><a href="../lecture-10.html#fern-laboratory">← Foundations of Probability</a></p>
+  <h1>A Mathematical Ludo: the Barnsley Fern</h1>
+  <p>Each turn chooses one affine move at random and leaves a dot. No curve is drawn.</p>
+  <section class="panel">
+    <div class="controls">
+      <label>Number of moves
+        <input id="n" type="number" value="150000" min="50" max="500000" step="1000">
+      </label>
+      <label>Random seed
+        <input id="seed" type="number" value="2026" min="1" step="1">
+      </label>
+      <label>Probabilities
+        <select id="mode">
+          <option value="standard">1%, 85%, 7%, 7%</option>
+          <option value="equal">25%, 25%, 25%, 25%</option>
+        </select>
+      </label>
+      <label><span>Plot type</span>
+        <select id="plotType">
+          <option value="points">Points (correct)</option>
+          <option value="lines">Connected lines (comparison)</option>
+        </select>
+      </label>
+      <button id="run">Play the game</button>
+    </div>
+    <canvas id="canvas" width="900" height="720"></canvas>
+    <p id="frequency"></p>
+  </section>
+<footer><p>© 2026 Aritra Dey. All rights reserved. Use, reproduction, or redistribution requires prior permission from the author.</p></footer></main>
+<script>
+"use strict";
+
+// Mulberry32: a compact seeded pseudo-random generator.
+function mulberry32(seed) {
+  let a = seed >>> 0;
+  return function() {
+    a |= 0;
+    a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function generateFern(n, seed, probabilities) {
+  const random = mulberry32(seed);
+  const cumulative = [];
+  probabilities.reduce((sum, p, i) => cumulative[i] = sum + p, 0);
+
+  const points = new Float64Array(2 * n);
+  const counts = [0, 0, 0, 0];
+  let x = 0, y = 0;
+
+  for (let k = 0; k < n; k++) {
+    const u = random();
+    let rule = 0;
+    while (rule < 3 && u >= cumulative[rule]) rule++;
+    counts[rule]++;
+
+    let newX, newY;
+    if (rule === 0) {
+      newX = 0;
+      newY = 0.16 * y;
+    } else if (rule === 1) {
+      newX = 0.85 * x + 0.04 * y;
+      newY = -0.04 * x + 0.85 * y + 1.60;
+    } else if (rule === 2) {
+      newX = 0.20 * x - 0.26 * y;
+      newY = 0.23 * x + 0.22 * y + 1.60;
+    } else {
+      newX = -0.15 * x + 0.28 * y;
+      newY = 0.26 * x + 0.24 * y + 0.44;
+    }
+    x = newX; y = newY;
+    points[2 * k] = x;
+    points[2 * k + 1] = y;
+  }
+  return { points, counts };
+}
+
+function draw() {
+  const n = Math.max(50, Math.min(500000, Number(document.getElementById("n").value)));
+  const seed = Number(document.getElementById("seed").value) || 1;
+  const mode = document.getElementById("mode").value;
+  const plotType = document.getElementById("plotType").value;
+  const probabilities = mode === "standard" ? [0.01, 0.85, 0.07, 0.07] : [0.25, 0.25, 0.25, 0.25];
+  const { points, counts } = generateFern(n, seed, probabilities);
+
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const xmin = -3.1, xmax = 3.1, ymin = -0.2, ymax = 10.2;
+  const mapX = x => (x - xmin) / (xmax - xmin) * canvas.width;
+  const mapY = y => canvas.height - (y - ymin) / (ymax - ymin) * canvas.height;
+
+  if (plotType === "lines") {
+    ctx.beginPath();
+    ctx.moveTo(mapX(points[0]), mapY(points[1]));
+    for (let k = 1; k < n; k++) {
+      ctx.lineTo(mapX(points[2 * k]), mapY(points[2 * k + 1]));
+    }
+    ctx.lineWidth = 0.25;
+    ctx.strokeStyle = "#111";
+    ctx.stroke();
+  } else {
+    ctx.fillStyle = "#1B5E20";
+    for (let k = 0; k < n; k++) {
+      ctx.fillRect(mapX(points[2 * k]), mapY(points[2 * k + 1]), 1, 1);
+    }
+  }
+
+  const frequencies = counts.map(c => (c / n).toFixed(5));
+  document.getElementById("frequency").textContent =
+    `Counts: ${counts.join(", ")}\nRelative frequencies: ${frequencies.join(", ")}`;
+}
+
+document.getElementById("run").addEventListener("click", draw);
+draw();
+</script>
+</body>
+</html>
